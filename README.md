@@ -22,6 +22,20 @@ This is a repository of my dotfiles.
   * setup.fish - Initial setup for a new fish installation,
   contains abbreviations
 
+### Hammerspoon (hammerspoon/)
+* setup.sh - Symlinks all lua and AppleScript files to `~/.hammerspoon/`
+* init.lua - Contains the main Hammerspoon config, importing the others
+* hyper.lua - Binds the "F18" key to a Hyper mode, which can be used for
+global commands
+* menuHammerCustomConfig.lua - Customization for the MenuHammer spoon
+* shortcuts.lua - Shortcuts using hyper mode
+* spectacle.lua - Window management
+* spoons.lua - Spoon configurations
+
+### Karabiner (karabiner/)
+* setup.sh - Symlinks Karabiner settings to ~/.config/karabiner
+* karabiner.json - Binds the CAPS LOCK key to "F18" to use with hammerspoon
+
 ### macOS Preferences (macos/)
 * setup.sh - Executes a long list of commands pertaining to macOS Preferences
 
