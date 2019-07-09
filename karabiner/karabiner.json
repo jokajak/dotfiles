@@ -7,17 +7,53 @@
     "profiles": [
         {
             "complex_modifications": {
+                "parameters": {
+                    "basic.simultaneous_threshold_milliseconds": 50,
+                    "basic.to_delayed_action_delay_milliseconds": 500,
+                    "basic.to_if_alone_timeout_milliseconds": 1000,
+                    "basic.to_if_held_down_threshold_milliseconds": 500,
+                    "mouse_motion_to_scroll.speed": 100
+                },
                 "rules": [
                     {
                         "manipulators": [
                             {
-                                "description": "Change caps_lock to hyper mode",
+                                "description": "Change right_shift to f18 for hyper mode",
                                 "from": {
-                                    "key_code": "caps_lock"
+                                    "key_code": "right_shift"
                                 },
-                                "to": {
-                                    "key_code": "f18"
-                                }
+                                "to": [
+                                    {
+                                        "key_code": "f18"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Change caps_lock to ctrl/escape",
+                                "from": {
+                                    "key_code": "caps_lock",
+				    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+				    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control"
+                                    }
+                                ],
+				"to_if_alone": [
+                                    {
+                                        "key_code": "escape"
+                                    }
+				],
+                                "type": "basic"
                             }
                         ]
                     }
