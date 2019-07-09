@@ -36,6 +36,10 @@ global commands
 * setup.sh - Symlinks Karabiner settings to ~/.config/karabiner
 * karabiner.json - Binds the CAPS LOCK key to "F18" to use with hammerspoon
 
+### Kitty (kitty/)
+* setup.sh - Symlinks kitty settings to ~/.config/kitty
+* kitty.conf - Contains the main kitty configuration.
+
 ### macOS Preferences (macos/)
 * setup.sh - Executes a long list of commands pertaining to macOS Preferences
 
