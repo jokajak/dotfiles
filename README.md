@@ -22,3 +22,8 @@ This is a repository of my dotfiles.
   * setup.fish - Initial setup for a new fish installation,
   contains abbreviations
 
+### macOS Preferences (macos/)
+* setup.sh - Executes a long list of commands pertaining to macOS Preferences
+
+### Packages (packages/)
+* setup.sh - Installs the contents of the .list files and the Brewfile
