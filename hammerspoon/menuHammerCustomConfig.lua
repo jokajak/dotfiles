@@ -245,6 +245,9 @@ menuHammerMenuList = {
             {cons.cat.submenu, '', 'U', 'Utilities', {
                 {cons.act.menu, utilitiesMenu}
             }},
+            {cons.cat.action, '', 'V', "VS Code", {
+                {cons.act.launcher, 'Visual Studio Code'}
+            }},
         }
     },
 
