@@ -46,3 +46,7 @@ global commands
 
 ### Packages (packages/)
 * setup.sh - Installs the contents of the .list files and the Brewfile
+
+### Visual Studio Code (vscode/)
+* setup.sh - Symlinks the settings.json file to `~/Library/Application Support/Code/User`
+* settings.json - Contains user settings for Visual Studio Code

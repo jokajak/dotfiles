@@ -1,0 +1,20 @@
+{
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "PowerShell ISE",
+
+    "editor.fontFamily": "FiraCode-Retina",
+    "editor.renderWhitespace": "boundary",
+    "editor.cursorStyle": "line-thin",
+    "editor.fontLigatures": true,
+
+    "terminal.external.osxExec": "kitty.app",
+
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+
+    "python.linting.pylintEnabled": true,
+    "python.linting.pep8Enabled": false,
+    "python.pythonPath": "/usr/local/bin/python3",
+
+    "window.zoomLevel": 0
+}
