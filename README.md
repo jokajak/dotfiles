@@ -39,6 +39,7 @@ global commands
 ### Kitty (kitty/)
 * setup.sh - Symlinks kitty settings to ~/.config/kitty
 * kitty.conf - Contains the main kitty configuration.
+* colors.conf - Contains the kitty color configuration.
 
 ### macOS Preferences (macos/)
 * setup.sh - Executes a long list of commands pertaining to macOS Preferences
