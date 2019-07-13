@@ -32,6 +32,9 @@ global commands
 * spectacle.lua - Window management
 * spoons.lua - Spoon configurations
 
+### iTerm2 (iterm2/)
+* AtomOneLight.itermcolors - AtomOneLight colorscheme
+
 ### Karabiner (karabiner/)
 * setup.sh - Symlinks Karabiner settings to ~/.config/karabiner
 * karabiner.json - Binds the CAPS LOCK key to "F18" to use with hammerspoon
