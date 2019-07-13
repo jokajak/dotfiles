@@ -16,5 +16,14 @@
     "python.linting.pep8Enabled": false,
     "python.pythonPath": "/usr/local/bin/python3",
 
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+
+    "workspaceExplorer.workspaceStorageDirectory": "/Users/jkayse/.vscode/workspaces/",
+    "[markdown]": {
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 78
+    },
+
+    "plantuml.server": "http://localhost:8080",
+    "plantuml.render": "PlantUMLServer"
 }
