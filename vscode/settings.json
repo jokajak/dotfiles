@@ -21,9 +21,84 @@
     "workspaceExplorer.workspaceStorageDirectory": "/Users/jkayse/.vscode/workspaces/",
     "[markdown]": {
         "editor.wordWrap": "wordWrapColumn",
-        "editor.wordWrapColumn": 78
+        "editor.wordWrapColumn": 78,
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
     },
 
     "plantuml.server": "http://localhost:8080",
-    "plantuml.render": "PlantUMLServer"
+    "plantuml.render": "PlantUMLServer",
+    "atlascode.jira.workingSite": {
+        "baseUrlSuffix": "atlassian.net"
+    },
+    "yaml.schemas": {
+        "file:///Users/jkayse/.vscode/extensions/atlassian.atlascode-1.4.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    },
+    "atlascode.jira.workingProject": {
+        "id": "15502",
+        "name": "Amtrak",
+        "key": "FEN"
+    },
+    "atlascode.bitbucket.statusbar.enabled": false,
+    "atlascode.jira.statusbar.enabled": false,
+    // Custom tags for the parser to use
+    "yaml.customTags": [
+        "!And",
+        "!If",
+        "!Not",
+        "!Equals",
+        "!Or",
+        "!FindInMap sequence",
+        "!Base64",
+        "!Cidr",
+        "!Ref",
+        "!Sub",
+        "!GetAtt",
+        "!GetAZs",
+        "!ImportValue",
+        "!Select",
+        "!Select sequence",
+        "!Split",
+        "!Join sequence"
+    ],
+    // Enable/disable default YAML formatter (requires restart)
+    "yaml.format.enable": true,
+    "git.autofetch": true,
+    "[python]": {
+        "editor.tabSizes": 4
+    },
+
+    "vim.easymotion": true,
+    "vim.camelCaseMotion.enable": true,
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        },
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [":"],
+            "commands": [
+                "workbench.action.showCommands",
+            ]
+        }
+    ],
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "j"],
+            "after": ["<Esc>"]
+        }
+    ]
 }
