@@ -23,6 +23,14 @@ Install:andUse("HCalendar", {})
 Install:andUse("CircleClock", {})
 -- window manipulation tools
 Install:andUse("WinWin", {})
+-- countdown tool
+Install:andUse("CountDown", {})
+-- clipboard history and support
+Install:andUse("ClipboardTool", {
+    fn = function(s)
+        s:start()
+    end
+})
 
 -- alfred like tool
 Install:andUse("Seal",
@@ -54,6 +62,17 @@ Install:andUse("Seal",
                             keyword = "ansible",
                             icon = 'favicon',
                             url = "https://docs.ansible.com/ansible/latest/modules/${query}_module.html"
+                        },
+                        ["Countdown"] = {
+                            keyword = "countdown",
+                            fn = function(minutes)
+                              if (minutes) then
+                                spoon.CountDown:startFor(minutes)
+                                hs.alert.show('Toggled a timer for '.. minutes .. ' minutes.')
+                              else
+                                hs.alert.show('Must provide minutes for the countdown timer')
+                              end
+                            end,
                         }
                      }
                    s:refreshAllCommands()
