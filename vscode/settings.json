@@ -100,5 +100,6 @@
             "before": ["j", "j"],
             "after": ["<Esc>"]
         }
-    ]
+    ],
+    "indenticator.showHover": true
 }
