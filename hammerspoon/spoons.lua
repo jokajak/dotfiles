@@ -13,12 +13,18 @@ Install:andUse("Caffeine", {
     start = true,
 })
 
+-- network speed menubar entry
 Install:andUse("SpeedMenu", { })
+-- keybinding cheat sheet for current application
 Install:andUse("KSheet", {})
+-- horizontal calendar on desktop
 Install:andUse("HCalendar", {})
+-- circular clock on desktop
 Install:andUse("CircleClock", {})
+-- window manipulation tools
 Install:andUse("WinWin", {})
 
+-- alfred like tool
 Install:andUse("Seal",
                {
                  hotkeys = { show = { {"cmd","alt","ctrl"}, "space" } },
@@ -56,6 +62,7 @@ Install:andUse("Seal",
                }
 )
 
+-- application menu
 Install:andUse("MenuHammer", {
     repo = "jokajak",
     fn = function(s)
