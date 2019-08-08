@@ -101,5 +101,6 @@
             "after": ["<Esc>"]
         }
     ],
-    "indenticator.showHover": true
+    "indenticator.showHover": true,
+    "terminal.integrated.shell.osx": "/usr/local/bin/fish"
 }
