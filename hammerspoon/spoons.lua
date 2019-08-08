@@ -6,6 +6,7 @@ spoon.SpoonInstall.repos.jokajak = {
 }
 
 spoon.SpoonInstall.use_syncinstall = true
+spoon.SpoonInstall:updateAllRepos()
 
 Install=spoon.SpoonInstall
 
@@ -17,8 +18,6 @@ Install:andUse("Caffeine", {
 Install:andUse("SpeedMenu", { })
 -- keybinding cheat sheet for current application
 Install:andUse("KSheet", {})
--- horizontal calendar on desktop
-Install:andUse("HCalendar", {})
 -- circular clock on desktop
 Install:andUse("CircleClock", {})
 -- window manipulation tools
@@ -80,6 +79,47 @@ Install:andUse("Seal",
                  start = true,
                }
 )
+
+Install:andUse("ClipboardWatcher", {
+  repo = "jokajak",
+  fn = function(s)
+    s:watch(
+      -- matcher function. when it returns true, a correction will be suggested via notification
+      function(data)
+        return (string.match(data, "https?://smile%.amazon%.com") or string.match(data, "https?://www%.amazon%.com"))
+      end,
+
+      -- suggestion function. returned value will be applied if the notification is clicked
+      function(original)
+        local parsed_url = url.parse(original)
+        -- Remove Amazon referral links
+        parsed_url:setQuery({})
+
+        local path_parts = split(parsed_url.path, "/")
+        local new_path_parts = {}
+
+        -- Remove extra url segments. Need to keep:
+        -- ASIN length = 10
+        -- weird url prefix length = 2 (dp, gp, etc)
+        for i, part in pairs(path_parts) do
+          local length = string.len(part)
+          if length == 10 or length == 2 or part == "product" then
+            table.insert(new_path_parts, part)
+          end
+        end
+
+        parsed_url.path = table.concat(new_path_parts, "/")
+        return parsed_url:build()
+      end
+    )
+    s:start()
+  end
+})
+
+-- horizontal calendar on desktop
+Install:andUse("HCalendar", {
+  repo = "jokajak"
+})
 
 -- application menu
 Install:andUse("MenuHammer", {
