@@ -1,0 +1,38 @@
+[scroll]>[shutdn]
+[kp=]>[kp=mac]
+
+* Cmd keys as easiest to access from thumb
+[lctrl]>[lwin]
+[rctrl]>[rwin]
+[kp-lctrl]>[kp-lwin]
+[kp-rctrl]>[kp-rwin]
+
+* Alt keys symmetrical as top inner thumb keys
+[rwin]>[rctrl]
+[kp-rwin]>[kp-rctrl]
+
+* Move `=` to top right of keyboard
+[hyphen]>[=]
+
+* hyphen to the traditional dvorak position right
+[\]>[hyphen]
+
+* move backslash to '`' spot
+[`]>[\]
+
+* move '`' to traditional dvorak position top-left
+[=]>[`]
+
+* Unused key as Hyper
+[intl-\]>[hyper]
+
+* Map delete to hyper when held and esc when tapped
+[delete]>[esc][t&h100][hyper]
+
+* These change pup and pdown into next-tab and prev-tab respectively
+{pup}>{speed9}{-rwin}{-lshift}{obrack}{+lshift}{+rwin}
+{pdown}>{speed9}{-rwin}{-lshift}{cbrack}{+lshift}{+rwin}
+
+* Escape hatch if you actually need pup or pdown
+{lctrl}{pup}>{pup}
+{lctrl}{pdown}>{pdown}
