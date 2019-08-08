@@ -4,6 +4,10 @@ spoon.SpoonInstall.repos.jokajak = {
     url = "https://github.com/jokajak/mySpoons",
     desc = "jokajak's spoon repository",
 }
+spoon.SpoonInstall.repos.ki = {
+    url = "https://github.com/jokajak/ki",
+    desc = "jokajak's ki spoon repository",
+}
 
 spoon.SpoonInstall.use_syncinstall = true
 spoon.SpoonInstall:updateAllRepos()
@@ -34,7 +38,7 @@ Install:andUse("ClipboardTool", {
 -- alfred like tool
 Install:andUse("Seal",
                {
-                 hotkeys = { show = { {"cmd","alt","ctrl"}, "space" } },
+                 hotkeys = { show = { {"ctrl","shift","alt"}, "space" } },
                  fn = function(s)
                    s:loadPlugins({"apps", "calc", "screencapture", "useractions"})
                    s.plugins.useractions.get_favicon = true
@@ -128,6 +132,8 @@ Install:andUse("MenuHammer", {
         s:enter()
     end
 })
+
+require "ki_config"
 
 local localfile = hs.configdir .. "/init-local.lua"
 if hs.fs.attributes(localfile) then
