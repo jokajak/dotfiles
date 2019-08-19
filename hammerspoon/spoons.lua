@@ -9,6 +9,11 @@ spoon.SpoonInstall.repos.ki = {
     desc = "jokajak's ki spoon repository",
 }
 
+spoon.SpoonInstall.repos.lunette = {
+    url = "https://github.com/jokajak/lunette",
+    desc = "jokajak's lunette spoon repository",
+}
+
 spoon.SpoonInstall.use_syncinstall = true
 spoon.SpoonInstall:updateAllRepos()
 
@@ -131,6 +136,11 @@ Install:andUse("MenuHammer", {
     fn = function(s)
         s:enter()
     end
+})
+
+-- window management
+Install:andUse("Lunette", {
+    repo = "lunette"
 })
 
 Install:andUse("URLDispatcher",
