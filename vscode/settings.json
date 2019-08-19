@@ -1,9 +1,8 @@
 {
     "workbench.iconTheme": "vscode-icons",
-    "workbench.colorTheme": "PowerShell ISE",
 
     "editor.fontFamily": "FiraCode-Retina",
-    "editor.renderWhitespace": "boundary",
+    "editor.renderWhitespace": "selection",
     "editor.cursorStyle": "line-thin",
     "editor.fontLigatures": true,
 
@@ -102,5 +101,8 @@
         }
     ],
     "indenticator.showHover": true,
-    "terminal.integrated.shell.osx": "/usr/local/bin/fish"
+    "terminal.integrated.shell.osx": "/usr/local/bin/fish",
+    "workbench.colorTheme": "Solarized Light",
+    "workbench.colorCustomizations": {},
+    "materialTheme.accent": "Remove accents",
 }
