@@ -133,6 +133,21 @@ Install:andUse("MenuHammer", {
     end
 })
 
+Install:andUse("URLDispatcher",
+               {
+                 config = {
+                   url_patterns = {
+                     { "https?://.*.amazon.com", "org.mozilla.firefox" },
+                     { "https?://.*.kayses.us", "org.mozilla.firefox" },
+                     { "https?://.*.twitter.com", "org.mozilla.firefox" },
+                     { "https?://.*.facebook.com", "org.mozilla.firefox" },
+                   },
+                   default_handler = "com.google.Chrome"
+                 },
+                 start = true
+               }
+)
+
 require "ki_config"
 
 local localfile = hs.configdir .. "/init-local.lua"
