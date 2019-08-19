@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>customSites</key>
+	<dict>
+		<key>0169991A-5EEA-42E4-A498-6ECF834202F7</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>bitbucket</string>
+			<key>text</key>
+			<string>Open CESO Bitbucket</string>
+			<key>url</key>
+			<string>https://bitbucket.hawkeyecloud.org/</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>0754E111-9F06-4728-8A35-B3E63D928BDD</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>jira</string>
+			<key>text</key>
+			<string>Search GTRI JIRA for '{query}'</string>
+			<key>url</key>
+			<string>https://jira.ctisl.gtri.gatech.edu/secure/QuickSearch.jspa?searchString={query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>8F557032-0905-416C-9FA1-FE63154C0F08</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>bitbucket</string>
+			<key>text</key>
+			<string>Search CESO Bitbucket for '{query}'</string>
+			<key>url</key>
+			<string>https://bitbucket.hawkeyecloud.org/plugins/servlet/search?q={query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>99312020-E417-4E67-8828-B6C39CCCDBB0</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>jira</string>
+			<key>text</key>
+			<string>Open GTRI JIRA</string>
+			<key>url</key>
+			<string>https://jira.ctisl.gtri.gatech.edu/</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>B9D74197-7A75-4A0C-9104-5932C7EB853F</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>ansible</string>
+			<key>text</key>
+			<string>Load Ansible module '{query}'</string>
+			<key>url</key>
+			<string>https://docs.ansible.com/ansible/latest/modules/{query}_module.html</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+	</dict>
+	<key>onlyShowEnabledInPrefs</key>
+	<true/>
+</dict>
+</plist>
