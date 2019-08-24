@@ -32,7 +32,6 @@ Install:andUse("CircleClock", {})
 -- window manipulation tools
 Install:andUse("WinWin", {})
 Install:andUse("ModalMgr", {})
-Install:andUse("TimeFlow", {})
 
 Install:andUse("ClipboardWatcher", {
   repo = "jokajak",
