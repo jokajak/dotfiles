@@ -8,6 +8,7 @@ local function look_away()
         return hs.alert.show(str, hs.alert.defaultStyle, screen, 20)
     end)
 end
+
 eye_breaks = hs.timer.new(20*60, look_away)
 eye_breaks:start()
 

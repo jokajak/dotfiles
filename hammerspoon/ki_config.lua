@@ -32,6 +32,12 @@ Install:andUse('Ki', {
         local XMind = Application:new("XMind")
         -- Define normal mode workflows
         local normalEvents = {
+            { nil, "g", GoogleChrome, { "Entities", "Google Chrome" }},
+            { nil, "f", Firefox, { "Entities", "Firefox" }},
+            { nil, "v", VSCode, { "Entities", "Code" }},
+            { nil, "i", iTerm, { "Entities", "iTerm2" }},
+            { nil, "s", Stickies, { "Entities", "Stickies" }},
+            { nil, "x", XMind, { "Entities", "XMind" }},
         }
         -- Define custom entity workflows
         local entityEvents = {
@@ -46,7 +52,7 @@ Install:andUse('Ki', {
         local selectEntityEvents = {
             --{ nil, "g", GoogleChrome, { "Entities", "Google Chrome" }},
             --{ nil, "f", Firefox, { "Entities", "Firefox" }},
-            --{ nil, "v", VSCode, { "Entities", "Code" }},
+            { nil, "v", VSCode, { "Entities", "Code" }},
             { nil, "i", iTerm, { "Entities", "iTerm2" }},
         }
         local urlEvents = {
