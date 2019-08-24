@@ -12,10 +12,6 @@ configFileWatcher =
       end
   end):start()
 
--- persist console history across launches
-hs.shutdownCallback = function() hs.settings.set('history', hs.console.getHistory()) end
-hs.console.setHistory(hs.settings.get('history'))
-
 -- ensure CLI installed
 hs.ipc.cliInstall()
 

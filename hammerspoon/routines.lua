@@ -24,21 +24,23 @@ local function _usb_handler(usb_info)
     local vendorName = usb_info["vendorName"]
     if eventType == "added" then
         if productID == 258 and vendorID == 10730 then
-            hs.alert("Plugged in " + productName)
+            hs.alert("Plugged in " .. productName)
+            hs.keycodes.setLayout('U.S.')
         else
-            _log.i('Plugged in ' + productName + ' from ' + vendorName)
+            _log.i('Plugged in ' .. productName .. ' from ' .. vendorName)
         end
     elseif usb_info.eventType == "removed" then
         if productID == 258 and vendorID == 10730 then
-            hs.alert("Unplugged " + productName)
+            hs.alert("Unplugged " .. productName)
+            hs.keycodes.setLayout('Dvorak')
         else
-            _log.i('Unplugged ' + productName + ' from ' + vendorName)
+            _log.i('Unplugged ' .. productName .. ' from ' .. vendorName)
         end
     else
         hs.alert(hs.inspect.inspect(usb_info))
     end
 end
-local _usb_watcher = hs.usb.watcher.new(_usb_handler)
+_usb_watcher = hs.usb.watcher.new(_usb_handler)
 _usb_watcher:start()
 
 _log.i('Loading')
