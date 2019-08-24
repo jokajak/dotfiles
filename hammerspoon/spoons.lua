@@ -27,8 +27,6 @@ Install:andUse("Caffeine", {
 Install:andUse("SpeedMenu", { })
 -- keybinding cheat sheet for current application
 Install:andUse("KSheet", {})
--- circular clock on desktop
-Install:andUse("CircleClock", {})
 -- window manipulation tools
 Install:andUse("WinWin", {})
 Install:andUse("ModalMgr", {})
