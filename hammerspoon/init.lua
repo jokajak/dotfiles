@@ -11,7 +11,7 @@ require "shortcuts"
 hs.logger.defaultLogLevel="info"
 
 -- from the online examples, send the clipboard as regular keystrokes
-hs.hotkey.bind({"cmd", "alt"}, "V", function()
-  hs.alert.show('pasting the hard way...')
+bind({"cmd", "alt"}, "V", function()
+  alert('pasting the hard way...')
   hs.eventtap.keyStrokes(hs.pasteboard.getContents())
 end)
