@@ -6,7 +6,6 @@ require "hyper"
 require "routines"
 require "spoons"
 require "spectacle"
-require "shortcuts"
 
 hs.logger.defaultLogLevel="info"
 

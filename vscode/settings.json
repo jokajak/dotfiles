@@ -107,5 +107,7 @@
     "materialTheme.accent": "Remove accents",
     "lua.luacheckPath": "~/.luarocks/bin/luacheck",
     "editor.wordWrap": "on",
-    "editor.wordWrapColumn": 120
+    "editor.wordWrapColumn": 120,
+    "workbench.startupEditor": "welcomePageInEmptyWorkbench",
+    "window.restoreWindows": "all"
 }
