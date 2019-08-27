@@ -75,6 +75,7 @@ local cheatsheet = {
 local application = dofile("./modes/application.lua")
 local volume = dofile("./modes/volume.lua")
 local url_mode = dofile("./modes/url_mode.lua")
+local window_mgmt = dofile("./modes/window_mgmt.lua")
 
 local config = {
     normal = normal,
@@ -82,6 +83,7 @@ local config = {
     volume = volume,
     url = url_mode,
     cheatsheet = cheatsheet,
+    window_mgmt = window_mgmt,
 }
 
 return config
