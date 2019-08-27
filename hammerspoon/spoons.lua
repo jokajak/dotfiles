@@ -86,16 +86,11 @@ Install:andUse("ClipboardWatcher", {
 
 -- horizontal calendar on desktop
 Install:andUse("HCalendar", {
-  repo = "jokajak"
+  repo = "jokajak",
+  config = {
+    showProgress = true
+  }
 })
-
--- application menu
---Install:andUse("MenuHammer", {
---    repo = "jokajak",
---    fn = function(s)
---        s:enter()
---    end
---})
 
 -- window management
 Install:andUse("Lunette", {
@@ -107,7 +102,7 @@ Install:andUse("VimMode", {
     repo = "vimmode",
     fn = function(s)
       s:disableForApp('Code')
-      s:disableForApp('iTerm')
+      s:disableForApp('iTerm2')
       s:disableForApp('MacVim')
       s:disableForApp('Terminal')
     end
@@ -125,8 +120,6 @@ Install:andUse("URLDispatcher", {
     },
     start = true
 })
-
---require "ki_config"
 
 flow_config = dofile("flow_config.lua")
 
