@@ -42,11 +42,7 @@ Install:andUse("MicMute", {
   end
 })
 -- Manage modal hotkeys
-Install:andUse("ModalMgr", {
-  fn = function(s)
-    s.supervisor:enter()
-  end
-})
+Install:andUse("ModalMgr", { })
 
 Install:andUse("ClipboardWatcher", {
   repo = "jokajak",
@@ -127,7 +123,11 @@ Install:andUse("Flow", {
   config = {
     config = flow_config
   },
-  start = true
+  fn = function(s)
+    s:start()
+    spoon.ModalMgr.supervisor:enter()
+  end,
+  loglevel = "debug",
 })
 
 local localfile = hs.configdir .. "/init-local.lua"

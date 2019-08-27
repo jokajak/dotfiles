@@ -1,20 +1,28 @@
-# Hammerspoon Shortcuts
+# Hammerspoon Configuration
+
+This configuration is heavily influenced by awesome-hammerspoon and ki.
+
+I am using a Kinesis Advantage 2 keyboard with the Delete key mapped to the hyper key.
+
+Using ⌘+escape to enter normal mode then allows me to use the following transitions:
+
+* ⌘+a -> Application selector
+* ⌘+v -> Volume control
+* ⌘+c -> Show current application shortcuts
+* ⌘+u -> Quick URL Access
+* v -> VIM Mode (from VimMode.spoon)
+
+## TODO
+
+* [ ] Switch MicMute key to FN when keyboard not present
+* [ ] Create window/tab selector shortcut
+* [ ] Create window management mode
+* [ ] Create mode for controlling spotify
 
 ## Hyper key shortcuts
 
 ### General
-* Hyper + R --> Reload Config
-* Hyper + space --> Seal
 
-### Window Management
-* Hyper + F --> Next fullscreen step
-* Hyper + ⏎ --> Toggle Full Screen
-* Hyper + I --> Show
-* Hyper + → --> Next right step
-* Hyper + ← --> Next left step
-* Hyper + ↑ --> Next up step
-* Hyper + ↓ --> Next down step
-
-### Monitor Management
-* Hyper + ⌘ + → --> Next Monitor
-* Hyper + ⌘ + ← --> Previous Monitor
+* Hyper + A --> Application selector
+* Hyper + V --> Volume control
+* Hyper + U --> URL mode
