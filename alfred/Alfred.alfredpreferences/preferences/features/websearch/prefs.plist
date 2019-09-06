@@ -9,11 +9,11 @@
 			<key>enabled</key>
 			<true/>
 			<key>keyword</key>
-			<string>bitbucket</string>
+			<string>bb</string>
 			<key>text</key>
 			<string>Open CESO Bitbucket</string>
 			<key>url</key>
-			<string>https://bitbucket.hawkeyecloud.org/</string>
+			<string>https://bitbucket.hawkeyecloud.org/projects/SWS/</string>
 			<key>utf8</key>
 			<true/>
 		</dict>
@@ -35,7 +35,7 @@
 			<key>enabled</key>
 			<true/>
 			<key>keyword</key>
-			<string>bitbucket</string>
+			<string>bb</string>
 			<key>text</key>
 			<string>Search CESO Bitbucket for '{query}'</string>
 			<key>url</key>
