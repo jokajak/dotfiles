@@ -8,6 +8,7 @@ Using ⌘+escape to enter normal mode then allows me to use the following transi
 
 * ⌘+a -> Application selector
 * ⌘+c -> Show current application shortcuts
+* ⌘+m -> Media control
 * ⌘+u -> Quick URL Access
 * ⌘+v -> Volume control
 * ⌘+w -> Quick URL Access
@@ -17,7 +18,6 @@ Using ⌘+escape to enter normal mode then allows me to use the following transi
 
 * [ ] Switch MicMute key to FN when keyboard not present
 * [ ] Create window/tab selector shortcut
-* [ ] Create mode for controlling spotify
 
 ## Hyper key shortcuts
 
@@ -25,6 +25,7 @@ Using ⌘+escape to enter normal mode then allows me to use the following transi
 
 * Hyper + A --> Application selector
 * Hyper + C --> Show current application shortcuts
+* Hyper + M --> Media control
 * Hyper + U --> URL mode
 * Hyper + V --> Volume control
 * Hyper + W --> Window positioning management

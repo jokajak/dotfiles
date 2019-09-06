@@ -12,13 +12,17 @@ local function Application(nameOrId)
     return f
 end
 
+local chrome = dofile('./modes/google-chrome.lua')
+local firefox = dofile('./modes/firefox.lua')
+
 local application = {
     trayColor = '#FE544D',
     hotkeys = {
         {nil, 'escape', false, 'previous'},
-        {nil, 'c', true, Application('Google Chrome'), 'Google Chrome' },
+        {nil, 'c', true, function() chrome.chooser:show() end, 'Google Chrome' },
         {nil, 'f', true, Application('Firefox'), 'Firefox' },
-        {nil, 'i', true, Application('iTerm2'), 'iTerm2' },
+        { { 'shift' }, 'f', true, function() firefox.chooser:show() end, 'Firefox Chooser' },
+        {nil, 'i', true, Application('iTerm'), 'iTerm2' },
         {nil, 's', true, Application('Spotify'), 'Spotify' },
         {nil, 'v', true, Application('Visual Studio Code'), 'VS Code' },
         {nil, 'q', false, 'exit', 'Exit'},

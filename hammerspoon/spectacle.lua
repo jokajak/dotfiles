@@ -26,6 +26,7 @@ hs.window.animationDuration = 0.0
 -----------------------------------------------
 -- Functionality
 -----------------------------------------------
+spectacle = {}
 
 local sizes = {2, 3, 3/2}
 local fullScreenSizes = {1, 4/3, 2}
@@ -42,7 +43,7 @@ local pressed = {
   right = false
 }
 
-function nextStep(dim, offs, cb)
+function spectacle.nextStep(dim, offs, cb)
   if hs.window.focusedWindow() then
     local axis = dim == 'w' and 'x' or 'y'
     local oppDim = dim == 'w' and 'h' or 'w'
@@ -73,7 +74,7 @@ function nextStep(dim, offs, cb)
   end
 end
 
-function nextFullScreenStep()
+function spectacle.nextFullScreenStep()
   if hs.window.focusedWindow() then
     local win = hs.window.frontmostWindow()
     local id = win:id()
@@ -101,7 +102,7 @@ function nextFullScreenStep()
   end
 end
 
-function fullDimension(dim)
+function spectacle.fullDimension(dim)
   if hs.window.focusedWindow() then
     local win = hs.window.frontmostWindow()
     local id = win:id()
@@ -119,13 +120,13 @@ function fullDimension(dim)
   end
 end
 
-function prevMonitor()
+function spectacle.prevMonitor()
   local win = hs.window.focusedWindow()
   local nextScreen = win:screen():previous()
   win:moveToScreen(nextScreen)
 end
 
-function nextMonitor()
+function spectacle.nextMonitor()
   local win = hs.window.focusedWindow()
   local nextScreen = win:screen():next()
   win:moveToScreen(nextScreen)

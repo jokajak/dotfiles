@@ -55,9 +55,11 @@ local normal = {
         {nil, 'escape', false, 'exit'},
         {{'cmd'}, 'a', true, 'application', 'Application Mode'},
         {{'cmd'}, 'c', true, 'cheatsheet', 'Cheatsheet'},
+        {{'cmd'}, 'h', true, 'hammerspoon', 'Hammerspoon'},
         {{'cmd'}, 'u', true, 'url', 'URL Mode'},
         {nil, 'v', true, function() spoon.VimMode:enter() end, 'VIM Mode'},
         {{'cmd'}, 'v', true, 'volume', 'Volume Mode'},
+        {{'cmd'}, 'w', true, 'window_mgmt', 'Window Management'},
         {nil, 'tab', false, function() spoon.ModalMgr:toggleCheatsheet() end, 'Toggle Cheatsheet'}
     },
     activate = {{'cmd'}, 'escape'}
@@ -72,17 +74,29 @@ local cheatsheet = {
     }
 }
 
+local hammerspoon = {
+    activate = {hyper_modifiers, 'h'},
+    hotkeys = {
+        { nil, 'escape', false, 'previous'},
+        { nil, 'c', true, function() hs.console.hswindow():focus() end, 'Show console' },
+        { nil, 'r', true, hs.reload, 'Reload Hammerspoon' },
+    }
+}
+
 local application = dofile("./modes/application.lua")
-local volume = dofile("./modes/volume.lua")
+local media = dofile("./modes/media.lua")
 local url_mode = dofile("./modes/url_mode.lua")
+local volume = dofile("./modes/volume.lua")
 local window_mgmt = dofile("./modes/window_mgmt.lua")
 
 local config = {
     normal = normal,
     application = application,
-    volume = volume,
-    url = url_mode,
     cheatsheet = cheatsheet,
+    hammerspoon = hammerspoon,
+    media = media,
+    url = url_mode,
+    volume = volume,
     window_mgmt = window_mgmt,
 }
 
