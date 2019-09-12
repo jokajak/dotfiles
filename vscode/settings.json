@@ -109,5 +109,6 @@
     "editor.wordWrap": "on",
     "editor.wordWrapColumn": 120,
     "workbench.startupEditor": "welcomePageInEmptyWorkbench",
-    "window.restoreWindows": "all"
+    "window.restoreWindows": "all",
+    "markdown-preview-enhanced.scrollSync": false
 }
