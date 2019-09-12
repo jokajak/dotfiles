@@ -24,15 +24,15 @@ local function _usb_handler(usb_info)
     local vendorName = usb_info["vendorName"]
     if eventType == "added" then
         if productID == 258 and vendorID == 10730 then
-            hs.alert("Plugged in " .. productName)
             hs.keycodes.setLayout('U.S.')
+            spoon.MicMic:bindHotkeys({ toggle = {nil, 'end'}}, 0.75)
         else
             _log.i('Plugged in ' .. productName .. ' from ' .. vendorName)
         end
     elseif usb_info.eventType == "removed" then
         if productID == 258 and vendorID == 10730 then
-            hs.alert("Unplugged " .. productName)
             hs.keycodes.setLayout('Dvorak')
+            spoon.MicMic:bindHotkeys({ toggle = {nil, 'end'}}, 0.75)
         else
             _log.i('Unplugged ' .. productName .. ' from ' .. vendorName)
         end

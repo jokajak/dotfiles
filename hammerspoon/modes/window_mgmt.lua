@@ -10,6 +10,8 @@ local function moveAndResize(option)
     if option == "maximize" then
         local win = hs.window.frontmostWindow()
         win:setFullscreen(not win:isFullscreen())
+    elseif option == "expand" then
+        spoon.WinWin:moveAndResize(option)
     else
         _lunette:exec(option)
     end

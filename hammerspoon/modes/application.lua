@@ -24,6 +24,7 @@ local application = {
         { { 'shift' }, 'f', true, function() firefox.chooser:show() end, 'Firefox Chooser' },
         {nil, 'i', true, Application('iTerm'), 'iTerm2' },
         {nil, 's', true, Application('Spotify'), 'Spotify' },
+        {{'shift'}, 's', true, Application('Skype for Business'), 'Skype' },
         {nil, 'v', true, Application('Visual Studio Code'), 'VS Code' },
         {nil, 'q', false, 'exit', 'Exit'},
         {nil, 'tab', false, function() spoon.ModalMgr:toggleCheatsheet() end, 'Toggle Cheatsheet'}
