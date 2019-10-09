@@ -82,7 +82,6 @@ Install:andUse("ClipboardWatcher", {
 
 -- horizontal calendar on desktop
 Install:andUse("HCalendar", {
-  repo = "jokajak",
   config = {
     showProgress = true
   }

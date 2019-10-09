@@ -12,7 +12,10 @@ hs.logger.defaultLogLevel="info"
 -- from the online examples, send the clipboard as regular keystrokes
 bind({"cmd", "alt"}, "V", function()
   alert('pasting the hard way...')
-  hs.eventtap.keyStrokes(hs.pasteboard.getContents())
+  clipboard_contents = hs.pasteboard.getContents()
+  if clipboard_contents then
+    hs.eventtap.keyStrokes(clipboard_contents)
+  end
 end)
 
 --local _log = hs.logger.new('eventtap', 'debug')
