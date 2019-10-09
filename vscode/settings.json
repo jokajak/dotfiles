@@ -110,5 +110,6 @@
     "editor.wordWrapColumn": 120,
     "workbench.startupEditor": "welcomePageInEmptyWorkbench",
     "window.restoreWindows": "all",
-    "markdown-preview-enhanced.scrollSync": false
+    "markdown-preview-enhanced.scrollSync": true,
+    "git.ignoreLegacyWarning": true
 }
