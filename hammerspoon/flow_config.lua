@@ -55,6 +55,7 @@ local normal = {
         {nil, 'escape', false, 'exit'},
         {{'cmd'}, 'a', true, 'application', 'Application Mode'},
         {{'cmd'}, 'c', true, 'cheatsheet', 'Cheatsheet'},
+        {{'cmd'}, 'e', true, 'expose', 'Exposé'},
         {{'cmd'}, 'h', true, 'hammerspoon', 'Hammerspoon'},
         {{'cmd'}, 'u', true, 'url', 'URL Mode'},
         {nil, 'v', true, function() spoon.VimMode:enter() end, 'VIM Mode'},
@@ -82,6 +83,15 @@ local hammerspoon = {
         { nil, 'r', true, hs.reload, 'Reload Hammerspoon' },
     }
 }
+expose = hs.expose.new()
+local expose_mode = {
+    activate = {hyper_modifiers, 'e'},
+    hotkeys = {
+        { nil, 'escape', false, 'previous'},
+        { nil, 'tab', false, function() spoon.ModalMgr:toggleCheatsheet() end, 'Toggle Cheatsheet'},
+        { nil, 'e', true, function() expose:toggleShow() end, 'Toggle Expose'},
+    }
+}
 
 local application = dofile("./modes/application.lua")
 local media = dofile("./modes/media.lua")
@@ -93,6 +103,7 @@ local config = {
     normal = normal,
     application = application,
     cheatsheet = cheatsheet,
+    expose = expose_mode,
     hammerspoon = hammerspoon,
     media = media,
     url = url_mode,
