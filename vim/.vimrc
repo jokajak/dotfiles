@@ -21,9 +21,11 @@ end
 set undofile
 set undodir^=~/.vim/undo//
 
-source $VIMRUNTIME/defaults.vim
+if filereadable(expand('$VIMRUNTIME/defaults.vim'))
+    source $VIMRUNTIME/defaults.vim
+endif
 " Remove autocmd 'jump to last known cursor position'
-augroup vimStartup | au! | augroup END
+"augroup vimStartup | au! | augroup END
 
 if has('autocmd')
   filetype plugin indent on
@@ -108,5 +110,61 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
 endif
 
 inoremap <C-U> <C-G>u<C-U>
+set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
+"              | | | | |  |   |      |  |     |    |
+"              | | | | |  |   |      |  |     |    +-- current column
+"              | | | | |  |   |      |  |     +-- current line
+"              | | | | |  |   |      |  +-- current % into file
+"              | | | | |  |   |      +-- current syntax
+"              | | | | |  |   +-- current fileformat
+"              | | | | |  +-- number of lines
+"              | | | | +-- preview flag in square brackets
+"              | | | +-- help flag in square brackets
+"              | | +-- readonly flag in square brackets
+"              | +-- rodified flag in square brackets
+"              +-- full path to file in the buffer
 
+function! StripTrailingWhitespace()
+  if !&binary && &filetype != 'diff'
+    normal mz
+    normal Hmy
+    %s/\s\+$//e
+    normal 'yz<CR>
+    normal `z
+  endif
+endfunction
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/pack/jokajak/start/')
+
+" Make sure you use single quotes
+
+" Shorthand notation; fetches https://github.com/tpope/vim-surround
+Plug 'tpope/vim-surround'
+
+" Ansible syntax support
+Plug 'pearofducks/ansible-vim'
+
+" Easily align things
+Plug 'junegunn/vim-easy-align'
+
+" Fuzzy find files
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+" Initialize vim-plug plugin system
+call plug#end()
+
+" Remap Escape
+inoremap jk <ESC>
+
+au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 " vim:set ft=vim et sw=2:
