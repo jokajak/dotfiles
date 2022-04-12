@@ -1,6 +1,8 @@
 -- The default duration for animations, in seconds. Initial value is 0.2; set to 0 to disable animations.
 hs.window.animationDuration = 0
 
+-- Ensure hs.spoons gets created
+
 -- auto reload config
 configFileWatcher =
   hs.pathwatcher.new(hs.configdir, function(files)
@@ -26,4 +28,5 @@ reload = hs.reload
 pbcopy = hs.pasteboard.setContents
 std = hs.stdlib and require("hs.stdlib")
 utils = hs.fnutils
-hyper = {'⌘', '⌃'}
+-- hyper = {'⌘', '⌃'}
+i(hs.spoons)

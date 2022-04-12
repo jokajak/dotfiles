@@ -10,7 +10,7 @@ require "spoons"
 hs.logger.defaultLogLevel="info"
 
 -- from the online examples, send the clipboard as regular keystrokes
-bind({"cmd", "alt"}, "V", function()
+bind({"cmd", "alt"}, "v", function()
   alert('pasting the hard way...')
   clipboard_contents = hs.pasteboard.getContents()
   if clipboard_contents then

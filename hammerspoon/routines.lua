@@ -1,16 +1,6 @@
 local _log = hs.logger.new('routines', 'debug')
--- Take eye breaks, look away every 20 minutes
-local function look_away()
-    hs.alert.closeAll()
-    local str = "Look 20 feet away for 20 seconds."
-    _log.i('Screen break triggered')
-    hs.fnutils.imap(hs.screen.allScreens(), function(screen)
-        return hs.alert.show(str, hs.alert.defaultStyle, screen, 20)
-    end)
-end
 
-eye_breaks = hs.timer.new(20*60, look_away)
-eye_breaks:start()
+require "eye_breaks"
 
 -- Switch keyboard layout when kinesis is removed
 -- the kinesis is programmed with a custom dvorak layout that assumes the mac is configured with a US layout

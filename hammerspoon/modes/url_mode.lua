@@ -6,10 +6,11 @@ local url_mode = {
     hotkeys = {
         {nil, 'escape', false, 'previous'},
         {nil, 'tab', false, function() spoon.ModalMgr:toggleCheatsheet() end, 'Toggle Cheatsheet'},
-        { nil, "b", true, openURLEvent("https://bitbucket.hawkeyecloud.org/"), "CESO Bitbucket" },
-        { nil, "j", true, openURLEvent("https://jira.ctisl.gtri.gatech.edu/"), 'GTRI JIRA' },
-	{ nil, "t", true, openURLEvent("https://timesheet.novetta.com/DeltekTC/welcome.msv"), "Timesheet" },
-        { {"shift"}, "b", true, openURLEvent("https://bitbucket.hawkeyecloud.org/"), "Amtrak Bitbucket" },
+        { nil, "b", true, openURLEvent("https://bitbucket.org/"), "AFS Bitbucket" },
+        { nil, "j", true, openURLEvent("https://novetta.atlassian.net/"), 'CESO JIRA' },
+        { {"shift"}, "j", true, openURLEvent("https://jira.hawkeyecloud.org/"), 'CESO JIRA' },
+        { nil, "t", true, openURLEvent("https://time.accenturefederal.com"), "Timesheet" },
+        { {"shift"}, "b", true, openURLEvent("https://bitbucket.hawkeyecloud.org/"), "CESO Bitbucket" },
     },
     activate = {hyper_modifiers, 'u'}
 }

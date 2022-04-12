@@ -1,3 +1,4 @@
+hs.inspect(hs.spoons)
 hs.loadSpoon("SpoonInstall")
 
 spoon.SpoonInstall.repos.jokajak = {
@@ -30,11 +31,13 @@ Install:andUse("Caffeine", {
 })
 
 -- network speed menubar entry
-Install:andUse("SpeedMenu", { })
+-- Install:andUse("SpeedMenu", { })
 -- keybinding cheat sheet for current application
 Install:andUse("KSheet", {})
 -- window manipulation tools
 Install:andUse("WinWin", {})
+-- Circle the mouse
+Install:andUse("MouseCircle", {})
 -- Push to talk functionality
 Install:andUse("MicMute", {
   fn = function(s)
@@ -93,25 +96,28 @@ Install:andUse("Lunette", {
 })
 
 -- vimmode everywhere
-Install:andUse("VimMode", {
-    repo = "vimmode",
-    fn = function(s)
-      s:disableForApp('Code')
-      s:disableForApp('iTerm2')
-      s:disableForApp('MacVim')
-      s:disableForApp('Terminal')
-    end
-})
+--Install:andUse("VimMode", {
+--    repo = "vimmode",
+--    fn = function(s)
+--      s:disableForApp('Code')
+--      s:disableForApp('iTerm2')
+--      s:disableForApp('MacVim')
+--      s:disableForApp('Terminal')
+--    end
+--})
 
 Install:andUse("URLDispatcher", {
     config = {
       url_patterns = {
-        { "https?://.*.amazon.com", "org.mozilla.firefox" },
+        { "https?://.*.www.amazon.com", "org.mozilla.firefox" },
+        { "https?://.*.smile.amazon.com", "org.mozilla.firefox" },
+        { "https?://smile.amazon.com", "org.mozilla.firefox" },
         { "https?://.*.kayses.us", "org.mozilla.firefox" },
         { "https?://.*.twitter.com", "org.mozilla.firefox" },
         { "https?://.*.facebook.com", "org.mozilla.firefox" },
+        { "https://jira.hawkeyecloud.org", "com.apple.Safari" },
       },
-      default_handler = "com.google.Chrome"
+      default_handler = "com.microsoft.edgemac",
     },
     start = true
 })
@@ -127,6 +133,7 @@ Install:andUse("Flow", {
     spoon.ModalMgr.supervisor:enter()
   end,
   loglevel = "debug",
+  repo = "jokajak",
 })
 
 local localfile = hs.configdir .. "/init-local.lua"

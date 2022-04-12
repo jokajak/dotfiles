@@ -19,7 +19,8 @@ local application = {
     trayColor = '#FE544D',
     hotkeys = {
         {nil, 'escape', false, 'previous'},
-        {nil, 'c', true, function() chrome.chooser:show() end, 'Google Chrome' },
+        {nil, 'c', true, Application('Google Chrome'), 'Google Chrome' },
+        { { 'shift' }, 'c', true, function() chrome.chooser:show() end, 'Google Chrome Chooser' },
         {nil, 'f', true, Application('Firefox'), 'Firefox' },
         { { 'shift' }, 'f', true, function() firefox.chooser:show() end, 'Firefox Chooser' },
         {nil, 'i', true, Application('iTerm'), 'iTerm2' },

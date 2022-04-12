@@ -2,38 +2,6 @@
 local actions = {}
 
 hyper_modifiers = {'ctrl','shift','alt','cmd'}
-local function getSelectionItems(app)
-    local choices = {}
-    local script = Application.renderScriptTemplate("application-tab-titles", { application = app})
-    local isOk, tabList, rawTable = hs.osascript.applescript(script)
-
-    if not isOk then
-        Application.notifyError("Error fetching browser tab information", rawTable.NSLocalizedFailureReason)
-
-        return {}
-    end
-
-    local windowIndex = 0
-
-    for windowId, titleList in pairs(tabList) do
-        windowIndex = windowIndex + 1
-        for tabIndex, tabTitle in pairs(titleList) do
-            local lastOpenParenIndex = tabTitle:match("^.*()%(")
-            local title = tabTitle:sub(1, lastOpenParenIndex - 1)
-            local url = tabTitle:sub(lastOpenParenIndex - #tabTitle - 1):match("%((.-)%)") or ""
-
-            table.insert(choices, {
-                text = title,
-                subText = "Window "..windowIndex.." Tab #"..tabIndex.." - "..url,
-                tabIndex = tabIndex,
-                windowIndex = windowIndex,
-                windowId = windowId,
-            })
-        end
-    end
-
-    return choices
-end
 
 function actions.focus(app, choice)
     if choice then
@@ -49,6 +17,20 @@ function actions.focus(app, choice)
     Application.focus(app)
 end
 
+local clickCircle = dofile("./modes/click.lua")
+
+function clickCircle_toggle()
+  eventTap = clickCircle.eventTap
+  if eventTap:isEnabled() then
+    hs.notify.show('Flow', 'Click Tracking', 'Stopped')
+    eventTap:stop()
+    clickCircle.circle:hide()
+  else
+    hs.notify.show('Flow', 'Click Tracking', 'Started')
+    eventTap:start()
+  end
+end
+
 local normal = {
     trayColor = '#FFBD2E',
     hotkeys = {
@@ -57,8 +39,8 @@ local normal = {
         {{'cmd'}, 'c', true, 'cheatsheet', 'Cheatsheet'},
         {{'cmd'}, 'e', true, 'expose', 'Exposé'},
         {{'cmd'}, 'h', true, 'hammerspoon', 'Hammerspoon'},
+        {nil, 'm', true, clickCircle_toggle, 'Toggle Mouse Click Highlights'},
         {{'cmd'}, 'u', true, 'url', 'URL Mode'},
-        {nil, 'v', true, function() spoon.VimMode:enter() end, 'VIM Mode'},
         {{'cmd'}, 'v', true, 'volume', 'Volume Mode'},
         {{'cmd'}, 'w', true, 'window_mgmt', 'Window Management'},
         {nil, 'tab', false, function() spoon.ModalMgr:toggleCheatsheet() end, 'Toggle Cheatsheet'}
