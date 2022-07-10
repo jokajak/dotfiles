@@ -7,10 +7,10 @@ add_newline = true
 # Show the time of the prompt
 [time]
 disabled = false
-format = '🕙[\[ $time \]]($style) '
+format = '🕙[\[$time\]]($style) '
 time_format = "%T"
 utc_time_offset = "-5"
-time_range = "10:00:00-14:00:00"
+time_range = "07:00:00-22:00:00"
 
 # Show which shell is being used
 [shell]
