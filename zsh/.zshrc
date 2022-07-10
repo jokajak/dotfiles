@@ -10,3 +10,6 @@ alias vim=nvim
 # set common configuration directory
 export XDG_CONFIG_HOME=$HOME/.config
 
+VIM="nvim"
+# Set git editor to vim
+export GIT_EDITOR=$VIM
