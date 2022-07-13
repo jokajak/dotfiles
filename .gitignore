@@ -73,3 +73,7 @@ tags
 [._]*.un~
 
 # End of https://www.gitignore.io/api/vim,lua,code
+
+# ignore neovim packer
+neovim/.config/nvim/site/pack/
+neovim/.config/nvim/plugin/packer_compiled.lua
