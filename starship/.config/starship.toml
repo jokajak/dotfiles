@@ -1,0 +1,17 @@
+# Get editor completions based on the config schema
+# "$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Show the time of the prompt
+[time]
+disabled = false
+format = '🕙[\[$time\]]($style) '
+time_format = "%T"
+utc_time_offset = "-5"
+time_range = "07:00:00-22:00:00"
+
+# Show which shell is being used
+[shell]
+disabled = false
