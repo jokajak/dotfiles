@@ -15,12 +15,6 @@ spoon.SpoonInstall.repos.lunette = {
     desc = "jokajak's lunette spoon repository",
 }
 
-spoon.SpoonInstall.repos.vimmode = {
-    url = "https://github.com/jokajak/VimMode.spoon",
-    desc = "jokajak's VimMode spoon repository",
-    branch = "spooninstall"
-}
-
 spoon.SpoonInstall.use_syncinstall = true
 spoon.SpoonInstall:updateAllRepos()
 
@@ -36,8 +30,6 @@ Install:andUse("Caffeine", {
 Install:andUse("KSheet", {})
 -- window manipulation tools
 Install:andUse("WinWin", {})
--- Circle the mouse
-Install:andUse("MouseCircle", {})
 -- Push to talk functionality
 Install:andUse("MicMute", {
   fn = function(s)
@@ -95,17 +87,6 @@ Install:andUse("Lunette", {
     repo = "lunette"
 })
 
--- vimmode everywhere
---Install:andUse("VimMode", {
---    repo = "vimmode",
---    fn = function(s)
---      s:disableForApp('Code')
---      s:disableForApp('iTerm2')
---      s:disableForApp('MacVim')
---      s:disableForApp('Terminal')
---    end
---})
-
 Install:andUse("URLDispatcher", {
     config = {
       url_patterns = {
@@ -115,9 +96,18 @@ Install:andUse("URLDispatcher", {
         { "https?://.*.kayses.us", "org.mozilla.firefox" },
         { "https?://.*.twitter.com", "org.mozilla.firefox" },
         { "https?://.*.facebook.com", "org.mozilla.firefox" },
+        { "https://dod.teams.microsoft.us", "org.microsoft.edgemac" },
         { "https://jira.hawkeyecloud.org", "com.apple.Safari" },
+        { "https://.*.sharepoint.us", "com.microsoft.edgemac" },
+        { "https://accenturefederal.servicenowservices.com", "com.microsoft.edgemac" },
+        { "https://afs365.sharepoint.com", "com.microsoft.edgemac" },
+        { "msteams:", "com.microsoft.teams" },
       },
-      default_handler = "com.microsoft.edgemac",
+      url_redir_decoders = {
+        -- Send MS Teams URLs directly to the app
+        { "MS Teams URLs", "(https://gov.teams.microsoft.us/.*)", "msteams:%1", true },
+      },
+      default_handler = "org.mozilla.firefox",
     },
     start = true
 })
@@ -140,6 +130,57 @@ local localfile = hs.configdir .. "/init-local.lua"
 if hs.fs.attributes(localfile) then
   dofile(localfile)
 end
+
+Install:andUse("DeckMate", {
+  config = {
+    initial_button_states = initial_button_states
+  },
+  loglevel = "debug",
+  repo = "jokajak",
+  start = true
+})
+
+local myGrid = { w = 6, h = 4 }
+Install:andUse("WindowGrid",
+               {
+                 config = { gridGeometries =
+                              { { myGrid.w .."x" .. myGrid.h } } },
+                 start = true
+               }
+)
+
+local SkyRocket = hs.loadSpoon("SkyRocket")
+
+sky = SkyRocket:new({
+  -- Opacity of resize canvas
+  opacity = 0.3,
+
+  -- Which modifiers to hold to move a window?
+  moveModifiers = {'cmd', 'shift'},
+
+  -- Which mouse button to hold to move a window?
+  moveMouseButton = 'left',
+
+  -- Which modifiers to hold to resize a window?
+  resizeModifiers = {'ctrl', 'shift'},
+
+  -- Which mouse button to hold to resize a window?
+  resizeMouseButton = 'left',
+})
+
+--local VimMode = hs.loadSpoon('VimMode')
+--vim_spoon = VimMode:new()
+--
+--vim:disableForApp('Code')
+--vim:disableForApp('com.microsoft.outlook')
+--vim:disableForApp('com.amazon.workspaces')
+--vim:enterWithSequence('jj', 140)
+--
+--vim:shouldDimScreenInNormalMode(true)
+--
+---- works better with fallback mode
+--vim:useFallbackMode('Google Chrome')
+--vim:useFallbackMode('Microsoft Edge')
 
 Install:andUse("FadeLogo", {
     config = {

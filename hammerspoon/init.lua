@@ -2,6 +2,8 @@ require "preload"
 
 split=dofile('./split.lua').split
 url=dofile('./url.lua')
+require "utils"
+require "deck_config"
 require "hyper"
 require "routines"
 require "spectacle"

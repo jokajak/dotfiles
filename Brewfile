@@ -9,6 +9,7 @@ brew 'openssl'
 brew 'python@2'
 brew 'python'
 brew 'ssh-copy-id'
+brew 'lsd'
 
 cask 'adobe-acrobat-reader'
 cask 'docker'

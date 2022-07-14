@@ -24,9 +24,9 @@
 			<key>keyword</key>
 			<string>jira</string>
 			<key>text</key>
-			<string>Search GTRI JIRA for '{query}'</string>
+			<string>Search JIRA for '{query}'</string>
 			<key>url</key>
-			<string>https://jira.ctisl.gtri.gatech.edu/secure/QuickSearch.jspa?searchString={query}</string>
+			<string>https://novetta.atlassian.net/secure/QuickSearch.jspa?searchString={query}</string>
 			<key>utf8</key>
 			<true/>
 		</dict>
@@ -50,9 +50,9 @@
 			<key>keyword</key>
 			<string>jira</string>
 			<key>text</key>
-			<string>Open GTRI JIRA</string>
+			<string>Open JIRA</string>
 			<key>url</key>
-			<string>https://jira.ctisl.gtri.gatech.edu/</string>
+			<string>https://novetta.atlassian.net/</string>
 			<key>utf8</key>
 			<true/>
 		</dict>
@@ -66,6 +66,19 @@
 			<string>Load Ansible module '{query}'</string>
 			<key>url</key>
 			<string>https://docs.ansible.com/ansible/latest/modules/{query}_module.html</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>F9919214-0AE3-42DE-BF7F-5BAF57AECE64</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>jsig</string>
+			<key>text</key>
+			<string>NIST 800-53 {query} control</string>
+			<key>url</key>
+			<string>https://nvd.nist.gov/800-53/Rev4/control/{query}</string>
 			<key>utf8</key>
 			<true/>
 		</dict>

@@ -1,5 +1,18 @@
 #! /usr/bin/env sh
 
+realpath() {
+  OURPWD=$PWD
+  cd "$(dirname "$1")"
+  LINK=$(readlink "$(basename "$1")")
+  while [ "$LINK" ]; do
+    cd "$(dirname "$LINK")"
+    LINK=$(readlink "$(basename "$1")")
+  done
+  REALPATH="$PWD/$(basename "$1")"
+  cd "$OURPWD"
+  echo "$REALPATH"
+}
+
 symlink() {
     OVERWRITTEN=""
     if [ -e "$2" ] || [ -h "$2" ]; then
@@ -71,4 +84,3 @@ substep_success() {
 substep_error() {
     coloredEcho "$1" red "===="
 }
-

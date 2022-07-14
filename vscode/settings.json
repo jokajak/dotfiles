@@ -12,10 +12,8 @@
     "files.insertFinalNewline": true,
 
     "python.linting.pylintEnabled": true,
-    "python.linting.pep8Enabled": false,
+    "python.linting.pycodestyleEnabled": false,
     "python.pythonPath": "/usr/local/bin/python3",
-
-    "window.zoomLevel": 0,
 
     "workspaceExplorer.workspaceStorageDirectory": "/Users/jkayse/.vscode/workspaces/",
     "[markdown]": {
@@ -24,13 +22,13 @@
         "editor.defaultFormatter": "yzhang.markdown-all-in-one"
     },
 
-    "plantuml.server": "http://localhost:8080",
+    "plantuml.server": "http://localhost:8079",
     "plantuml.render": "PlantUMLServer",
     "atlascode.jira.workingSite": {
         "baseUrlSuffix": "atlassian.net"
     },
     "yaml.schemas": {
-        "file:///Users/jkayse/.vscode/extensions/atlassian.atlascode-1.4.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+        "file:///Users/jkayse/.vscode/extensions/atlassian.atlascode-2.7.0/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
     },
     "atlascode.jira.workingProject": {
         "id": "15502",
@@ -92,6 +90,10 @@
             "commands": [
                 "workbench.action.showCommands",
             ]
+        },
+        {
+            "before": ["j"],
+            "after": ["g", "j"]
         }
     ],
     "vim.insertModeKeyBindings": [
@@ -102,7 +104,7 @@
     ],
     "indenticator.showHover": true,
     "terminal.integrated.shell.osx": "/usr/local/bin/fish",
-    "workbench.colorTheme": "Solarized Light",
+    "workbench.colorTheme": "Visual Studio Light",
     "workbench.colorCustomizations": {},
     "materialTheme.accent": "Remove accents",
     "lua.luacheckPath": "~/.luarocks/bin/luacheck",
@@ -111,5 +113,60 @@
     "workbench.startupEditor": "welcomePageInEmptyWorkbench",
     "window.restoreWindows": "all",
     "markdown-preview-enhanced.scrollSync": true,
-    "git.ignoreLegacyWarning": true
+    "git.ignoreLegacyWarning": true,
+    "atlascode.jira.jqlList": [
+        {
+            "id": "ffaf70bd-f62d-4cff-a9f9-5b8ff8351e80",
+            "enabled": true,
+            "name": "My novetta Issues",
+            "query": "assignee = currentUser() ORDER BY lastViewed DESC ",
+            "siteId": "249aa06f-0871-4ef5-ae37-f2dd9a0809b0",
+            "monitor": true
+        }
+    ],
+    "gitlens.advanced.messages": {
+        "suppressGitVersionWarning": true
+    },
+    "[yaml]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
+    },
+    "cSpell.userWords": [
+        "ansible",
+        "cidr",
+        "cidrs",
+        "dhcp",
+        "firewalld",
+        "novetta",
+        "rhel",
+        "splunk",
+        "sshd",
+        "stig",
+        "subnet",
+        "subnets",
+        "winrm"
+    ],
+    "files.trimFinalNewlines": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "atlascode.jira.lastCreateSiteAndProject": {
+        "siteId": "249aa06f-0871-4ef5-ae37-f2dd9a0809b0",
+        "projectKey": "CR"
+    },
+    "ansible.autocompletion": false,
+    "ansible.fileCopyConfig": [
+    ],
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "redhat.telemetry.enabled": false,
+    "Lua.telemetry.enable": false,
+    "editor.accessibilitySupport": "off",
+    "python.testing.pytestEnabled": true,
+    "python.venvFolders": [
+        "~/.local/venv/"
+    ],
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    }
 }

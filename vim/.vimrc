@@ -110,7 +110,19 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
 endif
 
 inoremap <C-U> <C-G>u<C-U>
-set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
+
+"new in vim 7.4.1042
+let g:word_count=wordcount().words
+function WordCount()
+    if has_key(wordcount(),'visual_words')
+        let g:word_count=wordcount().visual_words."/".wordcount().words " count selected words
+    else
+        let g:word_count=wordcount().cursor_words."/".wordcount().words " or shows words 'so far'
+    endif
+    return g:word_count
+endfunction
+
+set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v][words:%{WordCount()}]
 "              | | | | |  |   |      |  |     |    |
 "              | | | | |  |   |      |  |     |    +-- current column
 "              | | | | |  |   |      |  |     +-- current line
@@ -145,7 +157,7 @@ endif
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/pack/jokajak/start/')
 
-" Make sure you use single quotes
+" Make sure you use single quotes around plugin names
 
 " Shorthand notation; fetches https://github.com/tpope/vim-surround
 Plug 'tpope/vim-surround'
@@ -160,11 +172,58 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+" Vimwiki
+Plug 'vimwiki/vimwiki'
+
+" TaskWiki
+Plug 'tools-life/taskwiki'
+
+" Calendar
+Plug 'mattn/calendar-vim'
+
+" AnsiEsc to colorize embedde ansi
+Plug 'powerman/vim-plugin-AnsiEsc'
+
+Plug 'blindFS/vim-taskwarrior'
+
+" Hybrid line numbers
+Plug 'https://github.com/jeffkreeftmeijer/vim-numbertoggle'
+
 " Initialize vim-plug plugin system
 call plug#end()
 
 " Remap Escape
-inoremap jk <ESC>
+inoremap jj <ESC>
 
 au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+
+let wiki_1 = {}
+let wiki_1.path = '~/git/work/notes/'
+let wiki_1.html_template = '~/public_html/template.tpl'
+let wiki_1.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
+let wiki_1.index = 'work'
+let wiki_1.syntax = 'markdown'
+let wiki_1.ext = 'md'
+let wiki_1.auto_tags = 1
+
+let wiki_2 = {}
+let wiki_2.path = '~/git/personal/notes/'
+let wiki_2.index = 'personal'
+let wiki_2.syntax = 'markdown'
+let wiki_2.ext = 'md'
+let wiki_2.auto_tags = 1
+
+let g:vimwiki_list = [wiki_1, wiki_2]
+let g:vimwiki_global_ext = 0
+
+au FileType vimwiki setlocal shiftwidth=2 tabstop=2 expandtab
+au FileType vimwiki inoremap <expr> <tab> getline('.') =~# '^\s*\*' ? '<c-t>' : '<tab>'
+command! Diary VimwikiDiaryIndex
+augroup vimwikigroup
+    autocmd!
+    " automatically update links on read diary
+    autocmd BufRead,BufNewFile diary.md VimwikiDiaryGenerateLinks
+augroup end
+
+" Make tab shift right
 " vim:set ft=vim et sw=2:

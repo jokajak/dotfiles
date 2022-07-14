@@ -14,7 +14,9 @@ function setup
     abbr gp git push
     abbr gd git diff
     abbr gco git checkout
-    abbr ll ls -lhA
+    abbr ls lsd --tree --depth 1 -F -l
+    abbr ll lsd -lhA
     abbr bs brew services
+    abbr cpv rsync -ah --info=progress2
     fisher
 end

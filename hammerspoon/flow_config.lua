@@ -24,7 +24,6 @@ function clickCircle_toggle()
   if eventTap:isEnabled() then
     hs.notify.show('Flow', 'Click Tracking', 'Stopped')
     eventTap:stop()
-    clickCircle.circle:hide()
   else
     hs.notify.show('Flow', 'Click Tracking', 'Started')
     eventTap:start()
@@ -43,7 +42,10 @@ local normal = {
         {{'cmd'}, 'u', true, 'url', 'URL Mode'},
         {{'cmd'}, 'v', true, 'volume', 'Volume Mode'},
         {{'cmd'}, 'w', true, 'window_mgmt', 'Window Management'},
-        {nil, 'tab', false, function() spoon.ModalMgr:toggleCheatsheet() end, 'Toggle Cheatsheet'}
+        {nil, 'tab', false, function() spoon.ModalMgr:toggleCheatsheet() end, 'Toggle Cheatsheet'},
+        {nil, 'g', true, function() hs.grid.show() end, "Window Grid"},
+        {nil, 'v', true, function() vim_spoon:disable().appWatcher:stop() end, 'Disable VimMode Spoon'},
+        {{'shift'}, 'v', true, function() vim_spoon:enable().appWatcher:start() end, 'Enable VimMode Spoon'},
     },
     activate = {{'cmd'}, 'escape'}
 }
