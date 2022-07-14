@@ -7,6 +7,7 @@ end
 
 return require('packer').startup(function(use)
   -- [[ Plugins Go Here ]]
+  use { 'wbthomason/packer.nvim'}                    -- packer can manage itself
   use {                                              -- filesystem navigation
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons'        -- filesystem icons
@@ -39,6 +40,24 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',               -- lsp enhancer
     run = ':TSUpdate'
   }
+  use { "sbdchd/neoformat" }                         -- code formatter
+
+  -- [[ Language Server Protocol Plugins ]]
+  use {
+    "williamboman/nvim-lsp-installer",               -- lsp installer
+    "neovim/nvim-lspconfig",                         -- configurations for nvim lsp
+  }
+  use { 'hrsh7th/cmp-nvim-lsp' }                     -- cmp source for language server clients
+  use { 'hrsh7th/cmp-buffer' }                       -- cmp source for buffer words
+  use { 'hrsh7th/cmp-path' }                         -- cmp source for filesystem paths
+  use { 'hrsh7th/cmp-cmdline' }                      -- cmp source for vim's cmdline
+  use { 'hrsh7th/nvim-cmp' }                         -- completion engine
+  use { 'mfussenegger/nvim-dap' }                    -- debugger
+  use {
+    "rcarriga/nvim-dap-ui",                          -- debugger ui
+    requires = { "mfussenegger/nvim-dap" }
+  }
+
   if packer_bootstrap then
     require('packer').sync()
   end
