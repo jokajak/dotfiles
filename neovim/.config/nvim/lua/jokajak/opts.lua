@@ -29,7 +29,24 @@ opt.expandtab = true             -- bool: Use spaces instead of tabs
 opt.shiftwidth = 4               -- num:  Size of an indent
 opt.softtabstop = 4              -- num:  Number of spaces tabs count for in insert mode
 opt.tabstop = 4                  -- num:  Number of spaces tabs count for
+opt.listchars = {                -- pairs: show unprintables
+    eol = '↲',                   -- end of line
+    tab = '▸ ',                  -- tab characters
+    trail = '·'                  -- trailing whitespace
+}
 
 -- [[ Splits ]]
 opt.splitright = true            -- bool: Place new window to right of current one
 opt.splitbelow = true            -- bool: Place new window below the current one
+
+-- [[ Searching ]]
+
+opt.wildmode = "longest,list,full"  -- str: Nice menu when typing :find *.py
+opt.wildmenu = true                 -- bool: enable wildmenu
+
+-- Ignore files
+-- " Ignore files
+opt.wildignore:append("*.pyc")      -- str: ignore compiled python files
+opt.wildignore:append("**/.git/*")  -- str: ignore git files
+-- set wildignore+=**/coverage/*
+-- set wildignore+=**/node_modules/*

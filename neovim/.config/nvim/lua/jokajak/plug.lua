@@ -16,6 +16,10 @@ return require('packer').startup(function(use)
   use { 'mbbill/undotree' }                          -- persistent undo
   use { 'tpope/vim-surround' }                       -- easily change quote types
   use { 'vimwiki/vimwiki' }                          -- text based wiki
+  use { 'ggandor/leap.nvim' }                        -- move within the window
+  use { 'tpope/vim-repeat' }                         -- use dot repeating more
+  use { 'tpope/vim-fugitive' }                       -- Git utilities
+  use { 'lewis6991/gitsigns.nvim' }                  -- git gutter
 
   -- [[ Theme ]]
   use { 'mhinz/vim-startify' }                       -- start screen
@@ -36,11 +40,24 @@ return require('packer').startup(function(use)
   use { 'Yggdroot/indentLine' }                      -- see indentation
   use { 'junegunn/gv.vim' }                          -- commit history
   use { 'windwp/nvim-autopairs' }                    -- close pairs
+  use { "sbdchd/neoformat" }                         -- code formatter
+
+  -- [[ Treesitter ]]
   use {
     'nvim-treesitter/nvim-treesitter',               -- lsp enhancer
     run = ':TSUpdate'
   }
-  use { "sbdchd/neoformat" }                         -- code formatter
+  use {
+    "folke/twilight.nvim",                           -- dim code
+      config = function()
+        require("twilight").setup({ })
+    end
+  }
+
+  use {
+      'p00f/nvim-ts-rainbow',                        -- rainbow brackets
+      requires = { "nvim-treesitter/nvim-treesitter"}
+  }
 
   -- [[ Language Server Protocol Plugins ]]
   use {
