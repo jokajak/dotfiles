@@ -20,6 +20,7 @@ return require('packer').startup(function(use)
   use { 'tpope/vim-repeat' }                         -- use dot repeating more
   use { 'tpope/vim-fugitive' }                       -- Git utilities
   use { 'lewis6991/gitsigns.nvim' }                  -- git gutter
+  use { 'rhysd/git-messenger.vim' }                  -- see git commits
 
   -- [[ Theme ]]
   use { 'mhinz/vim-startify' }                       -- start screen
