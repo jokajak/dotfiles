@@ -1,4 +1,5 @@
 -- [[ init.lua ]]
+require('impatient')         -- increase startup
 
 -- IMPORTS
 require('jokajak/vars')      -- Variables
@@ -6,6 +7,7 @@ require('jokajak/opts')      -- Options
 require('jokajak/keys')      -- Keymaps
 require('jokajak/plug')      -- Plugins`
 require('jokajak/lsp')       -- Language Server Protocol
+require('jokajak/utils')     -- Utilities
 
 -- PLUGINS
 require('nvim-tree').setup({})
@@ -47,6 +49,7 @@ require('nvim-treesitter.configs').setup({
   -- A list of parser names, or "all"
   ensure_installed = {
       "lua",
+      "markdown",
       "python",
       "yaml",
   },
@@ -88,4 +91,41 @@ require('nvim-treesitter.configs').setup({
 -- Setup gitsigns
 require('gitsigns').setup({
   current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+})
+
+local open_in_nvim_tree = function(prompt_bufnr)
+    -- Open a telescope result in nvim-tree
+    local action_state = require("telescope.actions.state")
+    local Path = require("plenary.path")
+    local actions = require("telescope.actions")
+
+    local entry = action_state.get_selected_entry()[1]
+    local entry_path = Path:new(entry):parent():absolute()
+    actions._close(prompt_bufnr, true)
+    entry_path = Path:new(entry):parent():absolute() 
+    entry_path = entry_path:gsub("\\", "\\\\")
+
+    vim.cmd("NvimTreeClose")
+    vim.cmd("NvimTreeOpen " .. entry_path)
+
+    file_name = nil
+    for s in string.gmatch(entry, "[^/]+") do
+        file_name = s
+    end
+
+    vim.cmd("/" .. file_name)
+end
+
+-- Setup telescope
+require('telescope').setup({
+    defaults = {
+        mappings = {
+            i = {
+                ["<c-s>"] = open_in_nvim_tree,
+            },
+            n = {
+                ["<c-s>"] = open_in_nvim_tree,
+            },
+        },
+    },
 })

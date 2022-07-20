@@ -19,10 +19,17 @@ opt.termguicolors = true         -- bool: If term supports ui color then enable
 cmd([[colorscheme gruvbox]])     -- cmd: Set the colorscheme to gruvbox
 
 -- [[ Search ]]
-opt.ignorecase = true            -- bool: Ignore case in search patterns
-opt.smartcase = true             -- bool: Override ignorecase if search contains capitals
-opt.incsearch = true             -- bool: Use incremental search
-opt.hlsearch = false             -- bool: Highlight search matches
+opt.ignorecase = true               -- bool: Ignore case in search patterns
+opt.smartcase = true                -- bool: Override ignorecase if search contains capitals
+opt.incsearch = true                -- bool: Use incremental search
+opt.hlsearch = false                -- bool: Highlight search matches
+opt.wildmode = "longest,list,full"  -- str: Nice menu when typing :find *.py
+opt.wildmenu = true                 -- bool: enable wildmenu
+-- Ignore files
+opt.wildignore:append("*.pyc")      -- str: ignore compiled python files
+opt.wildignore:append("**/.git/*")  -- str: ignore git files
+-- set wildignore+=**/coverage/*
+-- set wildignore+=**/node_modules/*
 
 -- [[ Whitespace ]]
 opt.expandtab = true             -- bool: Use spaces instead of tabs
@@ -39,14 +46,6 @@ opt.listchars = {                -- pairs: show unprintables
 opt.splitright = true            -- bool: Place new window to right of current one
 opt.splitbelow = true            -- bool: Place new window below the current one
 
--- [[ Searching ]]
+-- [[ Spelling ]]
 
-opt.wildmode = "longest,list,full"  -- str: Nice menu when typing :find *.py
-opt.wildmenu = true                 -- bool: enable wildmenu
-
--- Ignore files
--- " Ignore files
-opt.wildignore:append("*.pyc")      -- str: ignore compiled python files
-opt.wildignore:append("**/.git/*")  -- str: ignore git files
--- set wildignore+=**/coverage/*
--- set wildignore+=**/node_modules/*
+opt.spelllang = en                  -- list: what languages should be spelled

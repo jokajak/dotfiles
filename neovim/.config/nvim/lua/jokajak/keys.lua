@@ -29,3 +29,11 @@ map('n', '<Leader>u', [[:UndotreeToggle<CR>]], {})
 
 -- Turn off search highlights
 map("n", "<Leader><Space>", ":nohlsearch<CR>", { silent = true })
+
+-- show cursor
+-- Press <C-b> to call specs!
+map('n', '<C-b>', ':lua require("specs").show_specs()<CR>', { silent = true })
+
+-- You can even bind it to search jumping and more, example:
+map('n', 'n', 'n:lua require("specs").show_specs()<CR>', { silent = true })
+map('n', 'N', 'N:lua require("specs").show_specs()<CR>', { silent = true })

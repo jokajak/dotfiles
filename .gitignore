@@ -80,3 +80,7 @@ neovim/.config/nvim/plugin/packer_compiled.lua
 
 # ignore macOS .DS_Store
 .DS_Store
+
+# Ignore compiled packer settings
+# It embeds usernames
+neovim/.config/nvim/plugin/packer_compiled.lua

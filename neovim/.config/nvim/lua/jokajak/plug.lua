@@ -7,6 +7,7 @@ end
 
 return require('packer').startup(function(use)
   -- [[ Plugins Go Here ]]
+  use { 'lewis6991/impatient.nvim' }                 -- improve startup time
   use { 'wbthomason/packer.nvim'}                    -- packer can manage itself
   use {                                              -- filesystem navigation
     'kyazdani42/nvim-tree.lua',
@@ -21,10 +22,17 @@ return require('packer').startup(function(use)
   use { 'tpope/vim-fugitive' }                       -- Git utilities
   use { 'lewis6991/gitsigns.nvim' }                  -- git gutter
   use { 'rhysd/git-messenger.vim' }                  -- see git commits
+  use { 'jeffkreeftmeijer/vim-numbertoggle' }        -- fancy hybrid lines
+  use { 'stevearc/dressing.nvim' }                   -- fancy displays
 
   -- [[ Theme ]]
   use { 'mhinz/vim-startify' }                       -- start screen
-  use { 'DanilaMihailov/beacon.nvim' }               -- cursor jump
+  use {
+      'edluffy/specs.nvim',                       -- highlight cursor jumps
+      config = function()
+        require("specs").setup({})
+    end
+  }
   use { "ellisonleao/gruvbox.nvim" }                 -- gruvbox theme in lua
   use {
     'nvim-lualine/lualine.nvim',                     -- statusline
@@ -42,6 +50,7 @@ return require('packer').startup(function(use)
   use { 'junegunn/gv.vim' }                          -- commit history
   use { 'windwp/nvim-autopairs' }                    -- close pairs
   use { "sbdchd/neoformat" }                         -- code formatter
+  use { 'folke/lua-dev.nvim' }                       -- lua support
 
   -- [[ Treesitter ]]
   use {
