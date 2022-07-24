@@ -59,6 +59,12 @@ packer.startup(function(use)
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
+  -- [[ Language Server Protocol ]] --
+  -- Fancy language specific support
+  use { "neovim/nvim-lspconfig" } -- lspconfig plugin
+  use { "williamboman/mason.nvim" }  -- package manager for lsp, dap, linters, and formatters
+  use { "williamboman/mason-lspconfig.nvim" }  -- lspconfig bridge for mason
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
