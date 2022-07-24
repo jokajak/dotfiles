@@ -2,21 +2,35 @@
 
 -- Functional wrapper for mapping custom keybindings
 local function map(mode, lhs, rhs, opts)
-    local options = { noremap = true }
+    local options = { noremap = true, silent = true }
     if opts then
         options = vim.tbl_extend("force", options, opts)
     end
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+-- Insert Mode --
 -- remap the key used to leave insert mode
-map('i', 'jk', '', {})
+map('i', 'kj', '', {})
+
+-- Normal mode --
+-- Better window navigation
+map("n", "<C-h>", "<C-w>h", {})
+map("n", "<C-j>", "<C-w>j", {})
+map("n", "<C-k>", "<C-w>k", {})
+map("n", "<C-l>", "<C-w>l", {})
+
+-- Resize with arrows
+map("n", "<C-Up>", ":resize +2<CR>", {})
+map("n", "<C-Down>", ":resize -2<CR>", {})
+map("n", "<C-Left>", ":vertical resize -2<CR>", {})
+map("n", "<C-Right>", ":vertical resize +2<CR>", {})
 
 -- Toggle nvim-tree
-map('n', '<Leader>n', [[:NvimTreeToggle<CR>]], { silent = true })
+map('n', '<Leader>n', [[:NvimTreeToggle<CR>]], {})
 
 -- Toggle IntentLines
-map('n', '<Leader>l', [[:IndentLinesToggle<CR>]], { silent = true })
+map('n', '<Leader>l', [[:IndentLinesToggle<CR>]], {})
 
 -- Toggle Tagbar
 map('n', '<Leader>t', [[:TagbarToggle<CR>]], {})
@@ -34,6 +48,24 @@ map("n", "<Leader><Space>", ":nohlsearch<CR>", { silent = true })
 -- Press <C-b> to call specs!
 map('n', '<C-b>', ':lua require("specs").show_specs()<CR>', { silent = true })
 
--- You can even bind it to search jumping and more, example:
+-- Bind specs to search jumping
 map('n', 'n', 'n:lua require("specs").show_specs()<CR>', { silent = true })
 map('n', 'N', 'N:lua require("specs").show_specs()<CR>', { silent = true })
+
+-- Visual --
+-- Stay in indent mode when shifting text
+map("v", "<", "<gv", {})
+map("v", ">", ">gv", {})
+
+-- Move text up and down
+map("v", "<A-j>", ":m .+1<CR>==", {})
+map("v", "<A-k>", ":m .-2<CR>==", {})
+map("v", "p", '"_dP', {}) -- keep current clipboard contents when pasting over text
+
+-- Visual Block --
+-- Move text up and down
+map("x", "J", ":move '>+1<CR>gv-gv", {})
+map("x", "K", ":move '<-2<CR>gv-gv", {})
+map("x", "<A-j>", ":move '>+1<CR>gv-gv", {})
+map("x", "<A-k>", ":move '<-2<CR>gv-gv", {})
+
