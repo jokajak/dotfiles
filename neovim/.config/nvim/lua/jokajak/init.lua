@@ -2,7 +2,7 @@
 
 -- IMPORTS
 require('jokajak.vars')      -- Variables
-require('jokajak.opts')      -- Options
+require('jokajak.options')      -- Options
 require('jokajak.keys')      -- Keymaps
 require('jokajak.colorscheme') -- colorscheme
 require('jokajak.plugins')      -- Plugins`
