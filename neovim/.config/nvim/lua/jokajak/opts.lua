@@ -15,6 +15,7 @@ opt.clipboard = "unnamedplus"    -- str: Always use system clipboard
 opt.scrolloff = 8                -- int: Number of lines to show above or below the cursor
 opt.sidescrolloff = 8            -- int: Number of columns to show around cursor
 opt.wrap = false                 -- bool: don't wrap long lines
+opt.completeopt = "menu,menuone,noselect" -- str: configure completion menu
 
 -- [[ Filetypes ]]
 opt.encoding = 'utf8'            -- str:  String encoding to use

@@ -112,11 +112,13 @@ cmp.setup {
       return vim_item
     end,
   },
-  sources = {  -- priority order of suggestions
+  -- priority order of suggestions
+  sources = cmp.config.sources({
     { name = "luasnip" },
+  }, {
     { name = "buffer" },
     { name = "path" },
-  },
+  }),
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
@@ -131,3 +133,11 @@ cmp.setup {
   },
 }
 
+-- Set configuration for specific filetype.
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    { name = 'cmp_git' }, -- Use cmp_git
+  }, {
+    { name = 'buffer' },
+  })
+})
