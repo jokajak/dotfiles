@@ -2,6 +2,7 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 local cache_path = fn.stdpath('cache')..'/plugin/packer_compiled.lua'
+
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system({
     'git',
@@ -39,10 +40,24 @@ packer.startup(function(use)
   use { 'lewis6991/impatient.nvim' }                 -- improve startup time
   use { 'ggandor/leap.nvim' }                        -- move within the window
   use { 'lewis6991/gitsigns.nvim' }                  -- git gutter
-  use { 'edluffy/specs.nvim' }                       -- highlight cursor jumps
+  use {
+      'edluffy/specs.nvim',                       -- highlight cursor jumps
+      config = function() require("specs").setup({}) end
+  }
 
   -- [[ Themes ]] --
   use { 'folke/tokyonight.nvim' }                    -- tokyonight theme
+
+  -- Completion plugins
+  use "hrsh7th/nvim-cmp" -- The completion plugin
+  use "hrsh7th/cmp-buffer" -- buffer completions
+  use "hrsh7th/cmp-path" -- path completions
+  use "hrsh7th/cmp-cmdline" -- cmdline completions
+  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+
+  -- snippets
+  use "L3MON4D3/LuaSnip" --snippet engine
+  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
@@ -52,3 +67,4 @@ packer.startup(function(use)
 end)
 
 require("jokajak.plugins.nvim-tree")
+require("jokajak.plugins.completions")
