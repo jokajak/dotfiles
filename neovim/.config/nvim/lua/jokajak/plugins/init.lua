@@ -41,10 +41,7 @@ packer.startup(function(use)
   use { 'lewis6991/impatient.nvim' }                 -- improve startup time
   use { 'ggandor/leap.nvim' }                        -- move within the window
   use { 'lewis6991/gitsigns.nvim' }                  -- git gutter
-  use {
-      'edluffy/specs.nvim',                       -- highlight cursor jumps
-      config = function() require("specs").setup({}) end
-  }
+  use { 'edluffy/specs.nvim' }                      -- highlight cursor jumps
   use { 'windwp/nvim-autopairs' }                    -- automagically manage pairs
   use { "numToStr/Comment.nvim" } -- Easily comment stuff
 
@@ -116,3 +113,5 @@ require("jokajak.plugins.completions")
 require("jokajak.plugins.telescope")
 require("jokajak.plugins.autopairs")
 require("jokajak.plugins.comment")
+require("jokajak.plugins.gitsigns")
+require("jokajak.plugins.specs")

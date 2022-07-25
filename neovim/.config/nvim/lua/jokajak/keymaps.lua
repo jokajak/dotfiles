@@ -27,16 +27,13 @@ map("n", "<C-Left>", ":vertical resize -2<CR>", {})
 map("n", "<C-Right>", ":vertical resize +2<CR>", {})
 
 -- Toggle nvim-tree
-map('n', '<Leader>n', [[:NvimTreeToggle<CR>]], {})
+map('n', '<Leader>e', [[:NvimTreeToggle<CR>]], {})
 
 -- Toggle IntentLines
 map('n', '<Leader>l', [[:IndentLinesToggle<CR>]], {})
 
 -- Toggle Tagbar
 map('n', '<Leader>t', [[:TagbarToggle<CR>]], {})
-
--- Toggle telescope
-map('n', '<Leader>ff', [[:Telescope find_files<CR>]], {})
 
 -- Toggle undotree
 map('n', '<Leader>u', [[:UndotreeToggle<CR>]], {})
@@ -72,6 +69,6 @@ map("x", "<A-k>", ":move '<-2<CR>gv-gv", {})
 
 
 -- Telescope
-map("n", "<leader>f", "<cmd>Telescope find_files<cr>", {})
+map('n', '<Leader>ff', [[:Telescope find_files<CR>]], {})
 --map("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", {})
 map("n", "<c-t>", "<cmd>Telescope live_grep<cr>", {})
