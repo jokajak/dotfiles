@@ -9,6 +9,12 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   command = "source $MYVIMRC | source %",
 })
 
+vim.api.nvim_create_autocmd("BufWritePost", {
+  desc = "Automatically update plugins on save",
+  group = source_config,
+  pattern = { "*/.config/nvim/**/plugins/init.lua" },
+  command = "source <afile> | PackerSync",
+})
 ---WORKAROUND
 vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
   group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),

@@ -24,6 +24,7 @@ end
 
 -- Have packer use a popup window
 packer.init({
+  compile_path = cache_path,
 	display = {
 		open_fn = function()
 			return require("packer.util").float({ border = "rounded" })
@@ -68,6 +69,34 @@ packer.startup(function(use)
   use { "williamboman/mason-lspconfig.nvim" }  -- lspconfig bridge for mason
 
   use { 'nvim-telescope/telescope.nvim' }  -- fuzzy finder
+
+  -- [[ TreeSitter ]]--
+  use {
+    'nvim-treesitter/nvim-treesitter',               -- lsp enhancer
+    run = ':TSUpdate'
+  }
+  use {
+    "folke/twilight.nvim",                           -- dim code
+      config = function()
+        require("twilight").setup({ })
+    end
+  }
+  use {
+      'p00f/nvim-ts-rainbow',                        -- rainbow brackets
+      requires = { "nvim-treesitter/nvim-treesitter" }
+  }
+  use {
+      'nvim-treesitter/playground',                        -- treesitter playground
+      requires = { "nvim-treesitter/nvim-treesitter" }
+  }
+  use {
+      'nvim-treesitter/nvim-treesitter-textobjects',       -- treesitter based text objects
+      requires = { "nvim-treesitter/nvim-treesitter" }      -- use something like delete in function
+  }
+  use {
+      'nvim-treesitter/nvim-treesitter-context',       -- show current function/class as float window at the top of the window
+      requires = { "nvim-treesitter/nvim-treesitter" }
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
