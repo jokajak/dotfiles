@@ -44,6 +44,10 @@ packer.startup(function(use)
   use { 'edluffy/specs.nvim' }                      -- highlight cursor jumps
   use { 'windwp/nvim-autopairs' }                    -- automagically manage pairs
   use { "numToStr/Comment.nvim" } -- Easily comment stuff
+  use { 'akinsho/bufferline.nvim',  -- tab like buffer list
+    tag = "v2.*",
+    requires = "kyazdani42/nvim-web-devicons"
+  }  -- buffers in tabs
 
 
   -- [[ Themes ]] --
@@ -115,3 +119,4 @@ require("jokajak.plugins.autopairs")
 require("jokajak.plugins.comment")
 require("jokajak.plugins.gitsigns")
 require("jokajak.plugins.specs")
+require("jokajak.plugins.bufferline")
