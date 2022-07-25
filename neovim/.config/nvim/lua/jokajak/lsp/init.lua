@@ -7,3 +7,4 @@ end
 
 require("jokajak.lsp.mason")
 require("jokajak.lsp.handlers").setup()
+require("jokajak.lsp.null-ls")
