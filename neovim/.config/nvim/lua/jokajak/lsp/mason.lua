@@ -22,11 +22,13 @@ if not status_ok then
   return
 end
 
+-- This makes sure the lspconfig integration is installed, I think.
 mason_lspconfig.setup({
     ensure_installed = {
-      "sumneko_lua",  -- lua
-      "python-lsp-server",  -- python support
-      "marksman",  -- markdown
+      "sumneko_lua",  -- lua lsp
+      "python-lsp-server",  -- python lsp
+      "marksman",  -- markdown lsp
+      "flake8",  -- python formatter
     }
 })
 
@@ -54,4 +56,47 @@ mason_lspconfig.setup_handlers({
       lsp.setup(opts)
     end
   end,
+})
+
+local status_ok, mason_tool_installer = pcall(require, "mason-tool-installer")
+
+if not status_ok then
+  return
+end
+
+mason_tool_installer.setup({
+
+    -- a list of all tools you want to ensure are installed upon
+    -- start; they should be the names Mason uses for each tool
+    ensure_installed = {
+        -- you can turn off/on auto_update per tool
+        -- shell
+        { 'bash-language-server', auto_update = false },
+        'shellcheck',
+        'misspell',
+        'shellcheck',
+        'shfmt',
+        -- python
+        'flake8',
+        'black',
+        -- lua
+        'lua-language-server',
+        'stylua',
+        'luacheck',
+        -- editorconfig
+        'editorconfig-checker',
+        -- yaml
+        'yamllint',
+    },
+
+    -- if set to true this will check each tool for updates. If updates
+    -- are available the tool will be updated.
+    -- Default: false
+    auto_update = false,
+
+    -- automatically install / update on startup. If set to false nothing
+    -- will happen on startup. You can use `:MasonToolsUpdate` to install
+    -- tools and check for updates.
+    -- Default: true
+    run_on_start = true
 })

@@ -71,6 +71,7 @@ packer.startup(function(use)
   use { "neovim/nvim-lspconfig" } -- lspconfig plugin
   use { "williamboman/mason.nvim" }  -- package manager for lsp, dap, linters, and formatters
   use { "williamboman/mason-lspconfig.nvim" }  -- lspconfig bridge for mason
+  use { 'WhoIsSethDaniel/mason-tool-installer.nvim' }  -- mason tool installer
 
   use { 'nvim-telescope/telescope.nvim' }  -- fuzzy finder
 
