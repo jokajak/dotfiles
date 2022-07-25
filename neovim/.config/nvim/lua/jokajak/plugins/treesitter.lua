@@ -21,6 +21,13 @@ configs.setup({
   },
   sync_install = false, 
   ignore_install = { "" }, -- List of parsers to ignore installing
+  autopairs = {
+    enable = true,
+  },
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false, -- disable CursorHold per context_commentstring
+  },
   highlight = {
     enable = true, -- false will disable the whole extension
     disable = { "" }, -- list of language that will be disabled

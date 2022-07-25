@@ -45,6 +45,9 @@ packer.startup(function(use)
       'edluffy/specs.nvim',                       -- highlight cursor jumps
       config = function() require("specs").setup({}) end
   }
+  use { 'windwp/nvim-autopairs' }                    -- automagically manage pairs
+  use { "numToStr/Comment.nvim" } -- Easily comment stuff
+
 
   -- [[ Themes ]] --
   use { 'folke/tokyonight.nvim' }                    -- tokyonight theme
@@ -97,6 +100,10 @@ packer.startup(function(use)
       'nvim-treesitter/nvim-treesitter-context',       -- show current function/class as float window at the top of the window
       requires = { "nvim-treesitter/nvim-treesitter" }
   }
+  use {
+    'JoosepAlviste/nvim-ts-context-commentstring',  -- commentstring support
+    requires = { "nvim-treesitter/nvim-treesitter" }
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
@@ -107,3 +114,5 @@ end)
 require("jokajak.plugins.nvim-tree")
 require("jokajak.plugins.completions")
 require("jokajak.plugins.telescope")
+require("jokajak.plugins.autopairs")
+require("jokajak.plugins.comment")
