@@ -67,6 +67,7 @@ packer.startup(function(use)
   use { "williamboman/mason.nvim" }  -- package manager for lsp, dap, linters, and formatters
   use { "williamboman/mason-lspconfig.nvim" }  -- lspconfig bridge for mason
 
+  use { 'nvim-telescope/telescope.nvim' }  -- fuzzy finder
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
@@ -76,3 +77,4 @@ end)
 
 require("jokajak.plugins.nvim-tree")
 require("jokajak.plugins.completions")
+require("jokajak.plugins.telescope")

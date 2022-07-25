@@ -69,3 +69,9 @@ map("x", "K", ":move '<-2<CR>gv-gv", {})
 map("x", "<A-j>", ":move '>+1<CR>gv-gv", {})
 map("x", "<A-k>", ":move '<-2<CR>gv-gv", {})
 
+
+
+-- Telescope
+map("n", "<leader>f", "<cmd>Telescope find_files<cr>", {})
+--map("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", {})
+map("n", "<c-t>", "<cmd>Telescope live_grep<cr>", {})
