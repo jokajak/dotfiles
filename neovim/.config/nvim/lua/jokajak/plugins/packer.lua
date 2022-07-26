@@ -2,12 +2,8 @@
 
 -- return require('packer').startup(function(use)
 --   -- [[ Plugins Go Here ]]
---   use { 'tpope/vim-commentary' }                     -- comment out lines
 --   use { 'mbbill/undotree' }                          -- persistent undo
---   use { 'tpope/vim-surround' }                       -- easily change quote types
---   use { 'vimwiki/vimwiki' }                          -- text based wiki
 --   use { 'tpope/vim-repeat' }                         -- use dot repeating more
---   use { 'tpope/vim-fugitive' }                       -- Git utilities
 --   use { 'rhysd/git-messenger.vim' }                  -- see git commits
 --   use { 'jeffkreeftmeijer/vim-numbertoggle' }        -- fancy hybrid lines
 --   use { 'stevearc/dressing.nvim' }                   -- fancy displays
@@ -17,9 +13,7 @@
 -- 
 --   -- [[ Dev ]]
 --   use { 'majutsushi/tagbar' }                        -- code structure
---   use { 'Yggdroot/indentLine' }                      -- see indentation
 --   use { 'junegunn/gv.vim' }                          -- commit history
---   use { 'windwp/nvim-autopairs' }                    -- close pairs
 --   use { "sbdchd/neoformat" }                         -- code formatter
 --   use { 'folke/lua-dev.nvim' }                       -- lua support
 -- 

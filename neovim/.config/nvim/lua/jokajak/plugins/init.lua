@@ -40,16 +40,20 @@ packer.startup(function(use)
 	use({ "kyazdani42/nvim-tree.lua", tag = "nightly" })  -- file navigator
   use { 'lewis6991/impatient.nvim' }                 -- improve startup time
   use { 'ggandor/leap.nvim' }                        -- move within the window
-  use { 'lewis6991/gitsigns.nvim' }                  -- git gutter
   use { 'edluffy/specs.nvim' }                      -- highlight cursor jumps
+  use { "folke/which-key.nvim" }  -- help with keymaps
+  use { "goolord/alpha-nvim" }  -- startup screen
+
+  -- [[ editing ]]--
   use { 'windwp/nvim-autopairs' }                    -- automagically manage pairs
   use { "numToStr/Comment.nvim" } -- Easily comment stuff
-  use { 'akinsho/bufferline.nvim',  -- tab like buffer list
-    tag = "v2.*",
-    requires = "kyazdani42/nvim-web-devicons"
-  }
-  use { "folke/which-key.nvim" }  -- help with keymaps
 
+  -- [[ git ]]--
+  use { 'lewis6991/gitsigns.nvim' }                  -- git gutter
+  use {
+    'ruifm/gitlinker.nvim',              -- link to repos
+    requires = 'nvim-lua/plenary.nvim',
+  }
 
   -- [[ Themes ]] --
   use { 'folke/tokyonight.nvim' }                    -- tokyonight theme
@@ -58,6 +62,12 @@ packer.startup(function(use)
     requires = {'kyazdani42/nvim-web-devicons',
                 opt = true}
   }
+  use { "lukas-reineke/indent-blankline.nvim" }  -- indent guides
+  use { 'akinsho/bufferline.nvim',  -- tab like buffer list
+    tag = "v2.*",
+    requires = "kyazdani42/nvim-web-devicons"
+  }
+  use { 'norcalli/nvim-colorizer.lua' } -- colorize things that look like color
 
   -- Completion plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -87,12 +97,7 @@ packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',               -- lsp enhancer
     run = ':TSUpdate'
   }
-  use {
-    "folke/twilight.nvim",                           -- dim code
-      config = function()
-        require("twilight").setup({ })
-    end
-  }
+  use { "folke/twilight.nvim" } -- dim code
   use {
       'p00f/nvim-ts-rainbow',                        -- rainbow brackets
       requires = { "nvim-treesitter/nvim-treesitter" }
@@ -130,3 +135,8 @@ require("jokajak.plugins.specs")
 require("jokajak.plugins.bufferline")
 require("jokajak.plugins.lualine")
 require("jokajak.plugins.which-key")
+require("jokajak.plugins.gitlinker")
+require("jokajak.plugins.indentline")
+require("jokajak.plugins.impatient")
+require("jokajak.plugins.twilight")
+require("jokajak.plugins.alpha")

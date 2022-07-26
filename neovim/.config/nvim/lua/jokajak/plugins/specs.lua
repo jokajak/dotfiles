@@ -8,4 +8,8 @@ end
 specs.setup({
   show_jumps = true,
   min_jump = 10,
+  popup = {
+    blend = 5,  -- starting blend
+    winhl = "Cursor", -- highlight using cursor color
+  }
 })

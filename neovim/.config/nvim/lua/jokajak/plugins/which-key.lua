@@ -88,6 +88,7 @@ local normal_mappings = {
     "Buffers",
   },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+  ["t"] = { "<cmd>Twilight<CR>", "Twilight" },
 
   g = {
     name = "Git",
