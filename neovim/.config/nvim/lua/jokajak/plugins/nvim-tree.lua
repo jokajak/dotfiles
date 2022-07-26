@@ -4,7 +4,7 @@ if not status_ok then
   return
 end
 
-local status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
+local status_ok, _ = pcall(require, "nvim-tree.config")
 
 if not status_ok then
   return
@@ -12,51 +12,54 @@ end
 
 local lib = require("nvim-tree.lib")
 local view = require("nvim-tree.view")
+local status_ok, open_file = pcall(require, "nvim-tree.actions.node.open-file")
 
+if not status_ok then
+  -- use default if actions can't be found
+  nvim_tree.setup({})
+end
 
 local function collapse_all()
-    require("nvim-tree.actions.tree-modifiers.collapse-all").fn()
+  require("nvim-tree.actions.tree-modifiers.collapse-all").fn()
 end
 
 local function edit_or_open()
-    -- open as vsplit on current node
-    local action = "edit"
-    local node = lib.get_node_at_cursor()
+  -- open as vsplit on current node
+  local action = "edit"
+  local node = lib.get_node_at_cursor()
 
-    -- Just copy what's done normally with vsplit
-    if node.link_to and not node.nodes then
-        require('nvim-tree.actions.node.open-file').fn(action, node.link_to)
-        view.close() -- Close the tree if file was opened
+  -- Just copy what's done normally with vsplit
+  if node.link_to and not node.nodes then
+    open_file.fn(action, node.link_to)
 
-    elseif node.nodes ~= nil then
-        lib.expand_or_collapse(node)
+  elseif node.nodes ~= nil then
+    lib.expand_or_collapse(node)
 
-    else
-        require('nvim-tree.actions.node.open-file').fn(action, node.absolute_path)
-        view.close() -- Close the tree if file was opened
-    end
+  else
+    open_file.fn(action, node.absolute_path)
+  end
 
 end
 
 local function vsplit_preview()
-    -- open as vsplit on current node
-    local action = "vsplit"
-    local node = lib.get_node_at_cursor()
+  -- open as vsplit on current node
+  local action = "vsplit"
+  local node = lib.get_node_at_cursor()
 
-    -- Just copy what's done normally with vsplit
-    if node.link_to and not node.nodes then
-        require('nvim-tree.actions.node.open-file').fn(action, node.link_to)
+  -- Just copy what's done normally with vsplit
+  if node.link_to and not node.nodes then
+    open_file.fn(action, node.link_to)
 
-    elseif node.nodes ~= nil then
-        lib.expand_or_collapse(node)
+  elseif node.nodes ~= nil then
+    lib.expand_or_collapse(node)
 
-    else
-        require('nvim-tree.actions.node.open-file').fn(action, node.absolute_path)
+  else
+    open_file.fn(action, node.absolute_path)
 
-    end
+  end
 
-    -- Finally refocus on tree if it was lost
-    view.focus()
+  -- Finally refocus on tree if it was lost
+  view.focus()
 end
 
 nvim_tree.setup({

@@ -52,6 +52,11 @@ packer.startup(function(use)
 
   -- [[ Themes ]] --
   use { 'folke/tokyonight.nvim' }                    -- tokyonight theme
+  use {
+    'nvim-lualine/lualine.nvim',                     -- statusline
+    requires = {'kyazdani42/nvim-web-devicons',
+                opt = true}
+  }
 
   -- Completion plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -122,3 +127,4 @@ require("jokajak.plugins.comment")
 require("jokajak.plugins.gitsigns")
 require("jokajak.plugins.specs")
 require("jokajak.plugins.bufferline")
+require("jokajak.plugins.lualine")

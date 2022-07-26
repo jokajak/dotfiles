@@ -1,6 +1,5 @@
 --[[ opts.lua ]]
 local opt = vim.opt
-local cmd = vim.api.nvim_command
 
 -- [[ Context ]]
 opt.colorcolumn = '80'           -- str:  Show col for max line length
@@ -57,5 +56,5 @@ opt.splitright = true            -- bool: Place new window to right of current o
 opt.splitbelow = true            -- bool: Place new window below the current one
 
 -- [[ Spelling ]]
-opt.spelllang = en                  -- str: what languages should be spelled
+opt.spelllang = "en"                -- str: what languages should be spelled
 opt.iskeyword:append("-")           -- str: add '-' as being part of a word

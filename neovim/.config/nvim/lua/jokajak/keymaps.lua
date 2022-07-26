@@ -13,7 +13,7 @@ end
 -- remap the key used to leave insert mode
 map('i', 'kj', '', {})
 
--- Normal mode --
+-- [[ Normal mode ]] --
 -- Better window navigation
 map("n", "<C-h>", "<C-w>h", {})
 map("n", "<C-j>", "<C-w>j", {})
@@ -48,6 +48,10 @@ map('n', '<C-b>', ':lua require("specs").show_specs()<CR>', { silent = true })
 -- Bind specs to search jumping
 map('n', 'n', 'n:lua require("specs").show_specs()<CR>', { silent = true })
 map('n', 'N', 'N:lua require("specs").show_specs()<CR>', { silent = true })
+
+-- Navigate buffers
+map("n", "<S-l>", ":bnext<CR>", {})
+map("n", "<S-h>", ":bprevious<CR>", {})
 
 -- Visual --
 -- Stay in indent mode when shifting text
