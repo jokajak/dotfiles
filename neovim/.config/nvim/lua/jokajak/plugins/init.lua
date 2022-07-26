@@ -47,7 +47,8 @@ packer.startup(function(use)
   use { 'akinsho/bufferline.nvim',  -- tab like buffer list
     tag = "v2.*",
     requires = "kyazdani42/nvim-web-devicons"
-  }  -- buffers in tabs
+  }
+  use { "folke/which-key.nvim" }  -- help with keymaps
 
 
   -- [[ Themes ]] --
@@ -128,3 +129,4 @@ require("jokajak.plugins.gitsigns")
 require("jokajak.plugins.specs")
 require("jokajak.plugins.bufferline")
 require("jokajak.plugins.lualine")
+require("jokajak.plugins.which-key")

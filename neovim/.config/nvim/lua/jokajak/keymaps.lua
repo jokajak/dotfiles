@@ -29,7 +29,7 @@ map("n", "<C-Right>", ":vertical resize +2<CR>", {})
 -- Toggle nvim-tree
 map('n', '<Leader>e', [[:NvimTreeToggle<CR>]], {})
 
--- Toggle IntentLines
+-- Toggle IndentLines
 map('n', '<Leader>l', [[:IndentLinesToggle<CR>]], {})
 
 -- Toggle Tagbar

@@ -79,6 +79,7 @@ mason_tool_installer.setup({
         -- python
         'flake8',
         'black',
+        'python-lsp-server',
         -- lua
         'lua-language-server',
         'stylua',
