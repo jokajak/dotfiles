@@ -28,7 +28,8 @@ gitlinker.setup({
         ["git.launchpad.net"] = hosts.get_launchpad_type_url,
         ["repo.or.cz"] = hosts.get_repoorcz_type_url,
         ["git.kernel.org"] = hosts.get_cgit_type_url,
-        ["git.savannah.gnu.org"] = hosts.get_cgit_type_url
+        ["git.savannah.gnu.org"] = hosts.get_cgit_type_url,
+        ["bitbucket.hawkeyecloud.org"] = hosts.get_bitbucket_type_url,
   },
 -- default mapping to call url generation with action_callback
   mappings = "<leader>gy"

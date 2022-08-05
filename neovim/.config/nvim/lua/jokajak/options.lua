@@ -15,6 +15,8 @@ opt.scrolloff = 8                -- int: Number of lines to show above or below 
 opt.sidescrolloff = 8            -- int: Number of columns to show around cursor
 opt.wrap = false                 -- bool: don't wrap long lines
 opt.completeopt = "menu,menuone,noselect" -- str: configure completion menu
+opt.foldminlines = 2             -- int: minimum number of lines in a fold
+opt.foldlevelstart = 5           -- int: start with 
 
 -- [[ Filetypes ]]
 opt.encoding = 'utf8'            -- str:  String encoding to use
@@ -58,3 +60,12 @@ opt.splitbelow = true            -- bool: Place new window below the current one
 -- [[ Spelling ]]
 opt.spelllang = "en"                -- str: what languages should be spelled
 opt.iskeyword:append("-")           -- str: add '-' as being part of a word
+
+-- set background based on time
+local now = os.date("*t")
+
+if (6 <= now.hour) and (now.hour <= 20) then
+  opt.background = "light"
+else
+  opt.background = "dark"
+end
