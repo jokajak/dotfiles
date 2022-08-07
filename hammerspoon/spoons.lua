@@ -59,7 +59,7 @@ Install:andUse("ClipboardWatcher", {
         -- Remove extra url segments. Need to keep:
         -- ASIN length = 10
         -- weird url prefix length = 2 (dp, gp, etc)
-        for i, part in pairs(path_parts) do
+        for _, part in pairs(path_parts) do
           local length = string.len(part)
           if length == 10 or length == 2 or part == "product" then
             table.insert(new_path_parts, part)
@@ -168,105 +168,6 @@ sky = SkyRocket:new({
   resizeMouseButton = 'left',
 })
 
--- spoon to make it easy to have leader-key like functionality
--- copied from https://nethuml.github.io/posts/2022/04/hammerspoon-global-leader-key/
-local keybinder_config = {
-  applications = {
-    {
-      bundleID = "org.mozilla.firefox",
-      key = "f",
-      name = "Firefox",
-    },
-    {
-      bundleID = "net.kovidgoyal.kitty",
-      key = "k",
-      name = "kitty",
-    },
-    {
-      bundleID = "com.microsoft.Outlook",
-      key = "o",
-      name = "Outlook",
-    },
-    {
-      bundleID = "com.microsoft.teams",
-      key = "t",
-      name = "Teams",
-    },
-    {
-      bundleID = "com.spotify.client",
-      key = "s",
-      name = "Spotify",
-    },
-  },
-  domains = {
-    {
-      key = "b",
-      name = "Bitbucket",
-      url = "bitbucket.org",
-    },
-    {
-      key = "j",
-      name = "Jira",
-      url = "novetta.atlassian.net",
-    }
-  }
-}
-
-local singleKey = function(key, name)
-  local mod = {}
-
-  if name then
-    return {mod, key, name}
-  else
-    return {mod, key, 'no name'}
-  end
- end
-
-local applicationsKeyMap = {}
-hs.fnutils.each(keybinder_config.applications, function(app)
-    applicationsKeyMap[singleKey(app.key, app.name)] = function()
-	hs.application.launchOrFocusByBundleID(app.bundleID)
-    end
-end)
-
-local domainsKeyMap = {}
-hs.fnutils.each(keybinder_config.domains, function(domain)
-    domainsKeyMap[singleKey(domain.key, domain.name)] = function()
-	hs.urlevent.openURL("https://" .. domain.url)
-    end
-end)
-
-
-
-local keymap = {
-  [{{}, 'o', 'open+'}] = applicationsKeyMap,
-  [{{}, 'd', 'domain+'}] = domainsKeyMap,
-  [singleKey('h', 'hammerspoon+')] = {
-    [singleKey('r', 'reload')] = function() hs.reload() hs.console.clearConsole() end,
-  }
-}
-
-local recursive_binder_func = function(spn)
-  hs.hotkey.bind({'option'}, 'space', spn.recursiveBind(keymap))
-end
-
-Install:andUse("RecursiveBinder", {
-  fn = recursive_binder_func
-})
-
---local VimMode = hs.loadSpoon('VimMode')
---vim_spoon = VimMode:new()
---
---vim:disableForApp('Code')
---vim:disableForApp('com.microsoft.outlook')
---vim:disableForApp('com.amazon.workspaces')
---vim:enterWithSequence('jj', 140)
---
---vim:shouldDimScreenInNormalMode(true)
---
----- works better with fallback mode
---vim:useFallbackMode('Google Chrome')
---vim:useFallbackMode('Microsoft Edge')
 
 Install:andUse("FadeLogo", {
     config = {

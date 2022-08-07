@@ -9,6 +9,8 @@ require "routines"
 require "spectacle"
 require "spoons"
 
+pcall(require, "scoops.recursivebinder")
+
 hs.logger.defaultLogLevel="info"
 
 -- from the online examples, send the clipboard as regular keystrokes

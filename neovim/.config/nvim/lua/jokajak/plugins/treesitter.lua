@@ -19,7 +19,7 @@ configs.setup({
     "toml",
     "yaml",
   },
-  sync_install = false, 
+  sync_install = false,
   ignore_install = { "" }, -- List of parsers to ignore installing
   autopairs = {
     enable = true,
