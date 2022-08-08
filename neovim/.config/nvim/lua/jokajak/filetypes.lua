@@ -6,10 +6,10 @@ vim.g.did_load_filetypes = 0
 -- Add new filetypes
 vim.filetype.add({
   pattern = {
-    [".*/playbooks/**/*%.ya?ml"] = "ansible",
-    ["site%.yml"] = "ansible",
-    [".*/roles/.*%.ya?ml"] = "ansible",
-    [".*/handlers/.*%.ya?ml"] = "ansible",
-    [".*/tasks/.*%.ya?ml"] = "ansible",
+    [".*/playbooks/**/*%.ya?ml"] = "yaml.ansible",
+    ["site%.yml"] = "yaml.ansible",
+    [".*/roles/.*%.ya?ml"] = "yaml.ansible",
+    [".*/handlers/.*%.ya?ml"] = "yaml.ansible",
+    [".*/tasks/.*%.ya?ml"] = "yaml.ansible",
   },
 })
