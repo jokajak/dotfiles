@@ -9,7 +9,8 @@ require "routines"
 require "spectacle"
 require "spoons"
 
-pcall(require, "scoops.recursivebinder")
+-- pcall(require, "scoops.recursivebinder")
+require("scoops.recursivebinder")
 
 hs.logger.defaultLogLevel="info"
 

@@ -5,7 +5,7 @@
 local M = {}
 -- spoon to make it easy to have leader-key like functionality
 -- copied from https://nethuml.github.io/posts/2022/04/hammerspoon-global-leader-key/
-local keybinder_config = {
+M.config = {
   applications = {
     {
       bundleID = "org.mozilla.firefox",
@@ -47,6 +47,7 @@ local keybinder_config = {
   },
   windows = {
     {
+      mod = {},
       key = "k",
       name = "Monitor up",
       fn = function()
@@ -55,6 +56,7 @@ local keybinder_config = {
       end,
     },
     {
+      mod = {},
       key = "j",
       name = "Monitor Down",
       fn = function()
@@ -62,6 +64,23 @@ local keybinder_config = {
         focused_window:moveOneScreenSouth()
       end,
     },
+    {
+      mod = {},
+      key = "p",
+      name = "Present",
+      fn = function()
+        local focused_window = hs.window.focusedWindow()
+        focused_window:setSize(1280, 1024)
+      end,
+    },
+    {
+      mod = {},
+      key = "g",
+      name = "Grid",
+      fn = function()
+        hs.grid.show()
+      end,
+    }
   }
 }
 
@@ -76,28 +95,32 @@ local singleKey = function(key, name)
  end
 
 M.applicationsKeyMap = {}
-hs.fnutils.each(keybinder_config.applications, function(app)
+hs.fnutils.each(M.config.applications, function(app)
     M.applicationsKeyMap[singleKey(app.key, app.name)] = function()
       hs.application.launchOrFocusByBundleID(app.bundleID)
     end
 end)
 
 M.domainsKeyMap = {}
-hs.fnutils.each(keybinder_config.domains, function(domain)
+hs.fnutils.each(M.config.domains, function(domain)
     M.domainsKeyMap[singleKey(domain.key, domain.name)] = function()
       hs.urlevent.openURL("https://" .. domain.url)
     end
 end)
 
 M.windowsKeyMap = {}
-hs.fnutils.each(keybinder_config.windows, function(entry)
-    M.windowsKeyMap[singleKey(entry.key, entry.name)] = entry.fn
+hs.fnutils.each(M.config.windows, function(entry)
+  print(entry.mod)
+  print(entry.key)
+  print(entry.name)
+  print(entry.fn)
+  M.windowsKeyMap[{entry.mod, entry.key, entry.name}] = entry.fn
 end)
 
 local keymap = {
-  [{{}, 'o', 'open+'}] = M.applicationsKeyMap,
   [{{}, 'd', 'domain+'}] = M.domainsKeyMap,
-  [{{}, 'w', 'window+'}] = M.windowsKeymap,
+  [{{}, 'o', 'open+'}] = M.applicationsKeyMap,
+  [{{}, 'w', 'window+'}] = M.windowsKeyMap,
   [singleKey('h', 'hammerspoon+')] = {
     [singleKey('r', 'reload')] = function() hs.reload() hs.console.clearConsole() end,
   }
@@ -107,6 +130,7 @@ M.fn = function(spn)
   hs.hotkey.bind({'option'}, 'space', spn.recursiveBind(keymap))
 end
 
+print("Loading recursive binder")
 Install:andUse("RecursiveBinder", {
   fn = M.fn
 })

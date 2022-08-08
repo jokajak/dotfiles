@@ -168,7 +168,6 @@ sky = SkyRocket:new({
   resizeMouseButton = 'left',
 })
 
-pcall(require, "scoops.recursive_binder")
 
 Install:andUse("FadeLogo", {
     config = {
