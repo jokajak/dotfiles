@@ -4,7 +4,7 @@ local opt = vim.opt
 -- [[ Context ]]
 opt.colorcolumn = '80'           -- str:  Show col for max line length
 opt.number = true                -- bool: Show line numbers
-opt.relativenumber = true        -- bool: Show relative line numbers
+-- opt.relativenumber = true        -- bool: Show relative line numbers
 opt.scrolloff = 4                -- int:  Min num lines of context
 opt.signcolumn = "yes"           -- str:  Show the sign column
 opt.numberwidth = 4              -- int: Number column width
@@ -16,7 +16,7 @@ opt.sidescrolloff = 8            -- int: Number of columns to show around cursor
 opt.wrap = false                 -- bool: don't wrap long lines
 opt.completeopt = "menu,menuone,noselect" -- str: configure completion menu
 opt.foldminlines = 2             -- int: minimum number of lines in a fold
-opt.foldlevelstart = 5           -- int: start with 
+opt.foldlevelstart = 5           -- int: start with
 
 -- [[ Filetypes ]]
 opt.encoding = 'utf8'            -- str:  String encoding to use
@@ -42,7 +42,7 @@ opt.wildignore:append("**/node_modules/*")
 
 -- [[ Whitespace ]]
 opt.smartindent = true           -- bool: smart indenting
-opt.showtabline = 2              -- int: Always show tab line 
+opt.showtabline = 2              -- int: Always show tab line
 opt.expandtab = true             -- bool: Use spaces instead of tabs
 opt.shiftwidth = 2               -- num:  Size of an indent
 opt.softtabstop = 2              -- num:  Number of spaces tabs count for in insert mode

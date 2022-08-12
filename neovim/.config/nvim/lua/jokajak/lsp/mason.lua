@@ -56,6 +56,18 @@ mason_lspconfig.setup_handlers({
       lsp.setup(opts)
     end
   end,
+  ["pylsp"] = function(server_name)
+    local lsp = lspconfig[server_name]
+    local opts = {
+      on_attach = handlers.on_attach,
+      capabilities = handlers.capabilities
+    }
+    local pylsp_opts = require("jokajak.lsp.settings.pylsp")
+	 	opts = vim.tbl_deep_extend("force", pylsp_opts, opts)
+    if lsp then
+      lsp.setup(opts)
+    end
+  end
 })
 
 local status_ok, mason_tool_installer = pcall(require, "mason-tool-installer")

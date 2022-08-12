@@ -48,6 +48,7 @@ packer.startup(function(use)
   use { 'windwp/nvim-autopairs' }                    -- automagically manage pairs
   use { "numToStr/Comment.nvim" } -- Easily comment stuff
   use { 'stevearc/aerial.nvim' }  -- code outline window
+  use { "kylechui/nvim-surround" } -- easily wrap text in strings
 
   -- [[ git ]]--
   use { 'lewis6991/gitsigns.nvim' }                  -- git gutter
@@ -143,3 +144,4 @@ require("jokajak.plugins.twilight")
 require("jokajak.plugins.alpha")
 require("jokajak.plugins.aerial")
 require("jokajak.plugins.leap")
+require("jokajak.plugins.surround")
