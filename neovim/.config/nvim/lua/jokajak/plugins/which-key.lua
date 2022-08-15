@@ -111,6 +111,9 @@ local normal_mappings = {
       "<cmd>Gitsigns diffthis HEAD<cr>",
       "Diff",
     },
+    y = {
+      name = "Yank"
+    }
   },
 
   l = {

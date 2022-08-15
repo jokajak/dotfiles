@@ -32,5 +32,26 @@ gitlinker.setup({
         ["bitbucket.hawkeyecloud.org"] = hosts.get_bitbucket_type_url,
   },
 -- default mapping to call url generation with action_callback
-  mappings = "<leader>gy"
+  mappings = nil
 })
+
+-- Set up key mappings
+local function set_keymap(mode, keys, fn, mapping_opts)
+  mapping_opts = vim.tbl_extend(
+    "force",
+    { noremap = true, silent = true },
+    mapping_opts or {}
+  )
+  vim.keymap.set(
+    mode,
+    keys,
+    fn,
+    mapping_opts
+  )
+end
+
+set_keymap('n', '<leader>gyl', '<cmd>lua require"gitlinker".get_buf_range_url("n") <CR>', { desc = "Get link to current line."})
+set_keymap('n', '<leader>gyf', '<cmd>lua require"gitlinker".get_buf_range_url("n", {add_current_line_on_normal_mode = false}) <CR>', { desc = "Get link to current file."})
+set_keymap('v', '<leader>gyl', '<cmd>lua require"gitlinker".get_buf_range_url("v") <CR>', { desc = "Get link to current file.", silent = false})
+set_keymap('v', '<leader>gyf', '<cmd>lua require"gitlinker".get_buf_range_url("v", {add_current_line_on_normal_mode = false}) <CR>', { desc = "Get link to current file.", silent = false})
+set_keymap('n', '<leader>gyr', '<cmd>lua require"gitlinker".get_repo_url()<cr>', { desc = "Get link to current repo", silent = true})
