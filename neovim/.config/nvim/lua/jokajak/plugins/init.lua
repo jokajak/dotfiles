@@ -50,6 +50,9 @@ packer.startup(function(use)
   use { "numToStr/Comment.nvim" } -- Easily comment stuff
   use { 'stevearc/aerial.nvim' }  -- code outline window
   use { "kylechui/nvim-surround" } -- easily wrap text in strings
+  use { 'anuvyklack/fold-preview.nvim',  -- preview folds
+    requires = 'anuvyklack/keymap-amend.nvim'
+}
 
   -- [[ git ]]--
   use { 'lewis6991/gitsigns.nvim' }                  -- git gutter
@@ -146,3 +149,4 @@ require("jokajak.plugins.alpha")
 require("jokajak.plugins.aerial")
 require("jokajak.plugins.leap")
 require("jokajak.plugins.surround")
+require("jokajak.plugins.fold-preview")

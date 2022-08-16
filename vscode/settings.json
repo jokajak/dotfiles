@@ -169,5 +169,5 @@
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
-    "window.zoomLevel": 2
+    "window.zoomLevel": -1
 }
