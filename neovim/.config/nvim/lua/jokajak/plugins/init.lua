@@ -43,6 +43,7 @@ packer.startup(function(use)
   use { 'edluffy/specs.nvim' }                      -- highlight cursor jumps
   use { "folke/which-key.nvim" }  -- help with keymaps
   use { "goolord/alpha-nvim" }  -- startup screen
+  use { "tjdevries/train.nvim" }  -- train vim movements
 
   -- [[ editing ]]--
   use { 'windwp/nvim-autopairs' }                    -- automagically manage pairs
