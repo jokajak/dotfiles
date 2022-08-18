@@ -4,19 +4,16 @@ if not status_ok then
   return
 end
 
--- don't setup null-ls
-return
-
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
--- local formatting = null_ls.builtins.formatting
+local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
--- local diagnostics = null_ls.builtins.diagnostics
+local diagnostics = null_ls.builtins.diagnostics
 
--- null_ls.setup {
---   debug = false,
---   sources = {
---     formatting.black,
---     formatting.stylua,
---     diagnostics.flake8,
---   },
--- }
+null_ls.setup {
+  debug = false,
+  sources = {
+    formatting.black,
+    formatting.stylua,
+    diagnostics.flake8,
+  },
+}

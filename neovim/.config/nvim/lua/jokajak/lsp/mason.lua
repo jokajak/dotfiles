@@ -29,6 +29,7 @@ mason_lspconfig.setup({
       "python-lsp-server",  -- python lsp
       "marksman",  -- markdown lsp
       "flake8",  -- python formatter
+      "shellcheck",  -- shellcheck
     }
 })
 
