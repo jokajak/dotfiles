@@ -12,17 +12,17 @@ local setup = {
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
     spelling = {
       enabled = false, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-      suggestions = 20, -- how many suggestions should be shown in the list?
+      suggestions = 10, -- how many suggestions should be shown in the list?
     },
     -- the presets plugin, adds help for a bunch of default keybindings in Neovim
     -- No actual key bindings are created
     presets = {
-      operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
+      operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
       motions = false, -- adds help for motions
       text_objects = true, -- help for text objects triggered after entering an operator
       windows = true, -- default bindings on <c-w>
       nav = true, -- misc bindings to work with windows
-      z = true, -- bindings for folds, spelling and others prefixed with z
+      z = false, -- bindings for folds, spelling and others prefixed with z
       g = true, -- bindings for prefixed with g
     },
   },
@@ -92,27 +92,11 @@ local normal_mappings = {
 
   g = {
     name = "Git",
-    g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
-    j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
-    k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-    l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
-    p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-    r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
-    R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-    s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-    u = {
-      "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-      "Undo Stage Hunk",
-    },
     o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-    d = {
-      "<cmd>Gitsigns diffthis HEAD<cr>",
-      "Diff",
-    },
-    y = {
-      name = "Yank"
+    l = {
+      name = "Link"
     }
   },
 

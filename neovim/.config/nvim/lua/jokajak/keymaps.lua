@@ -15,10 +15,10 @@ map('i', 'kj', '', {})
 
 -- [[ Normal mode ]] --
 -- Better window navigation
-map("n", "<C-h>", "<C-w>h", {})
-map("n", "<C-j>", "<C-w>j", {})
-map("n", "<C-k>", "<C-w>k", {})
-map("n", "<C-l>", "<C-w>l", {})
+map("n", "<C-h>", "<C-w>h", { desc = "Move cursor to window left" } )
+map("n", "<C-j>", "<C-w>j", { desc = "Move cursor to window down" } )
+map("n", "<C-k>", "<C-w>k", { desc = "Move cursor to window up" } )
+map("n", "<C-l>", "<C-w>l", { desc = "Move cursor to window right" } )
 
 -- Resize with arrows
 map("n", "<C-Up>", ":resize +2<CR>", {})
@@ -28,9 +28,6 @@ map("n", "<C-Right>", ":vertical resize +2<CR>", {})
 
 -- Toggle nvim-tree
 map('n', '<Leader>e', [[:NvimTreeToggle<CR>]], {})
-
--- Toggle undotree
-map('n', '<Leader>u', [[:UndotreeToggle<CR>]], {})
 
 -- Turn off search highlights
 map("n", "<Leader><Space>", ":nohlsearch<CR>", { silent = true })
@@ -65,9 +62,9 @@ map("x", "<A-j>", ":move '>+1<CR>gv-gv", {})
 map("x", "<A-k>", ":move '<-2<CR>gv-gv", {})
 
 -- Telescope
-map('n', '<Leader>ff', [[:Telescope find_files<CR>]], {})
+map('n', '<Leader>ff', [[:Telescope find_files<CR>]], { desc = "Fuzzy Find files" } )
 --map("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", {})
-map("n", "<c-t>", "<cmd>Telescope live_grep<cr>", {})
+map("n", "<c-t>", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" } )
 
 -- Quick formatting
-map("n", "<Leader>f", [[:Format<CR>]])
+map("n", "<Leader>f", [[:Format<CR>]], { desc = "Format document" } )
