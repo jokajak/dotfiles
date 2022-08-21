@@ -45,6 +45,8 @@ packer.startup(function(use)
   use { "goolord/alpha-nvim" }  -- startup screen
   use { "tjdevries/train.nvim" }  -- train vim movements
   use { "folke/trouble.nvim" }  -- show diagnostics
+  use { "renerocksai/telekasten.nvim" }  -- note taking/management
+  use { "mattn/calendar-vim" }  -- calendar
 
   -- [[ editing ]]--
   use { 'windwp/nvim-autopairs' }                    -- automagically manage pairs
@@ -152,3 +154,4 @@ require("jokajak.plugins.leap")
 require("jokajak.plugins.surround")
 require("jokajak.plugins.fold-preview")
 require("jokajak.plugins.trouble")
+require("jokajak.plugins.telekasten")
