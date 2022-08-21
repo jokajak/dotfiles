@@ -82,7 +82,6 @@ local normal_options = {
 }
 
 local normal_mappings = {
-  ["/"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", "Comment" },
   ["b"] = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Buffers",
@@ -159,9 +158,7 @@ local visual_options = {
   nowait = true,
 }
 
-local visual_mappings = {
-  ["/"] = { "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", "Comment" }
-}
+local visual_mappings = {}
 
 whichkey.setup(setup)
 whichkey.register(normal_mappings, normal_options)
