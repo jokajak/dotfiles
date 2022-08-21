@@ -7,7 +7,7 @@ end
 
 local actions = require "telescope.actions"
 
-telescope.setup {
+local config = {
   defaults = {
 
     prompt_prefix = " ",
@@ -96,3 +96,12 @@ telescope.setup {
     -- please take a look at the readme of the extension you want to configure
   },
 }
+
+local trouble_ok, trouble = pcall(require, "trouble.providers.telescope")
+
+if trouble_ok then
+  config["defaults"]["mappings"]["i"]["<c-t>"] = trouble.open_with_trouble
+  config["defaults"]["mappings"]["n"]["<c-t>"] = trouble.open_with_trouble
+end
+
+telescope.setup(config)

@@ -12,9 +12,9 @@ end
 
 local lib = require("nvim-tree.lib")
 local view = require("nvim-tree.view")
-local status_ok, open_file = pcall(require, "nvim-tree.actions.node.open-file")
+local nvim_tree_status, open_file = pcall(require, "nvim-tree.actions.node.open-file")
 
-if not status_ok then
+if not nvim_tree_status then
   -- use default if actions can't be found
   nvim_tree.setup({})
 end

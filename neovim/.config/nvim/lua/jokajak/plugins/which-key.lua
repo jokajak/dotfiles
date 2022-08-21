@@ -160,6 +160,10 @@ local normal_mappings = {
     C = { "<cmd>Telescope commands<cr>", "Commands" },
   },
 
+  x = {
+    name = "Trouble",
+  }
+
 }
 
 local visual_options = {

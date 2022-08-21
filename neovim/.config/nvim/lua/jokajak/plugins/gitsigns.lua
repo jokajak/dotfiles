@@ -1,7 +1,47 @@
 --[[ gitsigns configuration ]]--
 local status_ok, gitsigns = pcall(require, "gitsigns")
+
 if not status_ok then
   return
+end
+
+local on_attach_func = function(bufnr)
+  local gs = gitsigns
+
+  local function map(mode, l, r, opts)
+    opts = opts or {}
+    opts.buffer = bufnr
+    vim.keymap.set(mode, l, r, opts)
+  end
+
+  -- Navigation
+  map('n', ']c', function()
+    if vim.wo.diff then return ']c' end
+    vim.schedule(function() gs.next_hunk() end)
+    return '<Ignore>'
+  end, {expr=true})
+
+  map('n', '[c', function()
+    if vim.wo.diff then return '[c' end
+    vim.schedule(function() gs.prev_hunk() end)
+    return '<Ignore>'
+  end, {expr=true})
+
+  -- Actions
+  map({'n', 'v'}, '<leader>ghs', ':Gitsigns stage_hunk<CR>', { desc = "Stage hunk" } )
+  map({'n', 'v'}, '<leader>ghr', ':Gitsigns reset_hunk<CR>', { desc = "Reset hunk" } )
+  map('n', '<leader>ghS', gs.stage_buffer, { desc = "Stage file" } )
+  map('n', '<leader>ghu', gs.undo_stage_hunk, { desc = "Unstage hunk" } )
+  map('n', '<leader>ghR', gs.reset_buffer, { desc = "Reset buffer" } )
+  map('n', '<leader>ghp', gs.preview_hunk, { desc = "Preview hunk" } )
+  map('n', '<leader>ghb', function() gs.blame_line{full=true} end, { desc = "Git blame hunk" } )
+  map('n', '<leader>gtb', gs.toggle_current_line_blame, { desc = "Show git-blame for lines" } )
+  map('n', '<leader>ghd', gs.diffthis, { desc = "Git-diff"} )
+  map('n', '<leader>ghD', function() gs.diffthis('~') end, { desc = "Git-diff ~?" } )
+  map('n', '<leader>gtd', gs.toggle_deleted, { desc = "Toggle deleted" } )
+
+  -- Text object
+  map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = "Select hunk" } )
 end
 
 gitsigns.setup {
@@ -21,10 +61,10 @@ gitsigns.setup {
     follow_files = true,
   },
   attach_to_untracked = true,
-  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
   current_line_blame_opts = {
     virt_text = true,
-    virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+    virt_text_pos = "right_align", -- 'eol' | 'overlay' | 'right_align'
     delay = 1000,
     ignore_whitespace = false,
   },
@@ -46,4 +86,5 @@ gitsigns.setup {
   yadm = {
     enable = false,
   },
+  on_attach = on_attach_func
 }

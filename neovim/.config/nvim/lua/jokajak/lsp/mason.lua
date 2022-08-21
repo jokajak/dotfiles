@@ -84,8 +84,7 @@ mason_tool_installer.setup({
     ensure_installed = {
         -- you can turn off/on auto_update per tool
         -- shell
-        { 'bash-language-server', auto_update = false },
-        'shellcheck',
+        { 'bash-language-server', auto_update = true },
         'misspell',
         'shellcheck',
         'shfmt',

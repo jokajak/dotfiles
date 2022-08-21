@@ -44,6 +44,7 @@ packer.startup(function(use)
   use { "folke/which-key.nvim" }  -- help with keymaps
   use { "goolord/alpha-nvim" }  -- startup screen
   use { "tjdevries/train.nvim" }  -- train vim movements
+  use { "folke/trouble.nvim" }  -- show diagnostics
 
   -- [[ editing ]]--
   use { 'windwp/nvim-autopairs' }                    -- automagically manage pairs
@@ -150,3 +151,4 @@ require("jokajak.plugins.aerial")
 require("jokajak.plugins.leap")
 require("jokajak.plugins.surround")
 require("jokajak.plugins.fold-preview")
+require("jokajak.plugins.trouble")

@@ -15,5 +15,6 @@ null_ls.setup {
     formatting.black,
     formatting.stylua,
     diagnostics.flake8,
+    null_ls.builtins.code_actions.gitsigns,  -- enable gitsigns code actions
   },
 }
