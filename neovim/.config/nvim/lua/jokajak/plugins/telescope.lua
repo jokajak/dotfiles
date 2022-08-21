@@ -7,13 +7,24 @@ end
 
 local actions = require "telescope.actions"
 
+local path_display_fn = function(opts, path)
+  local tail = require("telescope.utils").path_tail(path)
+  return string.format("%s (%s)", tail, path)
+end
+
 local config = {
   defaults = {
 
     prompt_prefix = " ",
     selection_caret = " ",
-    path_display = { "smart" },
+    path_display = { truncate = 3 },
 
+    layout_strategy = "horizontal",
+    layout_config = {
+      horizontal = {
+        prompt_position = "top"
+      }
+    },
     mappings = {
       i = {
         ["<C-n>"] = actions.move_selection_next,

@@ -55,7 +55,8 @@ packer.startup(function(use)
   use { "kylechui/nvim-surround" } -- easily wrap text in strings
   use { 'anuvyklack/fold-preview.nvim',  -- preview folds
     requires = 'anuvyklack/keymap-amend.nvim'
-}
+  }
+  use { 'famiu/bufdelete.nvim' }  -- better buffer delete handling
 
   -- [[ git ]]--
   use { 'lewis6991/gitsigns.nvim' }                  -- git gutter

@@ -105,6 +105,7 @@ nvim_tree.setup({
         { key = "L", action = "vsplit_preview", action_cb = vsplit_preview },
         { key = "h", action = "close_node" },
         { key = "H", action = "collapse_all", action_cb = collapse_all },
+        { key = "<C-t>", action = "Live grep" },
       },
     },
     number = false,

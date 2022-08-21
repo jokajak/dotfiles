@@ -31,7 +31,7 @@ local function footer()
 	-- local fortune = handle:read("*a")
 	-- handle:close()
 	-- return fortune
-	return "chrisatmachine.com"
+	return "There's a great big beautiful tomorrow."
 end
 
 dashboard.section.footer.val = footer()
