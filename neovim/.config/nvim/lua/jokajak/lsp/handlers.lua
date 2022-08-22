@@ -56,34 +56,44 @@ local function lsp_highlight_document(client)
   -- end
 end
 
+local buf_keymap = function(bufnr, mode, lhs, rhs, opts)
+  local options = { noremap = true, silent = true, buffer=bufnr }
+  if opts then
+      options = vim.tbl_extend("force", options, opts)
+  end
+  vim.keymap.set(mode, lhs, rhs, options)
+end
+
 local function lsp_keymaps(bufnr)
-  local opts = { noremap = true, silent = true }
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  buf_keymap(bufnr, "n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+  buf_keymap(bufnr, "n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+  buf_keymap(bufnr, "n", "K", vim.lsp.buf.hover, { desc = "Hover [LSP]" })
+  buf_keymap(bufnr, "n", "gi", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
+  buf_keymap(bufnr, "n", "<C-k>", vim.lsp.buf.signature_help, { desc = "Signature help" })
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+  buf_keymap(bufnr, "n", "gr", vim.lsp.buf.references, { desc = "Get references" })
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
-  vim.api.nvim_buf_set_keymap(
-    bufnr,
-    "n",
-    "gl",
-    '<cmd>lua vim.diagnostic.open_float({ border = "rounded" })<CR>',
-    opts
-  )
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+  buf_keymap(bufnr, "n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
+  buf_keymap( bufnr, "n", "gl", vim.diagnostic.open_float, { desc = "Show diagnostics" })
+  buf_keymap(bufnr, "n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
+  buf_keymap(bufnr, "n", "<leader>q", vim.diagnostic.setloclist, { desc = "Set location list" })
   vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
 end
 
+local server_configs = {
+  disable_formatter = {
+    "pylsp",
+    "tsserver",
+  }
+}
+
 M.on_attach = function(client, bufnr)
   -- TODO: refactor this into a method that checks if string in list
-  if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
+  for _, entry in pairs(server_configs["disable_formatter"]) do
+    if client.name == entry then
+      client.resolved_capabilities.document_formatting = false
+    end
   end
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)

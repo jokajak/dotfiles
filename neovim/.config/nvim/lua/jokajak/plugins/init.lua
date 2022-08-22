@@ -47,6 +47,7 @@ packer.startup(function(use)
   use { "folke/trouble.nvim" }  -- show diagnostics
   use { "renerocksai/telekasten.nvim" }  -- note taking/management
   use { "mattn/calendar-vim" }  -- calendar
+  use { "dstein64/vim-startuptime" }  -- measure startup time
 
   -- [[ editing ]]--
   use { 'windwp/nvim-autopairs' }                    -- automagically manage pairs

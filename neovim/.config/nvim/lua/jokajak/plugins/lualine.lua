@@ -29,7 +29,7 @@ local diff = {
 local mode = {
 	"mode",
 	fmt = function(str)
-		return "-- " .. str .. " --"
+		return str:sub(1,1)
 	end,
 }
 
@@ -76,7 +76,13 @@ lualine.setup({
 	sections = {
 		lualine_a = { branch, diagnostics },
 		lualine_b = { mode },
-		lualine_c = {},
+		lualine_c = {
+      {
+        "filename",
+        file_status = true,
+        path = 1
+      }
+    },
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
 		lualine_x = { diff, spaces, "encoding", filetype },
 		lualine_y = { location },
@@ -93,4 +99,3 @@ lualine.setup({
 	tabline = {},
 	extensions = {},
 })
-
