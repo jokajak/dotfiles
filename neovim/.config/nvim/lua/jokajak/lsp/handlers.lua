@@ -90,10 +90,8 @@ local server_configs = {
 
 M.on_attach = function(client, bufnr)
   -- TODO: refactor this into a method that checks if string in list
-  for _, entry in pairs(server_configs["disable_formatter"]) do
-    if client.name == entry then
-      client.resolved_capabilities.document_formatting = false
-    end
+  if vim.tbl_contains(server_configs["disable_formatter"], client.name) then
+    client.resolved_capabilities.document_formatting = false
   end
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
