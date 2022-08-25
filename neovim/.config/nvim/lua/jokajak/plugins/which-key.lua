@@ -96,7 +96,13 @@ local normal_mappings = {
     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
     l = {
       name = "Link"
-    }
+    },
+    t = {
+      name = "Toggle",
+    },
+    h = {
+      name = "Hunk",
+    },
   },
 
   l = {

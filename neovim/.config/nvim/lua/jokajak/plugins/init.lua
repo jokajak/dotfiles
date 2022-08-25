@@ -1,4 +1,14 @@
--- plug
+-- plugins
+
+local M = {}
+
+M.plugins = {
+  git = {  -- these plugins should be loaded for git repositories
+    'lewis6991/gitsigns.nvim',  -- show git stuff in the sidebar
+    'ruifm/gitlinker.nvim',              -- link to repos
+  }
+}
+
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 local cache_path = fn.stdpath('cache')..'/plugin/packer_compiled.lua'
@@ -33,6 +43,7 @@ packer.init({
 })
 
 -- Install your plugins here
+-- Plugins that are just `use` are loaded at startup which increases nvim startup time
 packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" }) -- Have packer manage itself
 	use({ "nvim-lua/plenary.nvim", commit = "968a4b9afec0c633bc369662e78f8c5db0eba249" }) -- Useful lua functions used by lots of plugins
@@ -158,3 +169,5 @@ require("jokajak.plugins.fold-preview")
 require("jokajak.plugins.trouble")
 require("jokajak.plugins.telekasten")
 require("jokajak.plugins.luasnip")
+
+return M

@@ -20,7 +20,7 @@ local config = {
   close_behavior = "auto",
 
   -- Set to false to remove the default keybindings for the aerial buffer
-  default_bindings = true,
+  default_bindings = false,
 
   -- Enum: prefer_right, prefer_left, right, left, float
   -- Determines the default direction to open the aerial window. The 'prefer'
@@ -232,6 +232,5 @@ local config = {
     update_delay = 300,
   },
 }
-
 
 aerial.setup(config)

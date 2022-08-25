@@ -2,20 +2,20 @@
 local autocmd = vim.api.nvim_create_autocmd
 
 -- Source config files on save
-local source_config = vim.api.nvim_create_augroup("SourceConfig", {})
+--[[ local source_config = vim.api.nvim_create_augroup("SourceConfig", {})
 autocmd("BufWritePost", {
   desc = "Automatically source lua config files on save",
   group = source_config,
   pattern = { "*/.config/nvim/**/*.lua" },
   command = "source $MYVIMRC | source %",
-})
+})]]
 
-autocmd("BufWritePost", {
+--[[ autocmd("BufWritePost", {
   desc = "Automatically update plugins on save",
   group = source_config,
   pattern = { "*/.config/nvim/**/plugins/init.lua" },
   command = "source <afile> | PackerSync",
-})
+})]]
 
 local number_toggle_augroup = vim.api.nvim_create_augroup("numbertoggle", {})
 
