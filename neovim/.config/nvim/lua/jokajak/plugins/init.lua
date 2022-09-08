@@ -1,4 +1,4 @@
--- plugins
+  -- plugins
 
 local M = {}
 
@@ -46,29 +46,52 @@ packer.init({
 -- Plugins that are just `use` are loaded at startup which increases nvim startup time
 packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" }) -- Have packer manage itself
-	use({ "nvim-lua/plenary.nvim", commit = "968a4b9afec0c633bc369662e78f8c5db0eba249" }) -- Useful lua functions used by lots of plugins
-	use({ "kyazdani42/nvim-web-devicons", commit = "8d2c5337f0a2d0a17de8e751876eeb192b32310e" }) -- fun icons
+	use({ "nvim-lua/plenary.nvim", }) -- Useful lua functions used by lots of plugins
+	use({ "kyazdani42/nvim-web-devicons", }) -- fun icons
 	use({ "kyazdani42/nvim-tree.lua", tag = "nightly" })  -- file navigator
   use { 'lewis6991/impatient.nvim' }                 -- improve startup time
   use { 'ggandor/leap.nvim' }                        -- move within the window
   use { 'edluffy/specs.nvim' }                      -- highlight cursor jumps
+  -- measure startup time
+  use { 'dstein64/vim-startuptime', opt = true, cmd = { "StartupTime" }}
   use { "folke/which-key.nvim" }  -- help with keymaps
   use { "goolord/alpha-nvim" }  -- startup screen
-  use { "tjdevries/train.nvim" }  -- train vim movements
-  use { "folke/trouble.nvim" }  -- show diagnostics
-  use { "renerocksai/telekasten.nvim" }  -- note taking/management
+  use { "tjdevries/train.nvim", opt=true, cmd = {"TrainWord", "TrainUpDown", "TrainClear", "TrainTextObj"} }  -- train vim movements
+  -- show diagnostics
+  use { "folke/trouble.nvim",
+    opt = true,
+    cmd = {"Trouble", "TroubleClose", "TroubleRefresh", "TroubleToggle"},
+    config = function()
+      require("jokajak.plugins.trouble")
+    end
+  }
+  -- note taking
+  use { "renerocksai/telekasten.nvim",
+    opt = true,
+    cmd = {
+      "Telekasten",
+    },
+    config = function()
+      require("jokajak.plugins.telekasten")
+    end,
+  }
   use { "mattn/calendar-vim" }  -- calendar
-  use { "dstein64/vim-startuptime" }  -- measure startup time
+  use {'rktjmp/lush.nvim', opt = true, cmd = {"Lushify", "LushRunTutorial", "LushRunQuickstart"}}
 
   -- [[ editing ]]--
-  use { 'windwp/nvim-autopairs' }                    -- automagically manage pairs
+  use { 'windwp/nvim-autopairs',
+    opt = true,
+    after = "nvim-cmp",
+    config = function()
+      require("jokajak.plugins.autopairs")
+    end
+  }                    -- automagically manage pairs
   use { "numToStr/Comment.nvim" } -- Easily comment stuff
   use { 'stevearc/aerial.nvim' }  -- code outline window
   use { "kylechui/nvim-surround" } -- easily wrap text in strings
   use { 'anuvyklack/fold-preview.nvim',  -- preview folds
     requires = 'anuvyklack/keymap-amend.nvim'
   }
-  use { 'famiu/bufdelete.nvim' }  -- better buffer delete handling
 
   -- [[ git ]]--
   use { 'lewis6991/gitsigns.nvim' }                  -- git gutter
@@ -92,24 +115,74 @@ packer.startup(function(use)
   use { 'norcalli/nvim-colorizer.lua' } -- colorize things that look like color
 
   -- Completion plugins
-  use "hrsh7th/nvim-cmp" -- The completion plugin
-  use "hrsh7th/cmp-buffer" -- buffer completions
-  use "hrsh7th/cmp-path" -- path completions
-  use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
-  use "hrsh7th/cmp-nvim-lsp"  -- lsp completions
-  use "hrsh7th/cmp-nvim-lua"  -- nvim lua completions
+  -- The completion plugin,
+  use { "hrsh7th/nvim-cmp",
+    after = "friendly-snippets",
+    config = function()
+      require("jokajak.plugins.completions")
+    end,
+  }
+
+-- nvim lua completions
+  use { "hrsh7th/cmp-nvim-lua",
+    after = "cmp_luasnip"
+  }
+
+-- lsp completions
+  use { "hrsh7th/cmp-nvim-lsp",
+    after = "cmp-nvim-lua"
+  }
+  -- buffer completions
+  use { "hrsh7th/cmp-buffer",
+    after = "cmp-nvim-lsp"
+  }
+  -- path completions
+  use { "hrsh7th/cmp-path",
+    after = "cmp-buffer"
+  }
+  -- cmdline completions
+  use { "hrsh7th/cmp-cmdline",
+    after = "cmp-path"
+  }
+  -- snippet completions
+  use  { "saadparwaiz1/cmp_luasnip",
+    after = "LuaSnip"
+  }
 
   -- snippets
-  use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  --snippet engine
+  use { "L3MON4D3/LuaSnip",
+    opt = true,
+    after = "nvim-cmp",
+    config = function()
+      require("jokajak.plugins.luasnip")
+    end
+  }
+  -- a bunch of snippets
+  use { "rafamadriz/friendly-snippets",
+    opt = true,
+    module = { "cmp", "cmp_nvim_lsp" },
+    event = "InsertEnter"
+  }
 
   -- [[ Language Server Protocol ]] --
   -- Fancy language specific support
   use { "neovim/nvim-lspconfig" } -- lspconfig plugin
-  use { "williamboman/mason.nvim" }  -- package manager for lsp, dap, linters, and formatters
+  use { "williamboman/mason.nvim",
+    opt = true,
+    cmd = {
+      "Mason",
+      "MasonInstall",
+      "MasonInstallAll",
+      "MasonUninstall",
+      "MasonUninstallAll",
+      "MasonLog",
+    },
+    config = function()
+      require("jokajak.plugins.mason")
+    end,
+  }  -- package manager for lsp, dap, linters, and formatters
   use { "williamboman/mason-lspconfig.nvim" }  -- lspconfig bridge for mason
-  use { 'WhoIsSethDaniel/mason-tool-installer.nvim' }  -- mason tool installer
   use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
 
   use { 'nvim-telescope/telescope.nvim' }  -- fuzzy finder
@@ -148,9 +221,7 @@ packer.startup(function(use)
 end)
 
 require("jokajak.plugins.nvim-tree")
-require("jokajak.plugins.completions")
 require("jokajak.plugins.telescope")
-require("jokajak.plugins.autopairs")
 require("jokajak.plugins.comment")
 require("jokajak.plugins.gitsigns")
 require("jokajak.plugins.specs")
@@ -166,8 +237,3 @@ require("jokajak.plugins.aerial")
 require("jokajak.plugins.leap")
 require("jokajak.plugins.surround")
 require("jokajak.plugins.fold-preview")
-require("jokajak.plugins.trouble")
-require("jokajak.plugins.telekasten")
-require("jokajak.plugins.luasnip")
-
-return M

@@ -11,13 +11,7 @@ local config = {
   -- This can be a filetype map (see :help aerial-filetype-map)
   backends = { "treesitter", "lsp", "markdown" },
 
-  -- Enum: persist, close, auto, global
-  --   persist - aerial window will stay open until closed
-  --   close   - aerial window will close when original file is no longer visible
-  --   auto    - aerial window will stay open as long as there is a visible
-  --             buffer to attach to
-  --   global  - same as 'persist', and will always show symbols for the current buffer
-  close_behavior = "auto",
+  close_automatic_events = { "unsupported" },
 
   -- Set to false to remove the default keybindings for the aerial buffer
   default_bindings = false,
@@ -144,7 +138,7 @@ local config = {
   -- Useful for setting keymaps. Takes a single `bufnr` argument.
   on_attach = function(bufnr)
     -- Toggle the aerial window with <leader>a
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>a', '<CMD>AerialToggle!<CR>', {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>a', '<CMD>AerialToggle!<CR>', { desc = "Toggle Aerial sidebar"})
   end,
 
   -- Call this function when aerial first sets symbols on a buffer.
