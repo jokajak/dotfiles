@@ -16,7 +16,7 @@ opt.sidescrolloff = 8            -- int: Number of columns to show around cursor
 opt.wrap = false                 -- bool: don't wrap long lines
 opt.completeopt = "menu,menuone,noselect" -- str: configure completion menu
 opt.foldminlines = 2             -- int: minimum number of lines in a fold
-opt.foldlevelstart = 1           -- int: start with folds deeper than this folded
+opt.foldlevelstart = 10           -- int: start with folds greater than N folded
 
 -- [[ Filetypes ]]
 opt.encoding = 'utf8'            -- str:  String encoding to use
