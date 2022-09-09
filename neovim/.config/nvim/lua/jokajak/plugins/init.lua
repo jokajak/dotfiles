@@ -52,6 +52,7 @@ packer.startup(function(use)
   use { 'lewis6991/impatient.nvim' }                 -- improve startup time
   use { 'ggandor/leap.nvim' }                        -- move within the window
   use { 'edluffy/specs.nvim' }                      -- highlight cursor jumps
+  use { "ellisonleao/gruvbox.nvim" }
   -- measure startup time
   use { 'dstein64/vim-startuptime', opt = true, cmd = { "StartupTime" }}
   use { "folke/which-key.nvim" }  -- help with keymaps
@@ -190,28 +191,60 @@ packer.startup(function(use)
   -- [[ TreeSitter ]]--
   use {
     'nvim-treesitter/nvim-treesitter',               -- lsp enhancer
-    run = ':TSUpdate'
+    run = ':TSUpdate',
+    module = "nvim-treesitter",
+    cmd = {
+      "TSInstall",
+      "TSBufEnable",
+      "TSBufDisable",
+      "TSEnable",
+      "TSDisable",
+      "TSModuleInfo",
+    },
+    config = function()
+      require("jokajak.plugins.treesitter")
+    end,
   }
-  use { "folke/twilight.nvim" } -- dim code
+  use { "folke/twilight.nvim",
+    opt = true,
+    config = function()
+      require("jokajak.plugins.twilight")
+    end,
+    cmd = {
+      "Twilight",
+      "TwilightDisable",
+      "TwilightEnable",
+    }
+  } -- dim code
   use {
       'p00f/nvim-ts-rainbow',                        -- rainbow brackets
-      requires = { "nvim-treesitter/nvim-treesitter" }
+      opt = true,
+      requires = { "nvim-treesitter/nvim-treesitter" },
+      after = "nvim-treesitter",
   }
   use {
       'nvim-treesitter/playground',                        -- treesitter playground
-      requires = { "nvim-treesitter/nvim-treesitter" }
+      requires = { "nvim-treesitter/nvim-treesitter" },
+      opt = true,
+      cmd = { "TSPlaygroundToggle" }
   }
   use {
       'nvim-treesitter/nvim-treesitter-textobjects',       -- treesitter based text objects
+      opt = true,
+      after = "nvim-treesitter",
       requires = { "nvim-treesitter/nvim-treesitter" }      -- use something like delete in function
   }
   use {
       'nvim-treesitter/nvim-treesitter-context',       -- show current function/class as float window at the top of the window
+      opt = true,
+      after = "nvim-treesitter",
       requires = { "nvim-treesitter/nvim-treesitter" }
   }
   use {
-    'JoosepAlviste/nvim-ts-context-commentstring',  -- commentstring support
-    requires = { "nvim-treesitter/nvim-treesitter" }
+      'JoosepAlviste/nvim-ts-context-commentstring',  -- commentstring support
+      opt = true,
+      after = "nvim-treesitter",
+      requires = { "nvim-treesitter/nvim-treesitter" }
   }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
@@ -231,7 +264,6 @@ require("jokajak.plugins.which-key")
 require("jokajak.plugins.gitlinker")
 require("jokajak.plugins.indentline")
 require("jokajak.plugins.impatient")
-require("jokajak.plugins.twilight")
 require("jokajak.plugins.alpha")
 require("jokajak.plugins.aerial")
 require("jokajak.plugins.leap")
