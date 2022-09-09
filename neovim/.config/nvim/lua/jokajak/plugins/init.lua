@@ -52,7 +52,6 @@ packer.startup(function(use)
   use { 'lewis6991/impatient.nvim' }                 -- improve startup time
   use { 'ggandor/leap.nvim' }                        -- move within the window
   use { 'edluffy/specs.nvim' }                      -- highlight cursor jumps
-  use { "ellisonleao/gruvbox.nvim" }
   -- measure startup time
   use { 'dstein64/vim-startuptime', opt = true, cmd = { "StartupTime" }}
   use { "folke/which-key.nvim" }  -- help with keymaps
@@ -93,6 +92,15 @@ packer.startup(function(use)
   use { 'anuvyklack/fold-preview.nvim',  -- preview folds
     requires = 'anuvyklack/keymap-amend.nvim'
   }
+  -- highlight f targets
+  use {
+  'jinh0/eyeliner.nvim',
+  config = function()
+    require'eyeliner'.setup {
+      highlight_on_key = false
+    }
+  end
+}
 
   -- [[ git ]]--
   use { 'lewis6991/gitsigns.nvim' }                  -- git gutter
@@ -103,12 +111,16 @@ packer.startup(function(use)
 
   -- [[ Themes ]] --
   use { 'folke/tokyonight.nvim' }                    -- tokyonight theme
+  use { "catppuccin/nvim", as = "catppuccin" }
+  use { "ellisonleao/gruvbox.nvim" }
   use {
     'nvim-lualine/lualine.nvim',                     -- statusline
     requires = {'kyazdani42/nvim-web-devicons',
                 opt = true}
   }
-  use { "lukas-reineke/indent-blankline.nvim" }  -- indent guides
+  use { "lukas-reineke/indent-blankline.nvim",
+    after = "nvim-treesitter"
+  }  -- indent guides
   use { 'akinsho/bufferline.nvim',  -- tab like buffer list
     tag = "v2.*",
     requires = "kyazdani42/nvim-web-devicons"

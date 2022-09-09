@@ -36,3 +36,15 @@ autocmd("ColorScheme", {
   end,
   group = bg_change,
 })
+
+-- switch colorscheme based on background
+vim.api.nvim_create_autocmd("OptionSet", {
+	pattern = "background",
+	callback = function()
+    local colorscheme = vim.g.colors_name
+    if colorscheme == "catppuccin" then
+      vim.cmd("Catppuccin " .. (vim.v.option_new == "light" and "latte" or "mocha"))
+    end
+	end,
+  group = bg_change,
+})
