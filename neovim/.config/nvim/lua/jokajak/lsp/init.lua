@@ -1,7 +1,7 @@
 -- [[ Language Server Protocol ]]--
-local status_ok, _ = pcall(require, "lspconfig")
+local present, _ = pcall(require, "lspconfig")
 
-if not status_ok then
+if not present then
   return
 end
 

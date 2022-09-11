@@ -48,8 +48,8 @@ end
 
 local function lsp_highlight_document(client)
   -- Set autocommands conditional on server_capabilities
-  local status_ok, illuminate = pcall(require, "illuminate")
-  if not status_ok then
+  local present, illuminate = pcall(require, "illuminate")
+  if not present then
     return
   end
   illuminate.on_attach(client)
@@ -89,9 +89,13 @@ local server_configs = {
 }
 
 M.on_attach = function(client, bufnr)
-  -- TODO: refactor this into a method that checks if string in list
-  if vim.tbl_contains(server_configs["disable_formatter"], client.name) then
+  if vim.g.vim_version > 7 then
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  else
+    -- 0.7
     client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
   end
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
@@ -101,13 +105,11 @@ M.on_attach = function(client, bufnr)
   end
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if status_ok then
+local cmp_present, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if cmp_present then
   M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-else
-  M.capabilities = capabilities
 end
 
 return M

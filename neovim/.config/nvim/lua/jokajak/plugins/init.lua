@@ -1,17 +1,8 @@
   -- plugins
 
-local M = {}
-
-M.plugins = {
-  git = {  -- these plugins should be loaded for git repositories
-    'lewis6991/gitsigns.nvim',  -- show git stuff in the sidebar
-    'ruifm/gitlinker.nvim',              -- link to repos
-  }
-}
-
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-local cache_path = fn.stdpath('cache')..'/plugin/packer_compiled.lua'
+local compile_path = fn.stdpath('data')..'/packer_compiled.lua'
 
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system({
@@ -34,24 +25,40 @@ end
 
 -- Have packer use a popup window
 packer.init({
-  compile_path = cache_path,
-	display = {
-		open_fn = function()
-			return require("packer.util").float({ border = "rounded" })
-		end,
-	},
+  auto_clean = true,
+  compile_on_sync = true,
+  git = { clone_timeout = 6000 },
+  display = {
+    working_sym = "ﲊ",
+    error_sym = "✗ ",
+    done_sym = " ",
+    removed_sym = " ",
+    moved_sym = "",
+    open_fn = function()
+      return require("packer.util").float { border = "single" }
+    end,
+  },
 })
 
 -- Install your plugins here
--- Plugins that are just `use` are loaded at startup which increases nvim startup time
 packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" }) -- Have packer manage itself
 	use({ "nvim-lua/plenary.nvim", }) -- Useful lua functions used by lots of plugins
 	use({ "kyazdani42/nvim-web-devicons", }) -- fun icons
-	use({ "kyazdani42/nvim-tree.lua", tag = "nightly" })  -- file navigator
+  -- file navigator
+	use({ "kyazdani42/nvim-tree.lua", tag = "nightly", })
   use { 'lewis6991/impatient.nvim' }                 -- improve startup time
   use { 'ggandor/leap.nvim' }                        -- move within the window
-  use { 'edluffy/specs.nvim' }                      -- highlight cursor jumps
+  -- highlight cursor jumps
+  use { 'edluffy/specs.nvim',
+    opt = true,
+    config = function()
+      require("jokajak.plugins.specs")
+    end,
+    setup = function()
+      require("jokajak.lazy_load").on_file_open("specs.nvim")
+    end
+  }                      -- highlight cursor jumps
   -- measure startup time
   use { 'dstein64/vim-startuptime', opt = true, cmd = { "StartupTime" }}
   use { "folke/which-key.nvim" }  -- help with keymaps
@@ -75,18 +82,36 @@ packer.startup(function(use)
       require("jokajak.plugins.telekasten")
     end,
   }
-  use { "mattn/calendar-vim" }  -- calendar
+  -- calendar, useful with telekasten
+  use { "mattn/calendar-vim",
+    opt = true,
+    cmd = {
+      "Calendar",
+      "CalendarH",
+      "CalendarT",
+    }
+  }
+  -- theme creator
   use {'rktjmp/lush.nvim', opt = true, cmd = {"Lushify", "LushRunTutorial", "LushRunQuickstart"}}
 
   -- [[ editing ]]--
+  -- manage pairs of characters
   use { 'windwp/nvim-autopairs',
     opt = true,
     after = "nvim-cmp",
     config = function()
       require("jokajak.plugins.autopairs")
     end
-  }                    -- automagically manage pairs
-  use { "numToStr/Comment.nvim" } -- Easily comment stuff
+  }
+  -- easily comment stuff
+  use { "numToStr/Comment.nvim",
+    opt = true,
+    keys = { "gc", "gb" },
+    module = "Comment",
+    config = function()
+      require("jokajak.plugins.comment")
+    end,
+  }
   use { 'stevearc/aerial.nvim' }  -- code outline window
   use { "kylechui/nvim-surround" } -- easily wrap text in strings
   use { 'anuvyklack/fold-preview.nvim',  -- preview folds
@@ -119,7 +144,10 @@ packer.startup(function(use)
                 opt = true}
   }
   use { "lukas-reineke/indent-blankline.nvim",
-    after = "nvim-treesitter"
+    after = "nvim-treesitter",
+    config = function()
+      require("jokajak.plugins.indentline")
+    end
   }  -- indent guides
   use { 'akinsho/bufferline.nvim',  -- tab like buffer list
     tag = "v2.*",
@@ -180,29 +208,38 @@ packer.startup(function(use)
 
   -- [[ Language Server Protocol ]] --
   -- Fancy language specific support
-  use { "neovim/nvim-lspconfig" } -- lspconfig plugin
+  use { "neovim/nvim-lspconfig",
+    opt = false,
+    setup = function()
+      require("jokajak.lazy_load").on_file_open("nvim-lspconfig")
+    end,
+  }
+  -- package manager for lsp, dap, linters, and formatters
   use { "williamboman/mason.nvim",
-    opt = true,
-    cmd = {
-      "Mason",
-      "MasonInstall",
-      "MasonInstallAll",
-      "MasonUninstall",
-      "MasonUninstallAll",
-      "MasonLog",
-    },
+    opt = false,
     config = function()
       require("jokajak.plugins.mason")
     end,
-  }  -- package manager for lsp, dap, linters, and formatters
-  use { "williamboman/mason-lspconfig.nvim" }  -- lspconfig bridge for mason
+  }
+  -- lspconfig bridge for mason
+  use { "williamboman/mason-lspconfig.nvim",
+    opt = false,
+    after = "mason.nvim"
+  }
   use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
 
-  use { 'nvim-telescope/telescope.nvim' }  -- fuzzy finder
+  -- extensible fuzzy finder over lists
+  use { 'nvim-telescope/telescope.nvim',
+    opt = true,
+    cmd = "Telescope",
+    config = function()
+      require("jokajak.plugins.telescope")
+    end,
+  }
 
   -- [[ TreeSitter ]]--
   use {
-    'nvim-treesitter/nvim-treesitter',               -- lsp enhancer
+    'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     module = "nvim-treesitter",
     cmd = {
@@ -265,19 +302,15 @@ packer.startup(function(use)
   end
 end)
 
-require("jokajak.plugins.nvim-tree")
-require("jokajak.plugins.telescope")
-require("jokajak.plugins.comment")
 require("jokajak.plugins.gitsigns")
-require("jokajak.plugins.specs")
 require("jokajak.plugins.bufferline")
 require("jokajak.plugins.lualine")
 require("jokajak.plugins.which-key")
 require("jokajak.plugins.gitlinker")
-require("jokajak.plugins.indentline")
 require("jokajak.plugins.impatient")
 require("jokajak.plugins.alpha")
 require("jokajak.plugins.aerial")
 require("jokajak.plugins.leap")
 require("jokajak.plugins.surround")
 require("jokajak.plugins.fold-preview")
+require("jokajak.plugins.nvim-tree")
