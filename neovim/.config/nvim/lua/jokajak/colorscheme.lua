@@ -14,14 +14,25 @@ end
 local home = vim.fn.fnamemodify("~", ":p")
 local kitty_themes_path = home .. "/.config/kitty/themes/"
 local fn = vim.fn
+local luv = vim.loop
 
-local change_background = function(color)
-  local arg = kitty_themes_path .. color .. ".conf"
-  local command = "kitty @ set-colors " .. arg
+local theme_exists = function(theme, bg)
+  local theme_file = kitty_themes_path .. theme .. "-" .. bg .. ".conf"
+  local stat = luv.fs_stat(theme_file)
+  return stat and stat.type == "file" and luv.fs_access(theme_file, "R")
+end
 
-  print("Settings colors")
-  print(command)
+local change_kitty_theme = function(theme, bg)
+  if not theme_exists(theme, bg) then
+    vim.notify("kitty theme "..theme.." can't be found.")
+    return
+  end
+  local theme_file = kitty_themes_path .. theme .. "-" .. bg .. ".conf"
+  local command = "kitty @ set-colors " .. theme_file
+  local current_theme_file = kitty_themes_path .. "current.conf"
+
   fn.system(command)
+  local success, err = luv.fs_copyfile(theme_file, current_theme_file)
 end
 
 local autocmd = vim.api.nvim_create_autocmd
@@ -32,7 +43,8 @@ autocmd("ColorScheme", {
   pattern = "*",
   callback = function()
     local bg = vim.o.background
-    change_background(bg)
+    local colorscheme = vim.g.colors_name
+    change_kitty_theme(colorscheme, bg)
   end,
   group = bg_change,
 })
@@ -42,9 +54,15 @@ vim.api.nvim_create_autocmd("OptionSet", {
 	pattern = "background",
 	callback = function()
     local colorscheme = vim.g.colors_name
+    local bg = vim.v.option_new
     if colorscheme == "catppuccin" then
-      vim.cmd("Catppuccin " .. (vim.v.option_new == "light" and "latte" or "mocha"))
+      local flavor = (vim.v.option_new == "light" and "latte" or "mocha")
+      vim.cmd("Catppuccin " .. flavor)
+      change_kitty_theme("catppuccin", flavor)
+    else
+      change_kitty_theme(colorscheme, bg)
     end
+
 	end,
   group = bg_change,
 })
