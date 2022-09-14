@@ -33,6 +33,9 @@ local change_kitty_theme = function(theme, bg)
 
   fn.system(command)
   local success, err = luv.fs_copyfile(theme_file, current_theme_file)
+  if success then
+    vim.notify("kitty theme updated to "..theme)
+  end
 end
 
 local autocmd = vim.api.nvim_create_autocmd
@@ -43,8 +46,8 @@ autocmd("ColorScheme", {
   pattern = "*",
   callback = function()
     local bg = vim.o.background
-    local colorscheme = vim.g.colors_name
-    change_kitty_theme(colorscheme, bg)
+    local current_colorscheme = vim.g.colors_name
+    change_kitty_theme(current_colorscheme, bg)
   end,
   group = bg_change,
 })
@@ -53,14 +56,14 @@ autocmd("ColorScheme", {
 vim.api.nvim_create_autocmd("OptionSet", {
 	pattern = "background",
 	callback = function()
-    local colorscheme = vim.g.colors_name
+    local current_colorscheme = vim.g.colors_name
     local bg = vim.v.option_new
-    if colorscheme == "catppuccin" then
+    if current_colorscheme == "catppuccin" then
       local flavor = (vim.v.option_new == "light" and "latte" or "mocha")
       vim.cmd("Catppuccin " .. flavor)
       change_kitty_theme("catppuccin", flavor)
     else
-      change_kitty_theme(colorscheme, bg)
+      change_kitty_theme(current_colorscheme, bg)
     end
 
 	end,

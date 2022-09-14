@@ -60,15 +60,6 @@ M.packer_cmds = {
   "PackerLoad",
 }
 
-M.treesitter_cmds = {
-  "TSInstall",
-  "TSBufEnable",
-  "TSBufDisable",
-  "TSEnable",
-  "TSDisable",
-  "TSModuleInfo",
-}
-
 M.mason_cmds = {
   "Mason",
   "MasonInstall",

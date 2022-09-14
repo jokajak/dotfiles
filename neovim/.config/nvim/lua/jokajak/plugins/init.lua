@@ -2,7 +2,6 @@
 
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-local compile_path = fn.stdpath('data')..'/packer_compiled.lua'
 
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system({
@@ -23,7 +22,6 @@ if not status_ok then
 	return
 end
 
--- Have packer use a popup window
 packer.init({
   auto_clean = true,
   compile_on_sync = true,
@@ -34,10 +32,15 @@ packer.init({
     done_sym = " ",
     removed_sym = " ",
     moved_sym = "",
+    -- Have packer use a popup window
     open_fn = function()
       return require("packer.util").float { border = "single" }
     end,
   },
+  profile = {
+    enable = true,
+    threshold = 1,
+  }
 })
 
 -- Install your plugins here
@@ -60,10 +63,28 @@ packer.startup(function(use)
     end
   }                      -- highlight cursor jumps
   -- measure startup time
-  use { 'dstein64/vim-startuptime', opt = true, cmd = { "StartupTime" }}
-  use { "folke/which-key.nvim" }  -- help with keymaps
-  use { "goolord/alpha-nvim" }  -- startup screen
-  use { "tjdevries/train.nvim", opt=true, cmd = {"TrainWord", "TrainUpDown", "TrainClear", "TrainTextObj"} }  -- train vim movements
+  use({ 'dstein64/vim-startuptime', opt = true, cmd = { "StartupTime" }})
+  -- show keymaps
+  use({ "folke/which-key.nvim",
+    event = { "BufRead", "BufNewFile" },
+    module = "which-key",
+    config = function()
+      require("jokajak.plugins.which-key")
+    end
+  })
+  -- startup screen
+  use { "goolord/alpha-nvim",
+      cmd = "Alpha",
+      module = "Alpha",
+      config = function()
+        require("jokajak.plugins.alpha")
+      end
+  }
+  -- practice vim movements
+  use({ "tjdevries/train.nvim",
+    opt=true,
+    cmd = {"TrainWord", "TrainUpDown", "TrainClear", "TrainTextObj"}
+  })
   -- show diagnostics
   use { "folke/trouble.nvim",
     opt = true,
@@ -112,8 +133,21 @@ packer.startup(function(use)
       require("jokajak.plugins.comment")
     end,
   }
-  use { 'stevearc/aerial.nvim' }  -- code outline window
-  use { "kylechui/nvim-surround" } -- easily wrap text in strings
+    -- code outline window
+  use { 'stevearc/aerial.nvim',
+      module = "aerial",
+      cmd = { "AerialToggle", "AerialOpen", "AerialInfo" },
+      config = function()
+        require("jokajak.plugins.aerial")
+      end
+  }
+ -- easily wrap text in strings
+  use { "kylechui/nvim-surround",
+      event = { "InsertEnter" },
+      config = function()
+        require("jokajak.plugins.surround")
+      end
+  }
   use { 'anuvyklack/fold-preview.nvim',  -- preview folds
     requires = 'anuvyklack/keymap-amend.nvim'
   }
@@ -128,9 +162,20 @@ packer.startup(function(use)
 }
 
   -- [[ git ]]--
-  use { 'lewis6991/gitsigns.nvim' }                  -- git gutter
+  -- git gutter symbols
+  use { 'lewis6991/gitsigns.nvim',
+    event = "BufEnter",
+    config = function()
+      require("jokajak.plugins.gitsigns")
+    end
+  }
+  -- link to repos
   use {
-    'ruifm/gitlinker.nvim',              -- link to repos
+    'ruifm/gitlinker.nvim',
+    event = "BufEnter",
+    config = function()
+      require("jokajak.plugins.gitlinker")
+    end,
     requires = 'nvim-lua/plenary.nvim',
   }
 
@@ -138,6 +183,7 @@ packer.startup(function(use)
   use { 'folke/tokyonight.nvim' }                    -- tokyonight theme
   use { "catppuccin/nvim", as = "catppuccin" }
   use { "ellisonleao/gruvbox.nvim" }
+
   use {
     'nvim-lualine/lualine.nvim',                     -- statusline
     requires = {'kyazdani42/nvim-web-devicons',
@@ -153,7 +199,17 @@ packer.startup(function(use)
     tag = "v2.*",
     requires = "kyazdani42/nvim-web-devicons"
   }
-  use { 'norcalli/nvim-colorizer.lua' } -- colorize things that look like color
+  -- color things that look like colors
+  use {
+      "norcalli/nvim-colorizer.lua",
+      event = { "BufRead", "BufNewFile" },
+      config = function()
+        local present, colorizer = pcall(require, "nvim-colorizer")
+        if present then
+          colorizer.setup()
+        end
+      end
+  }
 
   -- Completion plugins
   -- The completion plugin,
@@ -208,12 +264,7 @@ packer.startup(function(use)
 
   -- [[ Language Server Protocol ]] --
   -- Fancy language specific support
-  use { "neovim/nvim-lspconfig",
-    opt = false,
-    setup = function()
-      require("jokajak.lazy_load").on_file_open("nvim-lspconfig")
-    end,
-  }
+  use { "neovim/nvim-lspconfig", }
   -- package manager for lsp, dap, linters, and formatters
   use { "williamboman/mason.nvim",
     opt = false,
@@ -223,10 +274,10 @@ packer.startup(function(use)
   }
   -- lspconfig bridge for mason
   use { "williamboman/mason-lspconfig.nvim",
-    opt = false,
-    after = "mason.nvim"
+    requires = "mason.nvim"
   }
-  use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
+  -- extra formatting and linting
+  use { "jose-elias-alvarez/null-ls.nvim", }
 
   -- extensible fuzzy finder over lists
   use { 'nvim-telescope/telescope.nvim',
@@ -241,14 +292,17 @@ packer.startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    module = "nvim-treesitter",
+    event = { "BufRead", "BufNewFile" },
     cmd = {
-      "TSInstall",
-      "TSBufEnable",
       "TSBufDisable",
-      "TSEnable",
+      "TSBufEnable",
       "TSDisable",
+      "TSDisableAll",
+      "TSEnableAll",
+      "TSInstall",
+      "TSInstall",
       "TSModuleInfo",
+      "TSUpdate",
     },
     config = function()
       require("jokajak.plugins.treesitter")
@@ -302,15 +356,9 @@ packer.startup(function(use)
   end
 end)
 
-require("jokajak.plugins.gitsigns")
 require("jokajak.plugins.bufferline")
 require("jokajak.plugins.lualine")
-require("jokajak.plugins.which-key")
-require("jokajak.plugins.gitlinker")
 require("jokajak.plugins.impatient")
-require("jokajak.plugins.alpha")
-require("jokajak.plugins.aerial")
 require("jokajak.plugins.leap")
-require("jokajak.plugins.surround")
 require("jokajak.plugins.fold-preview")
 require("jokajak.plugins.nvim-tree")

@@ -89,10 +89,12 @@ local server_configs = {
 }
 
 M.on_attach = function(client, bufnr)
-  if vim.g.vim_version > 7 then
+  local vim_version = vim.version().minor
+  if vim_version == 8 then
+    -- 0.8
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
-  else
+  elseif vim_version == 7 then
     -- 0.7
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
@@ -105,11 +107,13 @@ M.on_attach = function(client, bufnr)
   end
 end
 
-M.capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local cmp_present, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if cmp_present then
   M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+else
+  M.capabilities = capabilities
 end
 
 return M

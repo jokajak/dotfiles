@@ -2,6 +2,7 @@
 local present, _ = pcall(require, "lspconfig")
 
 if not present then
+  vim.notify("lspconfig not available, aborting lsp setup")
   return
 end
 
