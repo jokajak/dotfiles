@@ -181,7 +181,10 @@ packer.startup(function(use)
 
   -- [[ Themes ]] --
   use { 'folke/tokyonight.nvim' }                    -- tokyonight theme
-  use { "catppuccin/nvim", as = "catppuccin" }
+  use { "catppuccin/nvim",
+        as = "catppuccin",
+        run = ":CatppuccinCompile"
+  }
   use { "ellisonleao/gruvbox.nvim" }
 
   use {
