@@ -68,7 +68,7 @@ gitsigns.setup {
   current_line_blame_opts = {
     virt_text = true,
     virt_text_pos = "right_align", -- 'eol' | 'overlay' | 'right_align'
-    delay = 1000,
+    delay = 10000,
     ignore_whitespace = false,
   },
   current_line_blame_formatter_opts = {

@@ -110,7 +110,10 @@ packer.startup(function(use)
       "Calendar",
       "CalendarH",
       "CalendarT",
-    }
+    },
+    config = function()
+      require("jokajak.plugins.telekasten")
+    end,
   }
   -- theme creator
   use {'rktjmp/lush.nvim', opt = true, cmd = {"Lushify", "LushRunTutorial", "LushRunQuickstart"}}
@@ -153,15 +156,18 @@ packer.startup(function(use)
   }
   -- highlight f targets
   use {
-  'jinh0/eyeliner.nvim',
-  config = function()
-    require'eyeliner'.setup {
-      highlight_on_key = false
-    }
-  end
+    'jinh0/eyeliner.nvim',
+    event = "BufEnter",
+    config = function()
+      require'eyeliner'.setup {
+        highlight_on_key = false
+      }
+    end
 }
 
   -- [[ git ]]--
+  -- nicer commits
+  use { "rhysd/committia.vim" }
   -- git gutter symbols
   use { 'lewis6991/gitsigns.nvim',
     event = "BufEnter",

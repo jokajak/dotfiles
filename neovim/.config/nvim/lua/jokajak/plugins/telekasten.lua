@@ -1,8 +1,16 @@
 --[[ telekasten configuration ]]--
+-- called when loading telekasten *or* calendar
 local status_ok, telekasten = pcall(require, "telekasten")
 
 if not status_ok then
-  return
+  -- maybe we loaded because of calendar, try loading telekasten manually
+  print("Trying to load telekasten...")
+  require("packer").loader("telekasten.nvim")
+  status_ok, telekasten = pcall(require, "telekasten")
+  if not status_ok then
+    print("...failed to load telekasten")
+    return
+  end
 end
 
 local home = vim.fn.fnamemodify("~/notes", ":p")
