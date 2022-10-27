@@ -157,7 +157,8 @@ packer.startup(function(use)
   -- highlight f targets
   use {
     'jinh0/eyeliner.nvim',
-    event = "BufEnter",
+    -- event = "BufEnter",
+    opt = true,
     config = function()
       require'eyeliner'.setup {
         highlight_on_key = false
