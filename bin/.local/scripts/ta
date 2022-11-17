@@ -1,0 +1,72 @@
+#!/bin/bash
+
+# From http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -eu
+IFS=$'\n\t'
+
+SESSION_NAME=${1:-"__UNSET__"}
+SESSION_PATH=${2:-"__UNSET__"}
+TMUX=${TMUX:-""}
+
+# If no arguments are passed in:
+# 1) If there is an a session, detach and attach it
+# 2) If there are no sessions, prompt for a directory
+#   * If a directory is chosen, create a new session with that directory name
+# If there is an argument, then:
+# 1) If there is a session matching that name, detach and attach it
+# 2) Prompt for a directory
+#   * If a directory is chosen, create a new session with the given argument as the name
+
+tmux_running=$(pgrep tmux || :)
+
+has_session() {
+    # checks if the $session_name exists
+    tmux has-session -t "=$SESSION_NAME"
+}
+
+case $SESSION_NAME in
+  "__UNSET__")
+    # If there is a session, run tmux attach -d
+    # Else, prompt for a directory
+    if [[ -n $tmux_running ]]; then  # tmux is running
+      ## attach to the first session and detach any other session
+      if [[ -z "$TMUX" ]]; then
+        exec tmux -2 attach -d
+      else
+        exec tmux switch-client
+      fi
+    else
+      _session_path=$(find ~/git ~/work -mindepth 1 -maxdepth 2 -type d | fzf --reverse --header="Select working directory>")
+      if [[ -z $_session_path ]]; then
+        # No selection made, abort
+        echo "No selection made, aborting..."
+        exit 0
+      fi
+      _session_dir=$(basename "$_session_path")
+      session_name=${_session_dir//./_}
+      exec tmux -2 new-session -A -s "$session_name" -c "$_session_path"
+    fi
+    ;;
+  "--start")
+    # echo "Using cwd for session"
+    _session_dir=$(basename "$(pwd)")
+    session_name=${_session_dir//./_}
+    # -A means attach if the session already exists
+    exec tmux -2 new-session -A -s "$session_name" -c "$(pwd)"
+    ;;
+  *)
+    if has_session; then
+      # Force tmux to use 256 when reattaching
+      exec tmux -2 attach -d -t "$SESSION_NAME"
+    else
+      # Try to find an exact match
+      _session_path=$(find ~/git ~/work -mindepth 1 -maxdepth 2 -type d | fzf -q "$SESSION_NAME" --reverse --header="Select working directory>")
+      if [[ -z $_session_path ]]; then
+        # No selection made, abort
+        echo "No selection made, aborting..."
+        exit 0
+      fi
+      echo "Starting session"
+      exec tmux -2 new-session -A -s "$SESSION_NAME" -c "$_session_path"
+    fi
+esac
