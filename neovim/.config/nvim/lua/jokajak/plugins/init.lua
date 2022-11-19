@@ -61,7 +61,8 @@ packer.startup(function(use)
     setup = function()
       require("jokajak.lazy_load").on_file_open("specs.nvim")
     end
-  }                      -- highlight cursor jumps
+  }
+
   -- measure startup time
   use({ 'dstein64/vim-startuptime', opt = true, cmd = { "StartupTime" }})
   -- show keymaps
@@ -117,7 +118,8 @@ packer.startup(function(use)
   }
   -- theme creator
   use {'rktjmp/lush.nvim', opt = true, cmd = {"Lushify", "LushRunTutorial", "LushRunQuickstart"}}
-
+  -- neovim development
+  use({"folke/neodev.nvim"})
   -- [[ editing ]]--
   -- manage pairs of characters
   use { 'windwp/nvim-autopairs',
@@ -160,9 +162,9 @@ packer.startup(function(use)
     -- event = "BufEnter",
     opt = true,
     config = function()
-      require'eyeliner'.setup {
+      require('eyeliner').setup({
         highlight_on_key = false
-      }
+      })
     end
 }
 
