@@ -65,6 +65,12 @@ packer.startup(function(use)
 
   -- measure startup time
   use({ 'dstein64/vim-startuptime', opt = true, cmd = { "StartupTime" }})
+  use({
+      "folke/neoconf.nvim",
+      config = function()
+        require("neoconf").setup({})
+      end
+  })
   -- show keymaps
   use({ "folke/which-key.nvim",
     event = { "BufRead", "BufNewFile" },
@@ -148,7 +154,8 @@ packer.startup(function(use)
       cmd = { "AerialToggle", "AerialOpen", "AerialInfo" },
       config = function()
         require("jokajak.plugins.aerial")
-      end
+      end,
+      after = "neoconf.nvim"
   }
  -- easily wrap text in strings
   use { "kylechui/nvim-surround",
@@ -287,6 +294,7 @@ packer.startup(function(use)
     config = function()
       require("jokajak.plugins.mason")
     end,
+    after = "neoconf.nvim",
   }
   -- lspconfig bridge for mason
   use { "williamboman/mason-lspconfig.nvim",
