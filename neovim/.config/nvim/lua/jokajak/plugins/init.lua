@@ -71,9 +71,15 @@ packer.startup(function(use)
   -- measure startup time
   use({ 'dstein64/vim-startuptime', opt = true, cmd = { "StartupTime" } })
 
+  -- project local neovim configurations
   use({
     "folke/neoconf.nvim",
   })
+  -- project local custom lua
+  use({
+    'MunifTanjim/exrc.nvim',
+  })
+
   -- show keymaps
   use({ "folke/which-key.nvim",
     event = { "BufRead", "BufNewFile" },

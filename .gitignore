@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/vim,lua,code
 # Edit at https://www.gitignore.io/?templates=vim,lua,code
 
@@ -51,7 +50,6 @@ luac.out
 *.x86_64
 *.hex
 
-
 ### Vim ###
 # Swap
 [._]*.s[a-v][a-z]
@@ -59,6 +57,7 @@ luac.out
 [._]s[a-rt-v][a-z]
 [._]ss[a-gi-z]
 [._]sw[a-p]
+vim/.vim/swap/
 
 # Session
 Session.vim
@@ -84,3 +83,9 @@ neovim/.config/nvim/plugin/packer_compiled.lua
 # Ignore compiled packer settings
 # It embeds usernames
 neovim/.config/nvim/plugin/packer_compiled.lua
+
+# Ignore symlink to current file
+kitty/.config/kitty/themes/current.conf
+
+# ignore vim packer
+vim/.vim/pack/
