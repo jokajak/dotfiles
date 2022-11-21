@@ -1,4 +1,4 @@
-local status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+--[[ local status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
 local lspconfig = require("lspconfig")
 local handlers = require("jokajak.lsp.handlers")
 
@@ -43,4 +43,4 @@ mason_lspconfig.setup_handlers({
       lsp.setup(opts)
     end
   end
-})
+}) ]]

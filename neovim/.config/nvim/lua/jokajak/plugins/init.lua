@@ -1,7 +1,7 @@
-  -- plugins
+-- plugins
 
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system({
@@ -19,7 +19,7 @@ end
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
   vim.notify("Failed to load packer, cannot install plugins.")
-	return
+  return
 end
 
 packer.init({
@@ -45,13 +45,18 @@ packer.init({
 
 -- Install your plugins here
 packer.startup(function(use)
-	use({ "wbthomason/packer.nvim" }) -- Have packer manage itself
-	use({ "nvim-lua/plenary.nvim", }) -- Useful lua functions used by lots of plugins
-	use({ "kyazdani42/nvim-web-devicons", }) -- fun icons
+  use({ "wbthomason/packer.nvim" }) -- Have packer manage itself
+  use({ "nvim-lua/plenary.nvim", }) -- Useful lua functions used by lots of plugins
+  use({ "kyazdani42/nvim-web-devicons", }) -- fun icons
+  use({ 'MunifTanjim/nui.nvim' }) -- UI component library
+  -- make neovim notifications look nice
+  use({
+    "folke/noice.nvim"
+  }) -- look nice
   -- file navigator
-	use({ "kyazdani42/nvim-tree.lua", tag = "nightly", })
-  use { 'lewis6991/impatient.nvim' }                 -- improve startup time
-  use { 'ggandor/leap.nvim' }                        -- move within the window
+  use({ "kyazdani42/nvim-tree.lua", tag = "nightly", })
+  use { 'lewis6991/impatient.nvim' } -- improve startup time
+  use { 'ggandor/leap.nvim' } -- move within the window
   -- highlight cursor jumps
   use { 'edluffy/specs.nvim',
     opt = true,
@@ -64,12 +69,10 @@ packer.startup(function(use)
   }
 
   -- measure startup time
-  use({ 'dstein64/vim-startuptime', opt = true, cmd = { "StartupTime" }})
+  use({ 'dstein64/vim-startuptime', opt = true, cmd = { "StartupTime" } })
+
   use({
-      "folke/neoconf.nvim",
-      config = function()
-        require("neoconf").setup({})
-      end
+    "folke/neoconf.nvim",
   })
   -- show keymaps
   use({ "folke/which-key.nvim",
@@ -81,21 +84,21 @@ packer.startup(function(use)
   })
   -- startup screen
   use { "goolord/alpha-nvim",
-      cmd = "Alpha",
-      module = "Alpha",
-      config = function()
-        require("jokajak.plugins.alpha")
-      end
+    cmd = "Alpha",
+    module = "Alpha",
+    config = function()
+      require("jokajak.plugins.alpha")
+    end
   }
   -- practice vim movements
   use({ "tjdevries/train.nvim",
-    opt=true,
-    cmd = {"TrainWord", "TrainUpDown", "TrainClear", "TrainTextObj"}
+    opt = true,
+    cmd = { "TrainWord", "TrainUpDown", "TrainClear", "TrainTextObj" }
   })
   -- show diagnostics
   use { "folke/trouble.nvim",
     opt = true,
-    cmd = {"Trouble", "TroubleClose", "TroubleRefresh", "TroubleToggle"},
+    cmd = { "Trouble", "TroubleClose", "TroubleRefresh", "TroubleToggle" },
     config = function()
       require("jokajak.plugins.trouble")
     end
@@ -123,13 +126,9 @@ packer.startup(function(use)
     end,
   }
   -- theme creator
-  use {'rktjmp/lush.nvim', opt = true, cmd = {"Lushify", "LushRunTutorial", "LushRunQuickstart"}}
+  use { 'rktjmp/lush.nvim', opt = true, cmd = { "Lushify", "LushRunTutorial", "LushRunQuickstart" } }
   -- neovim development
-  use({"folke/neodev.nvim",
-    config = function()
-      require("jokajak.plugins.neodev")
-    end
-  })
+
   -- [[ editing ]]--
   -- manage pairs of characters
   use { 'windwp/nvim-autopairs',
@@ -148,23 +147,23 @@ packer.startup(function(use)
       require("jokajak.plugins.comment")
     end,
   }
-    -- code outline window
+  -- code outline window
   use { 'stevearc/aerial.nvim',
-      module = "aerial",
-      cmd = { "AerialToggle", "AerialOpen", "AerialInfo" },
-      config = function()
-        require("jokajak.plugins.aerial")
-      end,
-      after = "neoconf.nvim"
+    module = "aerial",
+    cmd = { "AerialToggle", "AerialOpen", "AerialInfo" },
+    config = function()
+      require("jokajak.plugins.aerial")
+    end,
+    after = "neoconf.nvim"
   }
- -- easily wrap text in strings
+  -- easily wrap text in strings
   use { "kylechui/nvim-surround",
-      event = { "InsertEnter" },
-      config = function()
-        require("jokajak.plugins.surround")
-      end
+    event = { "InsertEnter" },
+    config = function()
+      require("jokajak.plugins.surround")
+    end
   }
-  use { 'anuvyklack/fold-preview.nvim',  -- preview folds
+  use { 'anuvyklack/fold-preview.nvim', -- preview folds
     requires = 'anuvyklack/keymap-amend.nvim'
   }
   -- highlight f targets
@@ -177,7 +176,7 @@ packer.startup(function(use)
         highlight_on_key = false
       })
     end
-}
+  }
 
   -- [[ git ]]--
   -- nicer commits
@@ -200,38 +199,38 @@ packer.startup(function(use)
   }
 
   -- [[ Themes ]] --
-  use { 'folke/tokyonight.nvim' }                    -- tokyonight theme
+  use { 'folke/tokyonight.nvim' } -- tokyonight theme
   use { "catppuccin/nvim",
-        as = "catppuccin",
-        run = ":CatppuccinCompile"
+    as = "catppuccin",
+    run = ":CatppuccinCompile"
   }
   use { "ellisonleao/gruvbox.nvim" }
 
   use {
-    'nvim-lualine/lualine.nvim',                     -- statusline
-    requires = {'kyazdani42/nvim-web-devicons',
-                opt = true}
+    'nvim-lualine/lualine.nvim', -- statusline
+    requires = { 'kyazdani42/nvim-web-devicons',
+      opt = true }
   }
   use { "lukas-reineke/indent-blankline.nvim",
     after = "nvim-treesitter",
     config = function()
       require("jokajak.plugins.indentline")
     end
-  }  -- indent guides
-  use { 'akinsho/bufferline.nvim',  -- tab like buffer list
+  } -- indent guides
+  use { 'akinsho/bufferline.nvim', -- tab like buffer list
     tag = "v2.*",
     requires = "kyazdani42/nvim-web-devicons"
   }
   -- color things that look like colors
   use {
-      "norcalli/nvim-colorizer.lua",
-      event = { "BufRead", "BufNewFile" },
-      config = function()
-        local present, colorizer = pcall(require, "nvim-colorizer")
-        if present then
-          colorizer.setup()
-        end
+    "norcalli/nvim-colorizer.lua",
+    event = { "BufRead", "BufNewFile" },
+    config = function()
+      local present, colorizer = pcall(require, "nvim-colorizer")
+      if present then
+        colorizer.setup()
       end
+    end
   }
 
   -- Completion plugins
@@ -243,12 +242,12 @@ packer.startup(function(use)
     end,
   }
 
--- nvim lua completions
+  -- nvim lua completions
   use { "hrsh7th/cmp-nvim-lua",
     after = "cmp_luasnip"
   }
 
--- lsp completions
+  -- lsp completions
   use { "hrsh7th/cmp-nvim-lsp",
     after = "cmp-nvim-lua"
   }
@@ -265,7 +264,7 @@ packer.startup(function(use)
     after = "cmp-path"
   }
   -- snippet completions
-  use  { "saadparwaiz1/cmp_luasnip",
+  use { "saadparwaiz1/cmp_luasnip",
     after = "LuaSnip"
   }
 
@@ -287,21 +286,20 @@ packer.startup(function(use)
 
   -- [[ Language Server Protocol ]] --
   -- Fancy language specific support
-  use { "neovim/nvim-lspconfig", }
+  use({
+    "neovim/nvim-lspconfig",
+    plugin = "lsp",
+  })
   -- package manager for lsp, dap, linters, and formatters
-  use { "williamboman/mason.nvim",
-    opt = false,
-    config = function()
-      require("jokajak.plugins.mason")
-    end,
-    after = "neoconf.nvim",
-  }
+  use({ "williamboman/mason.nvim", config = function() require("jokajak.plugins.mason") end })
   -- lspconfig bridge for mason
-  use { "williamboman/mason-lspconfig.nvim",
-    requires = "mason.nvim"
-  }
+  use({ "williamboman/mason-lspconfig.nvim",
+    module = "mason-lspconfig",
+  })
   -- extra formatting and linting
   use { "jose-elias-alvarez/null-ls.nvim", }
+
+  use({ "folke/neodev.nvim", })
 
   -- extensible fuzzy finder over lists
   use { 'nvim-telescope/telescope.nvim',
@@ -322,7 +320,7 @@ packer.startup(function(use)
       "TSDisable",
       "TSDisableAll",
       "TSEnableAll",
-      "TSInstall",
+      "TSInstallInfo",
       "TSInstall",
       "TSModuleInfo",
       "TSUpdate",
@@ -343,36 +341,36 @@ packer.startup(function(use)
     }
   } -- dim code
   use {
-      'p00f/nvim-ts-rainbow',                        -- rainbow brackets
-      opt = true,
-      requires = { "nvim-treesitter/nvim-treesitter" },
-      after = "nvim-treesitter",
+    'p00f/nvim-ts-rainbow', -- rainbow brackets
+    opt = true,
+    requires = { "nvim-treesitter/nvim-treesitter" },
+    after = "nvim-treesitter",
   }
   use {
-      'nvim-treesitter/playground',                        -- treesitter playground
-      requires = { "nvim-treesitter/nvim-treesitter" },
-      opt = true,
-      cmd = { "TSPlaygroundToggle" }
+    'nvim-treesitter/playground', -- treesitter playground
+    requires = { "nvim-treesitter/nvim-treesitter" },
+    opt = true,
+    cmd = { "TSPlaygroundToggle" }
   }
   use {
-      'nvim-treesitter/nvim-treesitter-textobjects',       -- treesitter based text objects
-      opt = true,
-      after = "nvim-treesitter",
-      requires = { "nvim-treesitter/nvim-treesitter" }      -- use something like delete in function
+    'nvim-treesitter/nvim-treesitter-textobjects', -- treesitter based text objects
+    opt = true,
+    after = "nvim-treesitter",
+    requires = { "nvim-treesitter/nvim-treesitter" } -- use something like delete in function
   }
   use {
-      'nvim-treesitter/nvim-treesitter-context',       -- show current function/class as float window at the top of the window
-      opt = true,
-      after = "nvim-treesitter",
-      requires = { "nvim-treesitter/nvim-treesitter" }
+    'nvim-treesitter/nvim-treesitter-context', -- show current function/class as float window at the top of the window
+    opt = true,
+    after = "nvim-treesitter",
+    requires = { "nvim-treesitter/nvim-treesitter" }
   }
   use {
-      'JoosepAlviste/nvim-ts-context-commentstring',  -- commentstring support
-      opt = true,
-      after = "nvim-treesitter",
-      requires = { "nvim-treesitter/nvim-treesitter" }
+    'JoosepAlviste/nvim-ts-context-commentstring', -- commentstring support
+    opt = true,
+    after = "nvim-treesitter",
+    requires = { "nvim-treesitter/nvim-treesitter" }
   }
-    -- treesitter based hints
+  -- treesitter based hints
   use({
     "mfussenegger/nvim-treehopper",
     config = function()
@@ -380,7 +378,7 @@ packer.startup(function(use)
       vim.cmd [[vnoremap <silent> m :lua require('tsht').nodes()<CR>]]
     end,
     after = "nvim-treesitter",
-    requires = { "nvim-treesitter/nvim-treesitter"}
+    requires = { "nvim-treesitter/nvim-treesitter" }
   })
 
   use {

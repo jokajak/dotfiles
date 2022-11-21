@@ -1,4 +1,4 @@
-local M = {}
+--[[ local M = {}
 
 -- TODO: backfill this to template
 M.setup = function()
@@ -141,4 +141,4 @@ else
 	M.capabilities = capabilities
 end
 
-return M
+return M ]]

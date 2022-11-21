@@ -42,3 +42,11 @@ vim.api.nvim_create_user_command("MasonInstallAll", function()
 end, {})
 
 mason.setup(options)
+
+local mlspconfig_status, mlspconfig = pcall(require, "mason-lspconfig")
+
+if mlspconfig_status then
+  mlspconfig.setup({
+    automatic_installation = true
+  })
+end
