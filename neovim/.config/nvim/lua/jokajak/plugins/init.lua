@@ -364,6 +364,16 @@ packer.startup(function(use)
       after = "nvim-treesitter",
       requires = { "nvim-treesitter/nvim-treesitter" }
   }
+    -- treesitter based hints
+  use({
+    "mfussenegger/nvim-treehopper",
+    config = function()
+      vim.cmd [[omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>]]
+      vim.cmd [[vnoremap <silent> m :lua require('tsht').nodes()<CR>]]
+    end,
+    after = "nvim-treesitter",
+    requires = { "nvim-treesitter/nvim-treesitter"}
+  })
 
   use {
     '~/git/keymaster.nvim',
