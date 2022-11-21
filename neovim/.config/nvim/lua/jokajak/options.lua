@@ -52,6 +52,7 @@ opt.listchars = {                -- pairs: show unprintables
     tab = '▸ ',                  -- tab characters
     trail = '·'                  -- trailing whitespace
 }
+opt.breakindent = true          -- make horizontal indent continue
 
 -- [[ Splits ]]
 opt.splitright = true            -- bool: Place new window to right of current one

@@ -61,7 +61,8 @@ packer.startup(function(use)
     setup = function()
       require("jokajak.lazy_load").on_file_open("specs.nvim")
     end
-  }                      -- highlight cursor jumps
+  }
+
   -- measure startup time
   use({ 'dstein64/vim-startuptime', opt = true, cmd = { "StartupTime" }})
   -- show keymaps
@@ -117,7 +118,12 @@ packer.startup(function(use)
   }
   -- theme creator
   use {'rktjmp/lush.nvim', opt = true, cmd = {"Lushify", "LushRunTutorial", "LushRunQuickstart"}}
-
+  -- neovim development
+  use({"folke/neodev.nvim",
+    config = function()
+      require("jokajak.plugins.neodev")
+    end
+  })
   -- [[ editing ]]--
   -- manage pairs of characters
   use { 'windwp/nvim-autopairs',
@@ -160,9 +166,9 @@ packer.startup(function(use)
     -- event = "BufEnter",
     opt = true,
     config = function()
-      require'eyeliner'.setup {
+      require('eyeliner').setup({
         highlight_on_key = false
-      }
+      })
     end
 }
 
@@ -291,7 +297,6 @@ packer.startup(function(use)
 
   -- extensible fuzzy finder over lists
   use { 'nvim-telescope/telescope.nvim',
-    opt = true,
     cmd = "Telescope",
     config = function()
       require("jokajak.plugins.telescope")
@@ -359,6 +364,57 @@ packer.startup(function(use)
       after = "nvim-treesitter",
       requires = { "nvim-treesitter/nvim-treesitter" }
   }
+    -- treesitter based hints
+  use({
+    "mfussenegger/nvim-treehopper",
+    config = function()
+      vim.cmd [[omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>]]
+      vim.cmd [[vnoremap <silent> m :lua require('tsht').nodes()<CR>]]
+    end,
+    after = "nvim-treesitter",
+    requires = { "nvim-treesitter/nvim-treesitter"}
+  })
+
+  use {
+    '~/git/keymaster.nvim',
+  }
+
+  -- neotest support
+  use({
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim"
+    }
+  })
+  use({
+    "nvim-neotest/neotest-plenary",
+    requires = {
+      "nvim-neotest/neotest",
+    }
+  })
+  use({
+    "nvim-neotest/neotest-python",
+    requires = {
+      "nvim-neotest/neotest",
+    }
+  })
+  use({
+    "nvim-neotest/neotest-vim-test",
+    requires = {
+      "nvim-neotest/neotest",
+    }
+  })
+
+  -- dap = debugger adapter protocol
+  use({
+    'mfussenegger/nvim-dap'
+  })
+  use({
+    'mfussenegger/nvim-dap-python',
+    require = { "mfussenegger/nvim-dap" }
+  })
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
@@ -372,3 +428,4 @@ require("jokajak.plugins.impatient")
 require("jokajak.plugins.leap")
 require("jokajak.plugins.fold-preview")
 require("jokajak.plugins.nvim-tree")
+require("jokajak.plugins.neotest")

@@ -6,7 +6,7 @@ end)() .. "/custom_state.json"
 
 local state_default_data = {
   __rc__ = "v0.1",
-  colorscheme = "gruvbox",
+  colorscheme = "tokyonight",
   bg = "light",
 }
 

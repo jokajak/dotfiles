@@ -13,9 +13,9 @@ if not vim.tbl_contains(valid_schemes, colorscheme) then
   return nil
 end
 
+vim.cmd("colorscheme " .. colorscheme)
 if colorscheme == "catppuccin" then
   local flavor = (bg == "light" and "latte" or "mocha")
-  vim.cmd("colorscheme " .. colorscheme)
   vim.cmd("Catppuccin " .. flavor)
 end
 
