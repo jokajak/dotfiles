@@ -1,4 +1,5 @@
 --[[ keys.lua ]]
+local M = {}
 
 -- Functional wrapper for mapping custom keybindings
 local function map(mode, lhs, rhs, opts)
@@ -8,6 +9,8 @@ local function map(mode, lhs, rhs, opts)
 	end
 	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
+
+M.map = map
 
 -- Insert Mode --
 -- remap the key used to leave insert mode
@@ -84,10 +87,14 @@ vim.keymap.set("n", "<leader>sg", "<cmd>Telescope live_grep<cr>", { desc = "[S]e
 vim.keymap.set("n", "<leader>sd", "<cmd>Telescope diagnostics<cr>", { desc = "[S]earch [D]iagnostics" })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
 
 -- Quick formatting
-map("n", "<Leader>f", [[:Format<CR>]], { desc = "Format document" })
+vim.keymap.set("n", "<Leader>f", function()
+	require("jokajak.lsp.formatting").format()
+end, { desc = "Format document" })
+
+return M
