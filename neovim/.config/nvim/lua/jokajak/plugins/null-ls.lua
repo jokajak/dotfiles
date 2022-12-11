@@ -1,6 +1,9 @@
---[[ null-ls configuration ]]--
+-- https://github.com/jose-elias-alvarez/null-ls.nvim
 
-local M = { module = "null-ls" }
+local M = {
+  "jose-elias-alvarez/null-ls.nvim",
+  module = "null-ls",
+}
 
 function M.setup(options)
   local status_ok, nls = pcall(require, "null-ls")
@@ -9,6 +12,10 @@ function M.setup(options)
     return
   end
 
+  local default_options = {
+    on_attach = require("jokajak.lsp").on_attach
+  }
+  options = options or default_options
   nls.setup({
     debounce = 150,
     save_after_format = false,

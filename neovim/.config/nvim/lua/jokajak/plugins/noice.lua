@@ -1,17 +1,27 @@
--- noice configuration
+-- https://github.com/folke/noice.nvim
+-- Highly experimental plugin that completely replaces the UI for messages, cmdline and the popupmenu.
+
 local M = {
-  module = "noice",
+  "folke/noice.nvim",
   event = "UIEnter",
+  module = "noice",
+  requires = {
+    "MunifTanjim/nui.nvim",
+  },
 }
 
-M.enabled = true
+M.__enabled = true
 
-function M.config()
-  if not M.enabled then
+M.config = function()
+  if not M.__enabled then
     return
   end
 
-  require("noice").setup({
+  local status_ok, noice = pcall(require, "noice")
+  if not status_ok then
+    return
+  end
+  noice.setup({
     debug = false,
     lsp = {
       override = {
@@ -35,41 +45,25 @@ function M.config()
         filter = {},
       },
     },
+    routes = {
+      {
+        view = "notify",
+        filter = { event = "msg_showmode" },
+      },
+    },
   })
 
-  vim.keymap.set("c", "<S-Enter>", function()
-    require("noice").redirect(vim.fn.getcmdline())
-  end, { desc = "Redirect Cmdline" })
-
-  vim.keymap.set("n", "<leader>l", function()
+  vim.keymap.set("n", "<leader>nl", function()
     require("noice").cmd("last")
-  end, { desc = "Noice Last Message" })
+  end, { desc = "[N]oice [L]ast Message" })
 
   vim.keymap.set("n", "<leader>nh", function()
     require("noice").cmd("history")
-  end, { desc = "Noice History" })
+  end, { desc = "[N]oice [H]istory" })
 
   vim.keymap.set("n", "<leader>na", function()
     require("noice").cmd("all")
-  end, { desc = "Noice All" })
-
-  vim.keymap.set("n", "<c-f>", function()
-    if not require("noice.lsp").scroll(4) then
-      return "<c-f>"
-    end
-  end, { silent = true, expr = true })
-
-  vim.keymap.set("n", "<c-b>", function()
-    if not require("noice.lsp").scroll(-4) then
-      return "<c-b>"
-    end
-  end, { silent = true, expr = true })
-end
-
-local noice_status, _ = pcall(require, "noice")
-
-if noice_status then
-  M.config()
+  end, { desc = "[N]oice [A]ll" })
 end
 
 return M

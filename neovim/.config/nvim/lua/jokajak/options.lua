@@ -1,5 +1,5 @@
 -- [[ Context ]]
-vim.opt.colorcolumn = '80' -- str:  Show col for max line length
+vim.opt.colorcolumn = "80,100" -- str:  Show col for max line length
 vim.opt.number = true -- bool: Show line numbers
 -- vim.opt.relativenumber = true        -- bool: Show relative line numbers
 vim.opt.scrolloff = 4 -- int:  Min num lines of context
@@ -17,8 +17,8 @@ vim.opt.foldlevelstart = 10 -- int: start with folds greater than N folded
 vim.opt.exrc = false -- disable built-in local config file support in favor of exrc.nvim
 
 -- [[ Filetypes ]]
-vim.opt.encoding = 'utf8' -- str:  String encoding to use
-vim.opt.fileencoding = 'utf8' -- str:  File encoding to use
+vim.opt.encoding = "utf8" -- str:  String encoding to use
+vim.opt.fileencoding = "utf8" -- str:  File encoding to use
 
 -- [[ Theme ]]
 vim.opt.syntax = "ON" -- str:  Allow syntax highlighting
@@ -46,9 +46,9 @@ vim.opt.shiftwidth = 2 -- num:  Size of an indent
 vim.opt.softtabstop = 2 -- num:  Number of spaces tabs count for in insert mode
 vim.opt.tabstop = 2 -- num:  Number of spaces tabs count for
 vim.opt.listchars = { -- pairs: show unprintables
-  eol = '↲', -- end of line
-  tab = '▸ ', -- tab characters
-  trail = '·' -- trailing whitespace
+  eol = "↲", -- end of line
+  tab = "▸ ", -- tab characters
+  trail = "·", -- trailing whitespace
 }
 vim.opt.breakindent = true -- make horizontal indent continue
 
@@ -58,7 +58,8 @@ vim.opt.splitbelow = true -- bool: Place new window below the current one
 
 -- [[ Spelling ]]
 vim.opt.spelllang = "en" -- str: what languages should be spelled
-vim.opt.iskeyword:append("-") -- str: add '-' as being part of a word
+-- Not sure I am happy with this setting, might need to make it ft dependent
+-- vim.opt.iskeyword:append("-") -- str: add '-' as being part of a word
 
 -- set background based on time
 local now = os.date("*t")
@@ -67,4 +68,16 @@ if (6 <= now.hour) and (now.hour <= 20) then
   vim.opt.background = "light"
 else
   vim.opt.background = "dark"
+end
+
+-- don't load the plugins below
+local builtins = {
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
+}
+
+for _, plugin in ipairs(builtins) do
+  vim.g["loaded_" .. plugin] = 1
 end

@@ -35,7 +35,7 @@ end
 
 local change_kitty_theme = function(theme, bg)
   if not theme_exists(theme, bg, kitty_themes_path) then
-    vim.notify("kitty theme "..theme.."("..bg..") can't be found.")
+    vim.notify("kitty theme " .. theme .. "(" .. bg .. ") can't be found.")
     return
   end
   local theme_file = kitty_themes_path .. theme .. "-" .. bg .. ".conf"
@@ -45,13 +45,13 @@ local change_kitty_theme = function(theme, bg)
   fn.system(command)
   local success, err = luv.fs_copyfile(theme_file, current_theme_file)
   if success then
-    vim.notify("kitty theme updated to "..theme)
+    vim.notify("kitty theme updated to " .. theme)
   end
 end
 
 local change_tmux_theme = function(theme, bg)
   if not theme_exists(theme, bg, tmux_themes_path) then
-    vim.notify("tmux theme "..theme.."("..bg..") can't be found.")
+    vim.notify("tmux theme " .. theme .. "(" .. bg .. ") can't be found.")
     return
   end
   local theme_file = tmux_themes_path .. theme .. "-" .. bg .. ".conf"
@@ -61,7 +61,7 @@ local change_tmux_theme = function(theme, bg)
   fn.system(command)
   local success, err = luv.fs_copyfile(theme_file, current_theme_file)
   if success then
-    vim.notify("tmux theme updated to "..theme)
+    vim.notify("tmux theme updated to " .. theme)
   end
 end
 
@@ -71,7 +71,7 @@ local bg_change = autogroup("BackgroundChange", { clear = true })
 
 local update_external_theme = function(theme, bg)
   if not (theme and bg) then
-    vim.notify("Bad execution of change_theme: theme="..vim.inspect(theme).." bg="..vim.inspect(bg))
+    vim.notify("Bad execution of change_theme: theme=" .. vim.inspect(theme) .. " bg=" .. vim.inspect(bg))
     return
   end
   change_kitty_theme(theme, bg)
@@ -103,8 +103,8 @@ end
 
 -- switch colorscheme based on background
 vim.api.nvim_create_autocmd("OptionSet", {
-	pattern = "background",
-	callback = function()
+  pattern = "background",
+  callback = function()
     local current_colorscheme = vim.g.colors_name
     local bg = vim.v.option_new
     if current_colorscheme then
@@ -118,7 +118,7 @@ vim.api.nvim_create_autocmd("OptionSet", {
       vim.cmd("Catppuccin " .. flavor)
       bg = flavor
     end
-	end,
+  end,
   group = bg_change,
 })
 
