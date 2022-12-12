@@ -128,7 +128,7 @@ M.config = function()
   -- Toggle nvim-tree
 end
 
-M.setup = function()
+M.init = function()
   Keymap.nnoremap("<Leader>e", function()
     require("nvim-tree.api").tree.toggle(false, true)
   end, { silent = true, desc = "Open tree view" })

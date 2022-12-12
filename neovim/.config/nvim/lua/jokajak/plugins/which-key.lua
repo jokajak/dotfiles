@@ -7,6 +7,9 @@ local M = {
   "folke/which-key.nvim",
   event = { "BufRead", "BufNewFile" },
   module = "which-key",
+  cmd = {
+    "WhichKey",
+  },
 }
 
 M.config = function()
@@ -105,7 +108,7 @@ M.config = function()
     ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 
     g = {
-      name = "Git",
+      name = "[G]it",
       o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
       b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
       c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
@@ -153,15 +156,9 @@ M.config = function()
     },
 
     s = {
-      name = "Search",
+      name = "[S]earch",
       b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-      c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-      h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-      M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-      r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-      R = { "<cmd>Telescope registers<cr>", "Registers" },
-      k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-      C = { "<cmd>Telescope commands<cr>", "Commands" },
+      R = { "cmd>Telescope registers<cr>", "Registers" },
     },
 
     x = {
