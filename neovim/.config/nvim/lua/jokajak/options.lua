@@ -64,7 +64,7 @@ vim.opt.spelllang = "en" -- str: what languages should be spelled
 -- set background based on time
 local now = os.date("*t")
 
-if (6 <= now.hour) and (now.hour <= 20) then
+if (6 <= now.hour) and (now.hour < 20) then
   vim.opt.background = "light"
 else
   vim.opt.background = "dark"

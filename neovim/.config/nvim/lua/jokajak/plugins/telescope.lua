@@ -4,6 +4,7 @@
 local M = {
   "nvim-telescope/telescope.nvim",
   cmd = "Telescope",
+  module = "telescope",
 }
 
 M.config = function()

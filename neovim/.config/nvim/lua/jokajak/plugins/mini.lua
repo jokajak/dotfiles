@@ -82,8 +82,8 @@ function M.config()
   -- M.jump()
   M.surround()
   M.ai()
-  M.pairs()
-  M.comment()
+  -- M.pairs()
+  -- M.comment()
 end
 
 function M.init()

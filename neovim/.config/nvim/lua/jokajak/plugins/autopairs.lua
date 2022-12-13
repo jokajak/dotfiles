@@ -3,7 +3,7 @@
 
 local M = {
   "windwp/nvim-autopairs",
-  event = "InsertEnter"
+  event = "InsertEnter",
   opt = true,
 }
 
@@ -20,7 +20,7 @@ M.config = function()
       javascript = { "string", "template_string" },
       java = false,
     },
-    disable_filetype = { "TelescopePrompt", "spectre_panel" },
+    disable_filetype = { "TelescopePrompt" },
     fast_wrap = {
       map = "<M-e>",
       chars = { "{", "[", "(", '"', "'" },
@@ -34,8 +34,8 @@ M.config = function()
     },
   })
 
-  local status_ok, cmp = pcall(require, "cmp")
-  if status_ok then
+  local cmp_ok, cmp = pcall(require, "cmp")
+  if cmp_ok then
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
   end
