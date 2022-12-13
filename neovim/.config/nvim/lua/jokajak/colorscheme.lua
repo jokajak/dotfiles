@@ -4,8 +4,13 @@ local state = require("jokajak.state")
 state.setup()
 
 local colorscheme = state.get("colorscheme")
-local bg = state.get("background")
 
+if colorscheme == "catppuccin" then
+  local catppuccin_ok, _ = pcall(require, "catppuccin")
+  if not catppuccin_ok then
+    colorscheme = "tokyonight"
+  end
+end
 -- make sure it's a valid colorscheme
 local valid_schemes = vim.fn.getcompletion("", "color")
 if not vim.tbl_contains(valid_schemes, colorscheme) then
@@ -14,10 +19,6 @@ if not vim.tbl_contains(valid_schemes, colorscheme) then
 end
 
 vim.cmd("colorscheme " .. colorscheme)
-if colorscheme == "catppuccin" then
-  local flavor = (bg == "light" and "latte" or "mocha")
-  vim.cmd("Catppuccin " .. flavor)
-end
 
 -- Inspired by https://github.com/shaun-mathew/Kitty-Neovim-Background-Changer/blob/main/change_background.lua
 -- Automatically change the kitty terminal background
@@ -43,7 +44,7 @@ local change_kitty_theme = function(theme, bg)
   local current_theme_file = kitty_themes_path .. "current.conf"
 
   fn.system(command)
-  local success, err = luv.fs_copyfile(theme_file, current_theme_file)
+  local success, _ = luv.fs_copyfile(theme_file, current_theme_file)
   if success then
     vim.notify("kitty theme updated to " .. theme)
   end
@@ -59,13 +60,12 @@ local change_tmux_theme = function(theme, bg)
   local current_theme_file = tmux_themes_path .. "current.conf"
 
   fn.system(command)
-  local success, err = luv.fs_copyfile(theme_file, current_theme_file)
+  local success, _ = luv.fs_copyfile(theme_file, current_theme_file)
   if success then
     vim.notify("tmux theme updated to " .. theme)
   end
 end
 
-local autocmd = vim.api.nvim_create_autocmd
 local autogroup = vim.api.nvim_create_augroup
 local bg_change = autogroup("BackgroundChange", { clear = true })
 
@@ -78,7 +78,8 @@ local update_external_theme = function(theme, bg)
   change_tmux_theme(theme, bg)
 end
 
---[[ autocmd("ColorScheme", {
+--[[ local autocmd = vim.api.nvim_create_autocmd
+autocmd("ColorScheme", {
   pattern = "*",
   desc = "Sync colorscheme with external apps and disk",
   callback = function(info)
@@ -113,11 +114,6 @@ vim.api.nvim_create_autocmd("OptionSet", {
     if bg then
       state.set("background", bg)
     end
-    if current_colorscheme == "catppuccin" then
-      local flavor = (vim.v.option_new == "light" and "latte" or "mocha")
-      vim.cmd("Catppuccin " .. flavor)
-      bg = flavor
-    end
   end,
   group = bg_change,
 })
@@ -125,9 +121,5 @@ vim.api.nvim_create_autocmd("OptionSet", {
 vim.api.nvim_create_user_command("SyncThemes", function()
   local current_colorscheme = vim.g.colors_name
   local bg = vim.v.option_new
-  if current_colorscheme == "catppuccin" then
-    local flavor = (bg == "light" and "latte" or "mocha")
-    bg = flavor
-  end
   update_external_theme(current_colorscheme, bg)
 end, {})

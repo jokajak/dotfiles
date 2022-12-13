@@ -15,7 +15,6 @@ local util = require("util")
 util.require("jokajak.options")
 util.require("jokajak.autocmds")
 util.require("jokajak.keymaps")
-util.require("jokajak.colorscheme")
 util.require("jokajak.filetypes")
 
 vim.api.nvim_create_autocmd("User", {
@@ -31,6 +30,10 @@ if status_ok then
   plugins.load_plugins()
   plugins.delta = vim.loop.hrtime() - start
 end
+
+-- load colorschemes after plugins have been initialized
+-- this way colorschemes can require modules
+util.require("jokajak.colorscheme")
 
 -- load very lazy plugins in 1000 ms (1s)
 vim.defer_fn(function()
