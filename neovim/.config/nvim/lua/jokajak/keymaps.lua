@@ -7,7 +7,7 @@ local function map(mode, lhs, rhs, opts)
   if opts then
     options = vim.tbl_extend("force", options, opts)
   end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  vim.keymap.set(mode, lhs, rhs, options)
 end
 
 M.map = map
@@ -64,7 +64,7 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 
 -- Quick formatting
-vim.keymap.set("n", "<Leader>f", function()
+map("n", "<Leader>f", function()
   require("jokajak.lsp.formatting").format()
 end, { desc = "Format document" })
 
