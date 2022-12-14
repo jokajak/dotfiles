@@ -72,10 +72,10 @@ end
 
 -- don't load the plugins below
 local builtins = {
-  "netrw",
-  "netrwPlugin",
-  "netrwSettings",
-  "netrwFileHandlers",
+  -- "netrw",
+  -- "netrwPlugin",
+  -- "netrwSettings",
+  -- "netrwFileHandlers",
 }
 
 for _, plugin in ipairs(builtins) do
