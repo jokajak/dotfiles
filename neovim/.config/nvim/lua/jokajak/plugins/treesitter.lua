@@ -7,7 +7,7 @@ local M = {
   "nvim-treesitter/nvim-treesitter",
   as = "nvim-treesitter",
   run = ":TSUpdate",
-  event = { "BufReadPost", },
+  event = { "BufReadPost" },
   cmd = {
     "TSBufDisable",
     "TSBufEnable",
@@ -21,10 +21,10 @@ local M = {
   },
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
-		"JoosepAlviste/nvim-ts-context-commentstring", -- commentstring support
-		"nvim-treesitter/nvim-treesitter-context", -- show current function/class as float window at the top of the window
+    "JoosepAlviste/nvim-ts-context-commentstring", -- commentstring support
+    "nvim-treesitter/nvim-treesitter-context", -- show current function/class as float window at the top of the window
     "RRethy/nvim-treesitter-textsubjects",
-		"p00f/nvim-ts-rainbow", -- rainbow brackets
+    "p00f/nvim-ts-rainbow", -- rainbow brackets
     "mfussenegger/nvim-treehopper",
     { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
   },
@@ -64,7 +64,7 @@ M.config = function()
       disable = { "" }, -- list of language that will be disabled
       additional_vim_regex_highlighting = false,
     },
-    indent = { enable = true, disable = { "yaml" } },
+    indent = { enable = true, disable = { "yaml", "python" } },
   })
 
   local status_ok, tscontext = pcall(require, "treesitter-context")
