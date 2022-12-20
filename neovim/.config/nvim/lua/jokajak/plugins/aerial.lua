@@ -3,7 +3,6 @@
 
 local M = {
   "stevearc/aerial.nvim",
-  module = "aerial",
   cmd = { "AerialToggle", "AerialOpen", "AerialInfo" },
   after = "neoconf.nvim",
 }

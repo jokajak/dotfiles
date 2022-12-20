@@ -3,9 +3,7 @@
 
 local M = {
   "numToStr/Comment.nvim",
-  opt = true,
   keys = { "gc", "gb" },
-  module = "Comment",
 }
 
 M.config = function()

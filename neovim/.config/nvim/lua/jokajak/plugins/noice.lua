@@ -5,7 +5,7 @@ local M = {
   "folke/noice.nvim",
   event = "UIEnter",
   module = "noice",
-  requires = {
+  dependencies = {
     "MunifTanjim/nui.nvim",
   },
 }

@@ -4,7 +4,7 @@
 
 local M = {
   "rafamadriz/friendly-snippets",
-  opt = true,
+  lazy = true,
 }
 
 return M

@@ -9,7 +9,6 @@ local M = {
     "CatppuccinCompile",
     "Catppuccin",
   },
-  module = "catppuccin",
 }
 
 M.config = function()

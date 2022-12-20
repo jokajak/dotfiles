@@ -1,12 +1,16 @@
 -- https://github.com/nvim-lualine/lualine.nvim
-local M = { "nvim-lualine/lualine.nvim" }
+-- A blazing fast and easy to configure Neovim statusline written in Lua.
 
-M.requires = { "kyazdani42/nvim-web-devicons", opt = true }
+local M = {
+  "nvim-lualine/lualine.nvim",
+  event = "VeryLazy",
+}
 
 M.config = function()
   local status_ok, lualine = pcall(require, "lualine")
 
   if not status_ok then
+    print("Lualine not available :(")
     return
   end
 

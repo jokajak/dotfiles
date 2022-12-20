@@ -5,8 +5,7 @@
 local M = {
   "ruifm/gitlinker.nvim",
   event = "BufEnter",
-  requires = "nvim-lua/plenary.nvim",
-  module = "gitlinker",
+  dependencies = "nvim-lua/plenary.nvim",
 }
 
 M.config = function()

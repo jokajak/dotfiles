@@ -4,10 +4,10 @@
 local M = {
   "williamboman/mason-lspconfig.nvim",
   module = "mason-lspconfig",
-  opt = false,
-  requires = {
+  lazy = false,
+  dependencies = {
     "williamboman/mason.nvim",
-  }
+  },
 }
 
 return M

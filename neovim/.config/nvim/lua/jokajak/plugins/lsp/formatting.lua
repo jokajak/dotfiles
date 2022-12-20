@@ -44,7 +44,7 @@ function M.setup(client, buffer)
     vim.cmd([[
       augroup LspFormat
         autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua require("jokajak.lsp.formatting").format()
+        autocmd BufWritePre <buffer> lua require("jokajak.plugins.lsp.formatting").format()
       augroup END
     ]])
   end

@@ -13,7 +13,7 @@ function M.setup(options)
   end
 
   local default_options = {
-    on_attach = require("jokajak.lsp").on_attach
+    on_attach = require("jokajak.plugins.lsp").on_attach
   }
   options = options or default_options
   nls.setup({

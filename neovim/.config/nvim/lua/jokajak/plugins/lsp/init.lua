@@ -4,30 +4,29 @@
 local M = {
   "neovim/nvim-lspconfig",
   event = "BufReadPre",
-  module = "lspconfig",
-  after = {
-    "neoconf.nvim",
-    "mason.nvim",
-    "mason-lspconfig.nvim",
-    "neodev.nvim",
-  },
+  name = "lsp",
+  -- after = {
+  --   "neoconf.nvim",
+  --   "mason.nvim",
+  --   "mason-lspconfig.nvim",
+  --   "neodev.nvim",
+  -- },
 }
 
 function M.on_attach(client, bufnr)
-  require("jokajak.lsp.formatting").setup(client, bufnr)
-  require("jokajak.lsp.keys").setup(client, bufnr)
+  require("jokajak.plugins.lsp.formatting").setup(client, bufnr)
+  require("jokajak.plugins.lsp.keys").setup(client, bufnr)
 end
 
 function M.config()
-  vim.notify("Loading LSP...")
   require("neodev").setup({})
   require("mason")
+  require("jokajak.plugins.lsp.diagnostics").setup()
   require("neoconf").setup()
-  require("jokajak.lsp.diagnostics").setup()
 
   local function on_attach(client, bufnr)
-    require("jokajak.lsp.formatting").setup(client, bufnr)
-    require("jokajak.lsp.keys").setup(client, bufnr)
+    require("jokajak.plugins.lsp.formatting").setup(client, bufnr)
+    require("jokajak.plugins.lsp.keys").setup(client, bufnr)
   end
 
   local servers = {

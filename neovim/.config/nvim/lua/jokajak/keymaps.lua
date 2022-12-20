@@ -65,7 +65,7 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 
 -- Quick formatting
 map("n", "<Leader>f", function()
-  require("jokajak.lsp.formatting").format()
+  require("jokajak.plugins.lsp.formatting").format()
 end, { desc = "Format document" })
 
 return M

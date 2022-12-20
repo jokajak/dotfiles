@@ -5,10 +5,11 @@
 local M = {
   "akinsho/nvim-bufferline.lua",
   event = "BufReadPre",
+  lazy = true,
 }
 
 function M.config()
-  local signs = require("jokajak.lsp.diagnostics").signs
+  local signs = require("jokajak.plugins.lsp.diagnostics").signs
   signs = {
     error = signs.Error,
     warning = signs.Warn,
