@@ -6,7 +6,7 @@ local M = {
   ft = {
     "gitcommit",
   },
-  opt = true,
+  lazy = true,
 }
 
 return M

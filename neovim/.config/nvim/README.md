@@ -25,3 +25,9 @@ The goals of my configuration are:
 
 * [folke](https://github.com/folke/dot/tree/master/config/nvim)
 * [cbochs dotfiles](https://github.com/cbochs/dotfiles)
+
+## TODO
+
+* [ ] DAP support for lua
+* [ ] DAP support for python
+* [ ] Tree View + Dashboard
