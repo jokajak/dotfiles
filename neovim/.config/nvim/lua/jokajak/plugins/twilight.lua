@@ -3,7 +3,7 @@
 
 local M = {
   "folke/twilight.nvim",
-  opt = true,
+  lazy = true,
   cmd = {
     "Twilight",
     "TwilightDisable",

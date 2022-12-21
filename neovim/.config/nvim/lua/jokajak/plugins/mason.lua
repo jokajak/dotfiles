@@ -3,8 +3,7 @@
 
 local M = {
   "williamboman/mason.nvim",
-  opt = true,
-  module = "mason",
+  lazy = true,
   cmd = {
     "Mason",
     "MasonInstall",

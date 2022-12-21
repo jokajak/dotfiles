@@ -2,10 +2,12 @@
 -- Show where your cursor moves when jumping large distances (e.g between windows).
 -- Fast and lightweight, written completely in Lua.
 
-local M = { "edluffy/specs.nvim" }
+local M = {
+  "edluffy/specs.nvim",
+  event = "BufRead",
+  lazy = true,
+}
 local Keymap = require("util.keymap")
-M.event = { "BufRead" }
-M.opt = true
 
 M.config = function()
   local status_ok, specs = pcall(require, "specs")
