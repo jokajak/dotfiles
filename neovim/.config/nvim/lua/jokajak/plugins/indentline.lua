@@ -3,7 +3,7 @@
 
 local M = {
   "lukas-reineke/indent-blankline.nvim",
-  after = "nvim-treesitter",
+  event = "BufReadPre",
 }
 
 --[[ indentline configuration ]]
@@ -13,6 +13,16 @@ M.config = function()
   if not status_ok then
     return
   end
+
+  local filetype_excludes = {
+    "help",
+    "startify",
+    "dashboard",
+    "packer",
+    "NvimTree",
+    "neo-tree",
+    "Trouble",
+  }
 
   vim.cmd([[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]])
   vim.cmd([[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]])
@@ -29,7 +39,7 @@ M.config = function()
 
   local setup = {
     space_char_blankline = " ",
-    show_current_context = true, -- highlight current indentation based on treesitter
+    show_current_context = false, -- highlight current indentation based on treesitter
     show_current_context_start = true,
     char_highlight_list = {
       "IndentBlanklineIndent1",
@@ -39,6 +49,8 @@ M.config = function()
       "IndentBlanklineIndent5",
       "IndentBlanklineIndent6",
     },
+    buftype_exclude = { "terminal", "nofile" },
+    filetype_exclude = filetype_excludes,
   }
 
   indentline.setup(setup)

@@ -40,10 +40,10 @@ end
 
 M.init = function()
   vim.keymap.set("n", "<leader>gwc", function()
-    vim.notify("Make me")
+    require("telescope").extensions.git_worktree.create_git_worktree()
   end, { desc = "[G]it [W]orktree [C]reate" })
   vim.keymap.set("n", "<leader>gws", function()
-    vim.notify("Make me")
+    require("telescope").extensions.git_worktree.git_worktree()
   end, { desc = "[G]it [W]orktree [S]witch" })
   -- make sure to pass the reference to the function rather than an invocation
   -- which means do not include ()
