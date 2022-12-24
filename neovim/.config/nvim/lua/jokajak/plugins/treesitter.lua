@@ -51,6 +51,7 @@ M.config = function()
       "python",
       "regex",
       "toml",
+      "vim", -- for noice
       "yaml",
     },
     sync_install = false,

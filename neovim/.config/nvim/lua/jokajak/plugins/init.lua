@@ -1,11 +1,17 @@
+-- small plugins to be loaded by lazy.nvim
 local M = {
-  { "kyazdani42/nvim-web-devicons", lazy = false },
   -- utility functions
-  { "nvim-lua/plenary.nvim", lazy = false },
+  "nvim-lua/plenary.nvim",
   -- UI component library
-  { "MunifTanjim/nui.nvim", event = "UIEnter" },
+  "MunifTanjim/nui.nvim",
   -- Calculate startup time
   { "dstein64/vim-startuptime", lazy = true, cmd = { "StartupTime" } },
+  {
+    "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("nvim-web-devicons").setup({ default = true })
+    end,
+  },
 }
 
 return M

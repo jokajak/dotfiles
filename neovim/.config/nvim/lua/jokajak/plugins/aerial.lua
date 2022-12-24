@@ -209,7 +209,7 @@ end
 
 M.init = function()
   local map = require("jokajak.keymaps").map
-  map("n", "<leader>ta", "<cmd>AerialToggle<CR>", { desc = "[T]oggle [A]erial window" })
+  map("n", "<leader>oa", "<cmd>AerialToggle<CR>", { desc = "[O]pen [A]erial window" })
 end
 
 return M

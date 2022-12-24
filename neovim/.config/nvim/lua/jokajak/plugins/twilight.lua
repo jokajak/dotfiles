@@ -43,4 +43,9 @@ M.config = function()
   twilight.setup(setup)
 end
 
+M.init = function()
+  local map = require("jokajak.keymaps").map
+  map("n", "<leader>tt", "<cmd>Twilight<CR>", { desc = "[T]oggle [T]wilight" })
+end
+
 return M
