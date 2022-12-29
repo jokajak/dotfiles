@@ -61,6 +61,7 @@ function M.config()
         },
       },
     },
+    terraformls = {},
     vimls = {},
   }
 

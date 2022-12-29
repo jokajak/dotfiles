@@ -1,2 +1,2 @@
 -- markdown settings
-vim.bo.textwidth = 80
+vim.bo.textwidth = 120
