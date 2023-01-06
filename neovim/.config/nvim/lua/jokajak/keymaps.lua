@@ -26,17 +26,12 @@ map("n", "<C-h>", "<C-w>h", { desc = "Move cursor to window left" })
 map("n", "<C-j>", "<C-w>j", { desc = "Move cursor to window down" })
 map("n", "<C-k>", "<C-w>k", { desc = "Move cursor to window up" })
 map("n", "<C-l>", "<C-w>l", { desc = "Move cursor to window right" })
--- TODO: Fix this
---map("n", "<leader>q", ":bp<bar>sp<bar>bn<bar>bd<CR>", { desc = "Close current buffer" })
 
 -- Resize with arrows
 map("n", "<C-Up>", ":resize +2<CR>", {})
 map("n", "<C-Down>", ":resize -2<CR>", {})
 map("n", "<C-Left>", ":vertical resize -2<CR>", {})
 map("n", "<C-Right>", ":vertical resize +2<CR>", {})
-
--- Turn off search highlights
-map("n", "<Leader><Space>", ":nohlsearch<CR>", { silent = true })
 
 -- Navigate buffers
 map("n", "<S-l>", ":bnext<CR>", {})

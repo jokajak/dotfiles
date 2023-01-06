@@ -10,7 +10,7 @@ local M = {
   },
 }
 
-M.__enabled = true
+M.__enabled = false
 
 M.config = function()
   if not M.__enabled then
@@ -43,12 +43,6 @@ M.config = function()
         view = "split",
         opts = { enter = true, format = "details" },
         filter = {},
-      },
-    },
-    routes = {
-      {
-        view = "notify",
-        filter = { event = "msg_showmode" },
       },
     },
   })

@@ -39,19 +39,20 @@ M.config = function()
 
   configs.setup({
     ensure_installed = {
-      "bash",
+      "bash", -- per noice
       "dockerfile",
       "fish",
+      "help", -- for vim help
       "hocon",
       "json",
       "jsonc",
-      "lua",
-      "markdown",
-      "markdown_inline",
+      "lua", -- per noice
+      "markdown", -- per noice
+      "markdown_inline", -- per noice
       "python",
-      "regex",
+      "regex", -- per noice
       "toml",
-      "vim", -- for noice
+      "vim", -- per noice, for vim command mode
       "yaml",
     },
     sync_install = false,
