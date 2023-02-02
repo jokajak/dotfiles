@@ -11,6 +11,7 @@ local M = {
     "NvimTreeCollapse",
   },
   module = "nvim-tree",
+  enable = false,
 }
 
 local Keymap = require("util.keymap")

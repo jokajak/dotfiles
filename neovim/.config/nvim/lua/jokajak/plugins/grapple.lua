@@ -6,6 +6,7 @@
 local M = {
   "cbochs/grapple.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
+  enabled = false,
 }
 
 M.config = function()

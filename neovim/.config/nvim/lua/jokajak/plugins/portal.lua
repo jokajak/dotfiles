@@ -3,6 +3,7 @@
 
 local M = {
   "cbochs/portal.nvim",
+  enabled = false,
 }
 
 M.config = function()
