@@ -13,9 +13,15 @@ local M = {
         require("specs").show_specs()
       end,
       desc = "Highlight cursor location",
+      silent = true,
     },
-    { "n", 'n:lua require("specs").show_specs()<CR>', desc = "Repeat the last search" },
-    { "N", 'N:lua require("specs").show_specs()<CR>', desc = "Repeat the last search in the opposite direction" },
+    { "n", 'n:lua require("specs").show_specs()<CR>', desc = "Repeat the last search", silent = true },
+    {
+      "N",
+      'N:lua require("specs").show_specs()<CR>',
+      desc = "Repeat the last search in the opposite direction",
+      silent = true,
+    },
   },
 }
 M.config = function()

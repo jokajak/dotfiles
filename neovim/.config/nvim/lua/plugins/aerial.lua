@@ -5,6 +5,9 @@ local M = {
   "stevearc/aerial.nvim",
   cmd = { "AerialToggle", "AerialOpen", "AerialInfo" },
   after = "neoconf.nvim",
+  keys = {
+    { "<leader>oa", "<cmd>AerialToggle<CR>", desc = "[O]pen [A]erial window" },
+  },
 }
 
 M.config = function()
@@ -205,10 +208,6 @@ M.config = function()
   }
 
   aerial.setup(config)
-end
-
-M.init = function()
-  map("n", "<leader>oa", "<cmd>AerialToggle<CR>", { desc = "[O]pen [A]erial window" })
 end
 
 return M
