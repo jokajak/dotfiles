@@ -134,3 +134,14 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
     end
   end,
 })
+
+-- set background based on time
+local now = os.date("*t")
+
+if (6 <= now.hour) and (now.hour < 20) then
+  vim.opt.background = "light"
+  vim.cmd("colorscheme tokyonight-day")
+else
+  vim.opt.background = "dark"
+  vim.cmd("colorscheme tokyonight-storm")
+end

@@ -4,7 +4,6 @@
 local M = {
   "stevearc/aerial.nvim",
   cmd = { "AerialToggle", "AerialOpen", "AerialInfo" },
-  after = "neoconf.nvim",
   keys = {
     { "<leader>oa", "<cmd>AerialToggle<CR>", desc = "[O]pen [A]erial window" },
   },
@@ -26,9 +25,6 @@ M.config = function()
     backends = { "treesitter", "lsp", "markdown" },
 
     close_automatic_events = { "unsupported" },
-
-    -- Set to false to remove the default keybindings for the aerial buffer
-    default_bindings = false,
 
     -- Disable aerial on files with this many lines
     disable_max_lines = 10000,

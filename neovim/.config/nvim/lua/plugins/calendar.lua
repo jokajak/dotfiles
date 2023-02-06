@@ -9,10 +9,9 @@ local M = {
     "CalendarH",
     "CalendarT",
   },
+  dependencies = {
+    "renerocksai/telekasten.nvim",
+  },
 }
-
--- M.config = function()
---   require("jokajak.plugins.telekasten").config()
--- end
 
 return M

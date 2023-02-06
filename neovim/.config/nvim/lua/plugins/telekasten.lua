@@ -4,27 +4,22 @@
 
 local M = {
   "renerocksai/telekasten.nvim",
-  opt = true,
   cmd = { "Telekasten" },
+  lazy = true,
+  keys = {
+    {
+      "<leader>zT",
+      function()
+        require("telekasten").goto_today()
+      end,
+      desc = "Open Telekasten",
+      silent = true,
+      noremap = true,
+    },
+  },
 }
 
 M.config = function()
-  --[[ telekasten configuration ]]
-  --
-  -- called when loading telekasten *or* calendar
-  local status_ok, telekasten = pcall(require, "telekasten")
-
-  if not status_ok then
-    -- maybe we loaded because of calendar, try loading telekasten manually
-    print("Trying to load telekasten...")
-    require("packer").loader("telekasten.nvim")
-    status_ok, telekasten = pcall(require, "telekasten")
-    if not status_ok then
-      print("...failed to load telekasten")
-      return
-    end
-  end
-
   local home = vim.fn.fnamemodify("~/notes", ":p")
   local config = {
     -- NOTE for Windows users:
@@ -165,9 +160,7 @@ M.config = function()
     media_previewer = "telescope-media-files",
   }
 
-  telekasten.setup(config)
-
-  vim.keymap.set("n", "<leader>zT", telekasten.goto_today, { silent = true, noremap = true, desc = "Open Telekasten" })
+  require("telekasten").setup(config)
 end
 
 return M
