@@ -36,6 +36,12 @@ M.config = function()
 
   gwt.setup(config)
   require("telescope").load_extension("git_worktree")
+
+  gwt.on_tree_change(function(op, metadata)
+    if op == gwt.Operations.Switch then
+      require("neo-tree.command").execute({ dir = metadata.path })
+    end
+  end)
 end
 
 return M
