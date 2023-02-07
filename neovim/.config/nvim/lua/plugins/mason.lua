@@ -1,4 +1,7 @@
-return {
+-- https://github.com/williamboman/mason.nvim
+-- Portable package manager for Neovim that runs everywhere Neovim runs.
+
+local M = {
   "williamboman/mason.nvim",
   opts = {
     ensure_installed = {
@@ -27,3 +30,5 @@ return {
     },
   },
 }
+
+return M
