@@ -5,7 +5,7 @@
 vim.g.mapleader = ","
 vim.g.maplocalleader = " "
 
--- Add new filetypes
+-- Add ansible filetype
 vim.filetype.add({
   pattern = {
     [".*/playbooks/**/*%.ya?ml"] = "yaml.ansible",
@@ -13,5 +13,12 @@ vim.filetype.add({
     [".*/roles/.*%.ya?ml"] = "yaml.ansible",
     [".*/handlers/.*%.ya?ml"] = "yaml.ansible",
     [".*/tasks/.*%.ya?ml"] = "yaml.ansible",
+  },
+})
+
+-- add helm filetype
+vim.filetype.add({
+  pattern = {
+    ["*/chart/templates/*%.ya?ml"] = "yaml.helm",
   },
 })
