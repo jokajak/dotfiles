@@ -19,6 +19,10 @@ require("lazy").setup({
   },
   dev = {
     path = "~/git/",
+    ---@type string[]
+    patterns = {
+      "jokajak",
+    },
     fallback = true,
   },
   defaults = {
