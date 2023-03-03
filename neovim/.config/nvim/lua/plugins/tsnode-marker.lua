@@ -4,6 +4,10 @@
 local M = {
   "atusy/tsnode-marker.nvim",
   lazy = true,
+  ft = {
+    "markdown",
+    "lua",
+  },
   init = function()
     vim.api.nvim_create_autocmd("FileType", {
       group = vim.api.nvim_create_augroup("tsnode-marker-markdown", {}),
