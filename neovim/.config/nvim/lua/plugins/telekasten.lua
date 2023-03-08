@@ -160,6 +160,11 @@ M.config = function()
     media_previewer = "telescope-media-files",
   }
 
+  local register = vim.treesitter.language.register -- since neovim 0.9
+    or function(lang, ft)
+      require("nvim-treesitter.parsers").filetype_to_parsername[ft] = lang
+    end
+  register("treesitter", "markdown")
   require("telekasten").setup(config)
 end
 
