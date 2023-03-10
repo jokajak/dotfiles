@@ -3,10 +3,7 @@
 
 local M = {
   "rhysd/committia.vim",
-  ft = {
-    "gitcommit",
-  },
-  lazy = true,
+  lazy = false, -- cannot be lazy loaded so that it's ready for git commit messages
 }
 
 return M
