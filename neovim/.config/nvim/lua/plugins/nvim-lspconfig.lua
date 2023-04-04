@@ -8,7 +8,6 @@ local M = {
       bashls = {},
       dockerls = {},
       marksman = {},
-      pylsp = {},
       yamlls = {},
       terraformls = {},
       vimls = {},

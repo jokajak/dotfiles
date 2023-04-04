@@ -10,9 +10,7 @@ local M = {
         nls.builtins.formatting.fish_indent,
         nls.builtins.formatting.shfmt,
         nls.builtins.diagnostics.markdownlint,
-        nls.builtins.formatting.isort,
         nls.builtins.formatting.black,
-        nls.builtins.diagnostics.flake8,
       },
     }
   end,

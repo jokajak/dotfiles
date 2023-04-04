@@ -17,10 +17,10 @@ local M = {
       -- markdown
       "marksman", -- markdown lsp
       -- python
-      "flake8",
       "black",
       "isort",
       "python-lsp-server", -- python lsp
+      "ruff-lsp",
       -- shell
       "bash-language-server",
       "shellcheck", -- shellcheck
