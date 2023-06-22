@@ -5,7 +5,7 @@ local M = {
   "stevearc/aerial.nvim",
   cmd = { "AerialToggle", "AerialOpen", "AerialInfo" },
   keys = {
-    { "<leader>oa", "<cmd>AerialToggle<CR>", desc = "[O]pen [A]erial window" },
+    { "<leader>za", "<cmd>AerialToggle<CR>", desc = "Toggle [A]erial window open/closed" },
   },
 }
 

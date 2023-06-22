@@ -123,3 +123,21 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
     end
   end,
 })
+
+-- vim.api.nvim_create_autocmd("CursorHold", {
+--   buffer = bufnr,
+--   callback = function()
+--     local opts = {
+--       focusable = false,
+--       close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+--       border = "rounded",
+--       source = "always",
+--       prefix = " ",
+--       scope = "line",
+--       max_width = 70,
+--       pad_top = 1,
+--       pad_bottom = 1,
+--     }
+--     vim.diagnostic.open_float(nil, opts)
+--   end,
+-- })
