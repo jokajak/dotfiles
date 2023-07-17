@@ -1,12 +1,24 @@
-local M = {}
+local wezterm = require("wezterm")
 
--- set background based on time
-local now = os.date("*t")
-
-if (6 <= now.hour) and (now.hour < 20) then
-	M.color_scheme = "tokyonight-day"
-else
-	M.color_scheme = "tokyonight-storm"
+-- wezterm.gui is not available to the mux server, so take care to
+-- do something reasonable when this config is evaluated by the mux
+local function get_appearance()
+	if wezterm.gui then
+		return wezterm.gui.get_appearance()
+	end
+	return "Light"
 end
 
-return M
+local function scheme_for_appearance(appearance)
+	if appearance:find("Dark") then
+		return "tokyonight-storm"
+	-- return 'Builtin Solarized Dark'
+	else
+		return "tokyonight-day"
+		-- return 'Builtin Solarized Light'
+	end
+end
+
+return {
+	color_scheme = scheme_for_appearance(get_appearance()),
+}

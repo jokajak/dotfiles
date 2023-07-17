@@ -8,7 +8,7 @@ local specs = {
   lazy = true,
   keys = {
     {
-      ";",
+      "<C-b>",
       function()
         require("specs").show_specs()
       end,
