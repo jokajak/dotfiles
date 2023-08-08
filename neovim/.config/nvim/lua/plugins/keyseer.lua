@@ -14,6 +14,16 @@ local M = {
     },
     layout = "dvorak",
   },
+  keys = {
+    {
+      "<F2>",
+      function()
+        require("keyseer").show()
+      end,
+      desc = "Open KeySeer",
+      silent = true,
+    },
+  },
 }
 
 return M
