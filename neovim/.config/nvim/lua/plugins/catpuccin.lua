@@ -1,6 +1,6 @@
 local catppuccin = {
   "catppuccin/nvim",
-  lazy = true,
+  lazy = false, -- make sure we load this during startup if it is your main colorscheme
   name = "catppuccin",
   opts = {
     integrations = {
