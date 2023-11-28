@@ -1,0 +1,36 @@
+#! /bin/sh
+
+# cd
+alias -- -='cd -'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+
+# simple
+alias mkdir='mkdir -p'
+alias clera='clear'
+alias clea='clear'
+alias chmox='chmod +x'
+
+# ls
+alias ls='lsd'
+alias l='ls'
+alias la='ls -A'
+alias ll='ls -Alh'
+
+# editors
+alias vim='nvim'
+alias ivm='nvim'
+
+# git
+alias gs='git status'
+alias gma='git commit --amend'
+alias gl='git lg'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gdp="git diff @{1}.."
+alias glp="git lg @{1}.."
+alias gcob='git checkout -b'
+

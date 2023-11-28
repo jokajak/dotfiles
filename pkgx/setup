@@ -1,0 +1,21 @@
+#!/bin/bash
+# From http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+# This script sets up pkgx installations
+
+installed_pkgs=(
+  lsd       # pretty ls
+  neovim.io # editor
+  npm       # for installing other things
+  rg        # ripgrep
+  stow      # for installing packages
+  tmux      # pane
+  zoxide    # for smart cd
+  k9s       # for accessing kubernetes
+)
+
+for pkg in "${installed_pkgs[@]}"; do
+  pkgx install ${pkg}
+done

@@ -4,6 +4,7 @@ This is a repository of my dotfiles.
 
 ## Contents
 
+To install the different files, use stow.
 ### Fish (fish/)
 
 * setup.sh - Symlinks all fish files to their corresponding location in `~/.config/fish/`

@@ -17,3 +17,5 @@ VIM="nvim"
 export GIT_EDITOR=$VIM
 
 export PATH=$PATH:~/.local/bin/
+
+source /Users/josh/.config/broot/launcher/bash/br

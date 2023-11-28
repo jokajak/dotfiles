@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# From http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+GREEN=$'\e[0;32m'
+RED=$'\e[0;31m'
+NC=$'\e[0m' # No Color
+
+stow_directory() {
+  local dir=$1
+  if stow "$dir"; then
+    printf "[${GREEN}success${NC}] %s\n" $dir
+  else
+    printf "[${RED}failed${NC}] %s\n" $dir
+  fi
+}
+
+# get the current os
+os=$(uname -s)
+
+# these are utilities available on mac and linux
+unix_stow_dirs=(
+  bin
+  neovim
+  starship
+  tmux
+  wezterm
+  zsh
+)
+# these are only usable on mac
+macos_stow_dirs=(
+  hammerspoon
+  karabiner
+)
+
+case "$os" in
+"Linux")
+  for dir in "${unix_stow_dirs[@]}"; do
+    stow_directory "$dir"
+  done
+  ;;
+"Darwin")
+  for dir in "${unix_stow_dirs[@]}"; do
+    stow_directory "$dir"
+  done
+  for dir in "${macos_stow_dirs[@]}"; do
+    stow_directory "$dir"
+  done
+  ;;
+*)
+  echo "Unsupported OS"
+  return 1
+  ;;
+esac

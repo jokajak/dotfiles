@@ -1,0 +1,49 @@
+#!/bin/sh
+
+## =============================================================== :PATH
+
+# Golang
+export GOPATH=$HOME/.local/share/go
+export GOBIN=$GOPATH/bin
+PATH=$PATH:$GOPATH/bin
+
+# Poetry
+PATH="$HOME/.loca/share/poetry/bin:$PATH"
+
+# pyenv
+export PYENV_ROOT="$HOME/.local/share/pyenv"
+PATH="$PYENV_ROOT/bin:$PATH"
+
+# brew
+PATH="$PATH:/opt/homebrew/bin"
+
+# PATH (extras)
+PATH=$HOME/.local/bin:$PATH
+
+export PATH
+
+## =============================================================== :settings
+
+# add color to man pages
+export MANROFFOPT='-c'
+export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
+export LESS_TERMCAP_md=$(tput bold; tput setaf 6)
+export LESS_TERMCAP_me=$(tput sgr0)
+export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
+export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 8)
+export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
+export LESS_TERMCAP_mr=$(tput rev)
+export LESS_TERMCAP_mh=$(tput dim)
+
+
+# fzf
+export FZF_DEFAULT_OPTS='
+    -0
+    --prompt=" "
+    --inline-info
+    --reverse --height "40%"
+    --color fg:-1,hl:4,fg+:1,bg+:-1,hl+:4
+    --color info:108,prompt:242,spinner:108,pointer:1,marker:168
+'
+
