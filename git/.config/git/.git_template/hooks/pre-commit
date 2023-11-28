@@ -1,0 +1,8 @@
+#! /bin/sh
+
+CONFLICT_MARKERS='<<<<<<<|=======|>>>>>>>'
+CHECK2=$(git diff --staged | grep "^+" | grep -Ei "$CONFLICT_MARKERS" -c)
+if [ "$CHECK2" -gt 0 ]; then
+  echo "[41m WARNING [00m Conflict markers sill preset"
+  git diff --name-only -G"$CONFLICT_MARKERS"
+fi

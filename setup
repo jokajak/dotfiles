@@ -23,6 +23,7 @@ os=$(uname -s)
 # these are utilities available on mac and linux
 unix_stow_dirs=(
   bin
+  git
   neovim
   starship
   tmux

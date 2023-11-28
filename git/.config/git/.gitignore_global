@@ -1,0 +1,39 @@
+# mac
+.DS_Store
+
+# python
+*.pyc
+__pycache__
+
+# js
+build
+dist
+.cache
+
+# general
+*.log
+*.rdb
+
+# others
+.vscode
+
+# personal
+run-dev
+.vimruncmd
+.todo.md
+.mscripts
+.direnv
+resources
+
+# programming
+.mypy_cache
+node_modules
+
+# nix
+shell.nix
+.envrc
+
+# emacs
+.dir-locals.el
+.rworkspaceignore
+default.rest
