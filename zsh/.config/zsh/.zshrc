@@ -36,6 +36,7 @@ zstyle ':completion:*' group-name ''                   # group results by catego
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # non case sensitive complete
 zstyle ':completion:*' list-colors "$LS_COLORS"
 zstyle ':completion:::::' completer _expand _complete _ignored _approximate # enable approximate matches for completion
+export CDPATH=$HOME/git:
 
 # autocompletions
 autoload -Uz compinit
@@ -72,13 +73,14 @@ bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^H' backward-kill-word # ctrl+bspc
-# bindkey '^r' history-incremental-search-backward
+bindkey '^r' history-incremental-search-backward
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 bindkey "${key[Up]}" history-search-backward
 bindkey "${key[Down]}" history-search-forward
+bindkey '\e.' insert-last-word
 export KEYTIMEOUT=1
 
 # setup direnv
