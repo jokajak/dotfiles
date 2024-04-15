@@ -8,27 +8,27 @@ jj() {
 # use view to see a list of temporary git workspaces
 # otherwise create a new temporary workspace
 tmp() {
-  [ "$1" = "view" ] && cd /tmp/workspaces &&
-    cd $(ls -t | fzf --preview 'ls -A {}') &&
-    return 0
-  r="/tmp/workspaces/$(xxd -l3 -ps /dev/urandom)"
-  mkdir -p "$r" && pushd "$r"
-  git init
+    [ "$1" = "view" ] && cd /tmp/workspaces &&
+        cd $(ls -t | fzf --preview 'ls -A {}') &&
+        return 0
+    r="/tmp/workspaces/$(xxd -l3 -ps /dev/urandom)"
+    mkdir -p "$r" && pushd "$r"
+    git init
 }
 
 # Go to root of project
 r() {
-  pushd "$(git rev-parse --show-toplevel 2>/dev/null)" || return 1
+    pushd "$(git rev-parse --show-toplevel 2>/dev/null)" || return 1
 }
 
 # Go to root of project
 gr() {
-  cd "$(git rev-parse --show-toplevel 2>/dev/null)" || return 1
+    cd "$(git rev-parse --show-toplevel 2>/dev/null)" || return 1
 }
 
 # make a directory and change into it
 take() {
-  mkdir -p "$1" && cd "$1" || return 1
+    mkdir -p "$1" && cd "$1" || return 1
 }
 
 # make clear not delete scrollback
@@ -50,24 +50,24 @@ clear() (
 
 # Create a tmp dir, unzip file into it, cd into it
 ,showme() {
-  [ -z "$1" ] && echo "Pass file to show" && return 1
-  [ ! -r "$1" ] && echo "Cannot read file" && return 1
+    [ -z "$1" ] && echo "Pass file to show" && return 1
+    [ ! -r "$1" ] && echo "Cannot read file" && return 1
 
-  tmp="$(mktemp -d)"
+    tmp="$(mktemp -d)"
 
-  case "$1" in
+    case "$1" in
     *.zip)
-      unzip "$1" -d "$tmp"
-      ;;
+        unzip "$1" -d "$tmp"
+        ;;
     *.tar.* | *.tgz | *.tar)
-      tar -xf "$1" -C "$tmp"
-      ;;
+        tar -xf "$1" -C "$tmp"
+        ;;
     *)
-      echo "Unsupport file extension"
-      return 1
-      ;;
-  esac
+        echo "Unsupport file extension"
+        return 1
+        ;;
+    esac
 
-  cd "$tmp" || return 1
-  clear && echo && echo "$1" && ls
+    cd "$tmp" || return 1
+    clear && echo && echo "$1" && ls
 }

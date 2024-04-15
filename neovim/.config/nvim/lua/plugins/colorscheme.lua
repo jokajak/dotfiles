@@ -6,7 +6,7 @@ return {
       -- set background based on time
       local now = os.date("*t")
 
-      if (6 <= now.hour) and (now.hour < 20) then
+      if (8 <= now.hour) and (now.hour < 20) then
         opts.style = "day"
       else
         opts.style = "storm"

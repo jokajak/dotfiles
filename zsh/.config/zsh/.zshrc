@@ -11,19 +11,27 @@ source "$ZDOTDIR/exports"
 export DISABLE_AUTO_TITLE="true"
 export COMPLETION_WAITING_DOTS="false"
 export HIST_STAMPS="yyyy.mm.dd"
-export HISTSIZE=5000
-export SAVEHIST=5000
+export HISTSIZE=50000
+export SAVEHIST=50000
 export HISTFILE="$HOME/.local/share/zsh/.zsh_history"
-setopt HIST_IGNORE_SPACE
-setopt appendhistory
-setopt sharehistory
-setopt incappendhistory
+# https://martinheinz.dev/blog/110
+export HISTORY_IGNORE="(pwd|exit)*"
+
+# https://zsh.sourceforge.io/Doc/Release/Options.html (16.2.4 History)
+setopt EXTENDED_HISTORY      # Write the history file in the ':start:elapsed;command' format.
+setopt HIST_IGNORE_SPACE     # Do not record an event starting with a space.
+setopt APPEND_HISTORY        # append to history file (Default)
+setopt SHARE_HISTORY         # Share history between all sessions.
+setopt INC_APPEND_HISTORY    # Write to the history file immediately, not when the shell exits.
 setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS      # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS  # Delete an old recorded event if a new event is a duplicate.
 setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
-setopt HIST_SAVE_NO_DUPS
+setopt HIST_SAVE_NO_DUPS     # Do not write a duplicate event to the history file.
+setopt HIST_REDUCE_BLANKS    # Remove superfluous blanks from each command line being added to the history.
+setopt HIST_NO_STORE         # Don't store history commands
+setopt HIST_VERIFY           # Do not execute immediately upon history expansion.
 
 # cd-ing settings
 setopt auto_cd                                         # automatically cd if folder name and no command found
@@ -96,12 +104,12 @@ _direnv_hook() {
 	_direnv_hook__old "$@" 2> >(grep -vE '^direnv: export')
 }
 
-source <(pkgx --shellcode)  #docs.pkgx.sh/shellcode
-
 eval "$(starship init zsh)"
 
 eval "$(zoxide init zsh)"
 
-source /Users/josh/.config/broot/launcher/bash/br
+[ -f "${HOME}/.config/broot/launcher/bash/br" ] && source /Users/josh/.config/broot/launcher/bash/br
+
+source <(pkgx --shellcode)  #docs.pkgx.sh/shellcode
 
 export ZSH_LOADED=1

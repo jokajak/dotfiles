@@ -30,7 +30,7 @@ alias gma='git commit --amend'
 alias gl='git lg'
 alias gd='git diff'
 alias gds='git diff --staged'
-alias gdp="git diff @{1}.."
-alias glp="git lg @{1}.."
+alias gdp='git diff @{1}..'
+alias glp='git lg @{1}..'
 alias gcob='git checkout -b'
-
+alias gap='git add -p'

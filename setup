@@ -49,6 +49,7 @@ case "$os" in
   for dir in "${macos_stow_dirs[@]}"; do
     stow_directory "$dir"
   done
+  brew bundle install --file Brewfile
   ;;
 *)
   echo "Unsupported OS"

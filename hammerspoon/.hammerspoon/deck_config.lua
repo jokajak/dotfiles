@@ -1,13 +1,13 @@
 --- Initial buttons for DeckMate
-buttonWidth = 96
-buttonHeight = 96
+local buttonWidth = 96
+local buttonHeight = 96
 
 -- Shared cached canvas
 local sharedCanvas = hs.canvas.new{ w = buttonWidth, h = buttonHeight }
 local tintColor = hs.drawing.color.lists()['System']['systemOrangeColor']
 local systemBackgroundColor = hs.drawing.color.lists()['System']['windowBackgroundColor']
 
-function randomColor()
+local function randomColor()
     return {
         ['hue'] = math.random(255.0) / 255.0,
         ['saturation'] = math.random(2, 10) / 10,
@@ -200,7 +200,6 @@ local function windowSwitcher()
         end
     }
 end
-
 
 local lockButton = {
     ['name'] = 'Lock',

@@ -5,7 +5,7 @@
 # Amended to work for my personal preferences
 
 DIR=$(dirname "$0")
-cd "$DIR"
+cd "$DIR" || exit
 
 . ../scripts/functions.sh
 
@@ -14,6 +14,8 @@ info "Setting macOS defaults..."
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
+
+set -x
 
 # Set sidebar icon size to medium
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
@@ -91,7 +93,7 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
 # Enable press-and-hold for keys instead of key repeat
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool true
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
@@ -386,5 +388,7 @@ defaults write com.google.Chrome.canary DisablePrintPreview -bool true
 # Expand the print dialog by default
 defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
+
+set +x
 
 success "Finished setting macOS defaults. Note that some of these changes require a logout/restart to take effect."
