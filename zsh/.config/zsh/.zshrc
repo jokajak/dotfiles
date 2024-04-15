@@ -108,7 +108,7 @@ eval "$(starship init zsh)"
 
 eval "$(zoxide init zsh)"
 
-[ -f "${HOME}/.config/broot/launcher/bash/br" ] && source /Users/josh/.config/broot/launcher/bash/br
+[ -f "${HOME}/.config/broot/launcher/bash/br" ] && source "${HOME}/.config/broot/launcher/bash/br"
 
 source <(pkgx --shellcode)  #docs.pkgx.sh/shellcode
 
