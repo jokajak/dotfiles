@@ -1,3 +1,6 @@
+local buttonWidth = 96
+local buttonHeight = 96
+
 -- A nonce button
 local function randomColor()
   return {
