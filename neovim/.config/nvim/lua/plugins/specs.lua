@@ -3,7 +3,7 @@
 -- Fast and lightweight, written completely in Lua.
 
 local specs = {
-  "edluffy/specs.nvim",
+  "jokajak/specs.nvim",
   event = "BufRead",
   lazy = true,
   keys = {
