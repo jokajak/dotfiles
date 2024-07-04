@@ -59,6 +59,9 @@ clear() (
     *.zip)
         unzip "$1" -d "$tmp"
         ;;
+    *.jar)
+        unzip "$1" -d "$tmp"
+        ;;
     *.tar.* | *.tgz | *.tar)
         tar -xf "$1" -C "$tmp"
         ;;
