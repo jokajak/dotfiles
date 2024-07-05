@@ -10,6 +10,40 @@ return {
       --  - ci'  - [C]hange [I]nside [']quote
       require('mini.ai').setup({ n_lines = 500 })
 
+      -- text alignment
+      require('mini.align').setup({
+        mappings = {
+          start = 'gA',
+          start_with_preview = 'ga',
+        },
+      })
+
+      -- more forward/backward movement targets
+      require('mini.bracketed').setup()
+
+      -- keep window layout
+      require('mini.bufremove').setup()
+
+      -- enable commenting
+      require('mini.comment').setup()
+
+      -- highlight the current word
+      require('mini.cursorword').setup()
+
+      -- work with diff hunks
+      require('mini.diff').setup()
+
+      -- highlight patterns in text
+      require('mini.hipatterns').setup()
+
+      -- icons
+      require('mini.icons').setup()
+
+      -- extra operators
+      require('mini.operators').setup()
+
+      --- session management
+      require('mini.sessions').setup()
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
@@ -17,6 +51,8 @@ return {
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
+      -- tab line
+      require('mini.tabline').setup()
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
@@ -32,13 +68,9 @@ return {
         return '%2l:%-2v'
       end
 
-      -- text alignment
-      require('mini.align').setup({
-        mappings = {
-          start = 'gA',
-          start_with_preview = 'ga',
-        },
-      })
+      -- highlight trailing whitespace
+      require('mini.trailspace').setup()
+
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
