@@ -27,6 +27,13 @@ local M = {
 }
 
 M.config = function()
+  local wk_ok, wk = pcall(require, "which-key")
+  if wk_ok then
+    wk.register({
+      mode = { "n", "v" },
+      ["<leader>gw"] = { name = "+worktrees" },
+    })
+  end
   local status_ok, gwt = pcall(require, "git-worktree")
   if not status_ok then
     return

@@ -83,6 +83,14 @@ M.config = function()
     '<cmd>lua require"gitlinker".get_repo_url()<cr>',
     { desc = "[G]et git [l]ink to current [r]epo", silent = true }
   )
+
+  local wk_ok, wk = pcall(require, "which-key")
+  if wk_ok then
+    wk.register({
+      mode = { "n", "v" },
+      ["<leader>gl"] = { name = "+links" },
+    })
+  end
 end
 
 return M
