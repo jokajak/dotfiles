@@ -2,7 +2,7 @@
 -- display a character as a column
 
 local virt_column = {
-  "jokajak/virt-column",
+  "jokajak/virt-column.nvim",
   branch = "feat/toggle",
   event = "VeryLazy",
   opts = function()
