@@ -2,9 +2,7 @@
 -- Highlight block context changes
 local block_plugin = {
   "HampusHauffman/block.nvim",
-  config = function()
-    require("block").setup({})
-  end,
+  opts = {},
   cmd = {
     "Block",
     "BlockOn",

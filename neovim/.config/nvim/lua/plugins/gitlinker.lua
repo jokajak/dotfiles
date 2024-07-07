@@ -85,7 +85,7 @@ M.config = function()
   )
 
   local wk_ok, wk = pcall(require, "which-key")
-  if wk_ok then
+  if wk_ok and wk.register then
     wk.register({
       mode = { "n", "v" },
       ["<leader>gl"] = { name = "+links" },

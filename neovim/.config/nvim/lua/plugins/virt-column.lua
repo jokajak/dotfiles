@@ -15,6 +15,25 @@ local virt_column = {
       char = { "", "┃" },
       virtcolumn = "80, 120",
       highlight = { "NonText", "WarningMsg" },
+      exclude = {
+        filetypes = {
+          "dashboard",
+          "lspinfo",
+          "packer",
+          "checkhealth",
+          "help",
+          "man",
+          "gitcommit",
+          "TelescopePrompt",
+          "TelescopeResults",
+        },
+        buftypes = {
+          "terminal",
+          "nofile",
+          "quickfix",
+          "prompt",
+        },
+      },
     }
   end,
 }
