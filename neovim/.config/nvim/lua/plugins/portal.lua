@@ -16,6 +16,19 @@ local M = {
       "<cmd>Portal jumplist forward<cr>",
       desc = "Next [p]ortal jump",
     },
+    {
+      "[g",
+      "<cmd>Portal grapple forward<cr>",
+      desc = "Prev [g]rapple jump",
+    },
+    {
+      "]g",
+      "<cmd>Portal grapple forward<cr>",
+      desc = "Next [p]rapple jump",
+    },
+  },
+  cmd = {
+    "Portal",
   },
 }
 
