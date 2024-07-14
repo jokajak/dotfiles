@@ -108,6 +108,8 @@ eval "$(starship init zsh)"
 
 eval "$(zoxide init zsh)"
 
+# load wezterm integration
+source "$ZDOTDIR/wezterm.sh"
 [ -f "${HOME}/.config/broot/launcher/bash/br" ] && source "${HOME}/.config/broot/launcher/bash/br"
 
 export ZSH_LOADED=1
