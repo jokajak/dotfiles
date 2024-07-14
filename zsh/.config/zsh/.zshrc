@@ -110,6 +110,4 @@ eval "$(zoxide init zsh)"
 
 [ -f "${HOME}/.config/broot/launcher/bash/br" ] && source "${HOME}/.config/broot/launcher/bash/br"
 
-source <(pkgx --shellcode)  #docs.pkgx.sh/shellcode
-
 export ZSH_LOADED=1
