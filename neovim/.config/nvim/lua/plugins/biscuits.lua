@@ -7,14 +7,17 @@ local biscuits = {
   opts = {
     on_events = { "InsertLeave", "CursorHoldI" },
     cursor_line_only = true,
+    show_on_start = true,
   },
   keys = {
     {
       "<leader>uzb",
       function()
-        require("nvim-biscuits").toggle_biscuits()
+        local nvim_biscuits = require("nvim_biscuits")
+        nvim_biscuits.toggle_biscuits()
       end,
       desc = "Toggle biscuits",
+      mode = "n",
     },
   },
 }
