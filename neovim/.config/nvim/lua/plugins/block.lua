@@ -9,7 +9,7 @@ local block_plugin = {
     "BlockOff",
   },
   keys = {
-    { "<leader>zb", "<cmd>Block<CR>", desc = "Toggle Block indicator" },
+    { "<leader>uzb", "<cmd>Block<CR>", desc = "Toggle Block indicator" },
   },
 }
 
