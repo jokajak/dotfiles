@@ -3,6 +3,7 @@
 
 local fold_line = {
   "gh-liu/fold_line.nvim",
+  enabled = false,
   event = "VeryLazy",
   init = function()
     -- change the char of the line, see the `Appearance` section

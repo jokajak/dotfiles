@@ -6,6 +6,7 @@ local colorschemes = {
   { label = "Tokyo Night Moon",  value = "Tokyo Night Moon"},
   { label = "Tokyo Night Day",   value = "Tokyo Night Day"},
   { label = "Catppuccin Mocha",  value = "Catppuccin Mocha"},
+  { label = "Catppuccin Latte",  value = "Catppuccin Latte"},
   { label = "Oxocarbon Dark",    value = "Oxocarbon Dark (Gogh)" },
   { label = "Gruvbox Material",  value = "Gruvbox Material (Gogh)" },
   { label = "Sonokai",           value = "Sonokai (Gogh)" },
