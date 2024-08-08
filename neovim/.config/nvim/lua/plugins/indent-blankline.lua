@@ -26,17 +26,36 @@ hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
   vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
 end)
 
+hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+
+local nodes = {
+  lua = {
+    "arguments",
+    "field",
+    "method_index_expression",
+    "return_statement",
+    "table_constructor",
+  },
+}
+
 local ibl = {
   "lukas-reineke/indent-blankline.nvim",
   opts = {
     indent = {
       char = "│",
       tab_char = "│",
-      highlight = highlight,
     },
     scope = {
       show_start = true,
       show_end = true,
+      highlight = highlight,
+      injected_languages = true,
+      priority = 1000,
+      include = {
+        node_type = {
+          lua = nodes.lua,
+        },
+      },
     },
   },
 }
