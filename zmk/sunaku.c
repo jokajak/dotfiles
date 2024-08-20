@@ -9,9 +9,9 @@
 // The *_FINGER_MOD specify which modifiers are used by home row mod keys.
 // Use (Win, Alt, Ctrl, Shift) because I use ctrl more than win
 // I chord alot from pinky to something else which was triggering the mod-tap functionality
-#define PINKY_FINGER_MOD LGUI
-#define RING1_FINGER_MOD LALT
-#define RING2_FINGER_MOD RALT
+#define PINKY_FINGER_MOD LALT
+#define RING1_FINGER_MOD LGUI
+#define RING2_FINGER_MOD RGUI
 #define MIDDY_FINGER_MOD LCTL
 #define INDEX_FINGER_MOD LSFT
 
