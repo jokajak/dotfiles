@@ -1,6 +1,6 @@
 require("preload")
 
-local url = dofile("./url.lua")
+local _ = dofile("./url.lua")
 require("utils")
 require("deck_config")
 require("hyper")

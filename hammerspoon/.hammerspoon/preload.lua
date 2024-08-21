@@ -4,15 +4,16 @@ hs.window.animationDuration = 0
 -- Ensure hs.spoons gets created
 
 -- auto reload config
-configFileWatcher =
-  hs.pathwatcher.new(hs.configdir, function(files)
-      local isLuaFileChange = utils.some(files, function(p)
-          return not (string.match(p, "^.+/([^%.#][^/]+%.lua)$") == nil)
-      end)
-      if isLuaFileChange then
-          hs.reload()
-      end
-  end):start()
+local configFileWatcher = hs.pathwatcher
+  .new(hs.configdir, function(files)
+    local isLuaFileChange = utils.some(files, function(p)
+      return not (string.match(p, "^.+/([^%.#][^/]+%.lua)$") == nil)
+    end)
+    if isLuaFileChange then
+      hs.reload()
+    end
+  end)
+  :start()
 
 -- ensure CLI installed
 hs.ipc.cliInstall()
@@ -29,4 +30,3 @@ pbcopy = hs.pasteboard.setContents
 std = hs.stdlib and require("hs.stdlib")
 utils = hs.fnutils
 -- hyper = {'⌘', '⌃'}
-i(hs.spoons)
