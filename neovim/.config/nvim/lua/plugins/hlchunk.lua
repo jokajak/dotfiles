@@ -6,7 +6,7 @@ local hlchunk = {
   "shellRaining/hlchunk.nvim",
   event = { "BufReadPre", "BufNewFile" },
   opts = function()
-    LazyVim.toggle.map("<leader>uH", {
+    Snacks.toggle({
       name = "Highlight Chunks",
       get = function()
         return render
@@ -20,7 +20,7 @@ local hlchunk = {
           vim.cmd("DisableHLChunk")
         end
       end,
-    })
+    }):map("<leader>uH")
 
     return {
       chunk = {
