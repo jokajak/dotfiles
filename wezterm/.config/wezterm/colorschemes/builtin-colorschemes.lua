@@ -20,7 +20,7 @@ local file_path = cache_path .. "background.lua"
 -- Function to write "dark" or "light" based on the active scheme
 local function write_background_type(active_scheme)
   -- Find the scheme in the list and get its type
-  local background_type = "light"
+  local background_type = ""
   for _, scheme in ipairs(colorschemes) do
     if scheme.value == active_scheme then
       background_type = scheme.background
@@ -30,6 +30,10 @@ local function write_background_type(active_scheme)
 
   os.execute("mkdir -p " .. cache_path)
 
+  if background_type ~= "dark" and background_type ~= "light" then
+    return
+  end
+
   -- Open the file for writing
   local file, err = io.open(file_path, "w")
   if not file then
@@ -37,7 +41,7 @@ local function write_background_type(active_scheme)
   end
 
   -- Write "dark" or "light" to the file
-  file:write(background_type)
+  file:write(background_type .. "\n")
   file:close()
 end
 

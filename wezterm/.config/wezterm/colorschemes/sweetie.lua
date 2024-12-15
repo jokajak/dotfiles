@@ -2,8 +2,8 @@ local M = {}
 
 -- stylua: ignore
 local colorschemes = {
-  { label = "Sweetie Dark",  value = "sweetie_dark" },
-  { label = "Sweetie Light", value = "sweetie_light" },
+  { label = "Sweetie Dark",  value = "sweetie_dark" , background="dark"},
+  { label = "Sweetie Light", value = "sweetie_light" , background="light"},
 }
 
 M.init = function()
