@@ -7,12 +7,14 @@ M.init = function()
 end
 
 M.activate = function(config)
-  config.font = wezterm.font(name)
-  config.font_size = 14.0
+  config.font = wezterm.font({
+    family = name,
+    stretch = "Expanded",
+  })
   config.line_height = 1.0
-  config.harfbuzz_features = {}
+  config.font_size = 14.0
   config.font_rules = {}
-  config.font.weight = "Expanded"
+  config.harfbuzz_features = {}
 end
 
 return M
