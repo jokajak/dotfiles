@@ -1,3 +1,4 @@
+local wezterm = require("wezterm")
 local M = {}
 
 -- stylua: ignore
@@ -34,10 +35,12 @@ local function write_background_type(active_scheme)
     return
   end
 
+  wezterm.log_info("Setting colorscheme to: " .. background_type)
   -- Open the file for writing
   local file, err = io.open(file_path, "w")
-  if not file then
-    error("Failed to open file: " .. err)
+  if not file or file == nil then
+    wezterm.log_error("Failed to open file: " .. err)
+    return
   end
 
   -- Write "dark" or "light" to the file
