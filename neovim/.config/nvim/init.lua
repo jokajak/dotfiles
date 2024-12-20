@@ -13,16 +13,21 @@ local function set_background_from_file()
     local file = io.open(file_path, "r")
     local content = ""
     if file ~= nil then
-      content = file:read("*a")
+      content = file:read("*all")
       file:close()
     end
 
     -- Trim any whitespace from the content
     content = vim.trim(content)
 
+    -- Match the TERM_BACKGROUND value
+    local background = content:match("TERM_BACKGROUND%s*=%s*(%w+)")
+
     -- Set the background based on the content
-    if content == "dark" or content == "light" then
+    if background == "dark" or background == "light" then
       vim.o.background = content
+    else
+      vim.notify("Invalid background found, ignoring", vim.log.levels.WARN)
     end
   end
 end
