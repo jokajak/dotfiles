@@ -25,7 +25,7 @@ local function set_background_from_file()
 
     -- Set the background based on the content
     if background == "dark" or background == "light" then
-      vim.o.background = content
+      vim.o.background = background
     else
       vim.notify("Invalid background found, ignoring", vim.log.levels.WARN)
     end
