@@ -21,6 +21,7 @@ local file_path = cache_path .. "background.lua"
 -- Function to write "dark" or "light" based on the active scheme
 local function write_background_type(active_scheme)
   -- Find the scheme in the list and get its type
+
   local background_type = ""
   for _, scheme in ipairs(colorschemes) do
     if scheme.value == active_scheme then
@@ -35,7 +36,7 @@ local function write_background_type(active_scheme)
     return
   end
 
-  wezterm.log_info("Setting colorscheme to: " .. background_type)
+  wezterm.log_info("Setting background to: " .. background_type .. " for " .. active_scheme)
   -- Open the file for writing
   local file, err = io.open(file_path, "w")
   if not file or file == nil then
@@ -44,7 +45,7 @@ local function write_background_type(active_scheme)
   end
 
   -- Write "dark" or "light" to the file
-  file:write(background_type .. "\n")
+  file:write("TERM_BACKGROUND=" .. background_type .. "\n")
   file:close()
 end
 
@@ -53,8 +54,14 @@ M.init = function()
 end
 
 M.activate = function(config, _, value)
-  write_background_type(value)
   config.color_scheme = value
 end
+
+wezterm.on("window-config-reloaded", function(window, _)
+  local config = window:get_config_overrides() or {}
+  if config.color_scheme ~= nil then
+    write_background_type(config.color_scheme)
+  end
+end)
 
 return M
