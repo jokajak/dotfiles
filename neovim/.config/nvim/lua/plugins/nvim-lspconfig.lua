@@ -18,7 +18,7 @@ local M = {
         end)(),
         settings = {
           pyright = {
-            disableOrganizeImports = true,
+            disableOrganizeImports = false,
           },
           python = {
             analysis = {
