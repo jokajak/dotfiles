@@ -22,3 +22,6 @@ vim.filetype.add({
     ["*/chart/templates/*%.ya?ml"] = "yaml.helm",
   },
 })
+
+vim.opt.numberwidth = 3
+vim.opt.signcolumn = "yes:1"

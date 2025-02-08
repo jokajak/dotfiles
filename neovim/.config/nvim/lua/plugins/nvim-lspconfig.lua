@@ -2,6 +2,16 @@ local M = {
   "neovim/nvim-lspconfig",
   ---@class PluginLspOpts
   opts = {
+    diagnostics = {
+      signs = {
+        numhl = {
+          [vim.diagnostic.severity.WARN] = "WarningMsg",
+          [vim.diagnostic.severity.ERROR] = "ErrorMsg",
+          [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+          [vim.diagnostic.severity.HINT] = "DiagnosticHint",
+        },
+      },
+    },
     ---@type lspconfig.options
     servers = {
       ansiblels = {},
