@@ -1,6 +1,7 @@
+Routines = {}
 local _log = hs.logger.new("routines", "debug")
 
-local _eye_breaks = require("eye_breaks")
+Routines.eye_breaks = require("eye_breaks")
 
 -- Switch keyboard layout when kinesis is removed
 -- the kinesis is programmed with a custom dvorak layout that assumes the mac is configured with a US layout
@@ -28,7 +29,8 @@ local function _usb_handler(usb_info)
     hs.alert(hs.inspect.inspect(usb_info))
   end
 end
-_usb_watcher = hs.usb.watcher.new(_usb_handler)
-_usb_watcher:start()
+Routines.usb_watcher = hs.usb.watcher.new(_usb_handler)
+Routines.usb_watcher:start()
 
 _log.i("Loading")
+return Routines

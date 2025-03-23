@@ -61,14 +61,14 @@ function module:shade()
 end
 
 -- Take eye breaks, look away every 20 minutes
-module.eye_breaks = hs.timer.new(_duration * 60, module.shade)
-module.eye_breaks:start()
+module.timer = hs.timer.new(_duration * 60, module.shade)
+module.timer:start()
 
 local function screenSaverWatcher(event_type)
   if event_type == hs.caffeinate.watcher.screenDidLock then
-    module.eye_breaks:stop()
+    module.timer:stop()
   elseif event_type == hs.caffeinate.watcher.screensDidUnlock then
-    module.eye_breaks:start()
+    module.timer:start()
   end
 end
 
